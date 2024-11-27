@@ -22,12 +22,7 @@ export function ContactSection() {
     setIsSubmitting(true)
 
     try {
-      await sendEmail({
-        to: "cayceedevelopers@gmail.com",
-        subject: `New Contact Form Submission from ${formState.name}`,
-        ...formState
-      })
-      
+      await sendEmail(formState)
       toast.success("Message sent successfully!")
       setFormState({ name: "", email: "", message: "" })
     } catch (error) {
