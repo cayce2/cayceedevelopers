@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-zinc-100 to-white dark:from-zinc-900 dark:to-zinc-800">
       <SiteHeader />
-      <main className="flex-1">
+      <main className="flex-1">  
         {/* Hero Section */}
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-violet-100 to-cyan-100 dark:from-violet-950 dark:to-cyan-950 opacity-20" />
