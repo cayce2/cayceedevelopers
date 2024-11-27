@@ -1,11 +1,13 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { useState } from "react"
+import { sendEmail } from "@/lib/email"
+import { toast } from "sonner"
 
 export function ContactSection() {
   const [formState, setFormState] = useState({
@@ -13,11 +15,26 @@ export function ContactSection() {
     email: "",
     message: ""
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log(formState)
+    setIsSubmitting(true)
+
+    try {
+      await sendEmail({
+        to: "cayceedevelopers@gmail.com",
+        subject: `New Contact Form Submission from ${formState.name}`,
+        ...formState
+      })
+      
+      toast.success("Message sent successfully!")
+      setFormState({ name: "", email: "", message: "" })
+    } catch (error) {
+      toast.error("Failed to send message. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -90,8 +107,13 @@ export function ContactSection() {
                   required
                 />
               </div>
-              <Button size="lg" className="w-full bg-violet-600 hover:bg-violet-700">
-                Send Message
+              <Button 
+                type="submit" 
+                size="lg" 
+                className="w-full bg-violet-600 hover:bg-violet-700"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </CardContent>
