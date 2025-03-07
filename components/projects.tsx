@@ -32,31 +32,29 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="py-24 bg-gradient-to-b from-slate-50 to-white">
-      <div className="container px-4 md:px-6">
-        {/* Section Header with improved styling */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 md:mb-16">
-          <div className="md:max-w-2xl">
-            <div className="inline-flex items-center px-3 py-1 mb-4 text-xs font-medium rounded-full bg-purple-50 text-purple-700 border border-purple-100">
-              Featured Work
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">Projects</span>
-            </h2>
-            <p className="mt-4 text-lg text-slate-600 max-w-2xl">
-              Recent work we&apos;ve delivered for our clients that showcase our expertise and creativity.
-            </p>
+      <div className="container px-4 md:px-6 mx-auto max-w-6xl">
+        {/* Section Header with centered styling */}
+        <div className="flex flex-col items-center text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center px-3 py-1 mb-4 text-xs font-medium rounded-full bg-purple-50 text-purple-700 border border-purple-100">
+            Featured Work
           </div>
-          <div className="mt-6 md:mt-0">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">Projects</span>
+          </h2>
+          <p className="mt-4 text-lg text-slate-600 max-w-2xl">
+            Recent work we&apos;ve delivered for our clients that showcase our expertise and creativity.
+          </p>
+          <div className="mt-6">
             <Button variant="ghost" className="group text-slate-700 hover:text-purple-700 hover:bg-purple-50">
               View All Projects <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
         </div>
 
-        {/* Featured Project - Larger display */}
+        {/* Featured Project - Centered */}
         <div className="mb-12">
           {projects.filter(p => p.featured).map((project, index) => (
-            <div key={index} className="group relative bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md">
+            <div key={index} className="group relative bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md mx-auto">
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="order-2 md:order-1 p-8 md:p-10 flex flex-col justify-center">
                   <div className="space-y-4">
@@ -96,8 +94,8 @@ export function ProjectsSection() {
           ))}
         </div>
 
-        {/* Regular Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Regular Projects Grid - Centered */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mx-auto">
           {projects.filter(p => !p.featured).map((project, index) => (
             <div key={index} className="group bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-all">
               <div className="aspect-[16/10] relative overflow-hidden">
