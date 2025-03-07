@@ -1,3 +1,4 @@
+// ContactSection.jsx
 "use client"
 
 import { useState } from "react"
@@ -6,8 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { sendEmail } from "@/lib/email"
 import { toast } from "sonner"
+import { sendEmail } from "@/lib/email"
 
 export function ContactSection() {
   const [formState, setFormState] = useState({
@@ -17,7 +18,7 @@ export function ContactSection() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
 
@@ -26,6 +27,7 @@ export function ContactSection() {
       toast.success("Message sent successfully!")
       setFormState({ name: "", email: "", message: "" })
     } catch (error) {
+      console.error("Error details:", error)
       toast.error("Failed to send message. Please try again.")
     } finally {
       setIsSubmitting(false)
