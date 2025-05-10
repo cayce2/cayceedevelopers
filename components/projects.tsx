@@ -25,7 +25,7 @@ export function ProjectsSection() {
       title: "Empowerher App",
       category: "Mobile application",
       description: "Personalized workout plans and nutrition tracking to help users reach their goals.",
-      image: "/placeholder.svg?height=300&width=600",
+      image: "/empower.png?height=300&width=600",
       tags: ["React Native", "GraphQL", "AWS", "Firebase"],
       featured: false
     }
@@ -74,13 +74,13 @@ export function ProjectsSection() {
                     </div>
                     
                     <div className="pt-4">
-  <Link href="https://www.drunkbycaycee.co.ke/" target="_blank" rel="noopener noreferrer">
-    <Button className="group bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm">
-      View Case Study
-      <ArrowUpRight className="ml-2 h-4 w-4 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-    </Button>
-  </Link>
-</div>
+                      <Link href="https://www.drunkbycaycee.co.ke/" target="_blank" rel="noopener noreferrer">
+                        <Button className="group bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm">
+                          View Case Study
+                           <ArrowUpRight className="ml-2 h-4 w-4 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
                 
