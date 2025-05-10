@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowUpRight, ArrowRight } from "lucide-react"
+import Link from 'next/link';
 
 export function ProjectsSection() {
   const projects = [
@@ -8,7 +9,7 @@ export function ProjectsSection() {
       title: "E-commerce Platform",
       category: "Full-stack web application",
       description: "A modern e-commerce solution with integrated payment processing and inventory management.",
-      image: "/placeholder.svg?height=300&width=600",
+      image: "/ecommerce.png?height=300&width=600",
       tags: ["React", "Node.js", "MongoDB", "Stripe"],
       featured: true
     },
@@ -16,12 +17,12 @@ export function ProjectsSection() {
       title: "Expense Tracker",
       category: "Full-stack web application",
       description: "A modern platform to monitor your income and expenses with intelligent insights.",
-      image: "/placeholder.svg?height=300&width=600",
+      image: "/expense.png?height=300&width=600",
       tags: ["React", "Firebase", "ChartJS", "Tailwind"],
       featured: false
     },
     {
-      title: "Health & Fitness App",
+      title: "Empowerher App",
       category: "Mobile application",
       description: "Personalized workout plans and nutrition tracking to help users reach their goals.",
       image: "/placeholder.svg?height=300&width=600",
@@ -73,10 +74,13 @@ export function ProjectsSection() {
                     </div>
                     
                     <div className="pt-4">
-                      <Button className="group bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm">
-                        View Case Study <ArrowUpRight className="ml-2 h-4 w-4 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                      </Button>
-                    </div>
+  <Link href="https://www.drunkbycaycee.co.ke/" target="_blank" rel="noopener noreferrer">
+    <Button className="group bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm">
+      View Case Study
+      <ArrowUpRight className="ml-2 h-4 w-4 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+    </Button>
+  </Link>
+</div>
                   </div>
                 </div>
                 
