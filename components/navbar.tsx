@@ -33,7 +33,7 @@ export function Navbar() {
           : "bg-transparent py-4"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center group">
             <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 p-[2px] shadow-md transition-all duration-300 group-hover:shadow-purple-200">
@@ -48,9 +48,9 @@ export function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center justify-center space-x-1">
-          <div className="relative group px-3 py-2">
-            <button className="flex items-center space-x-1 text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">
+        <nav className="hidden md:flex items-center justify-center space-x-6">
+          <div className="relative group">
+            <button className="flex items-center space-x-1 px-3 py-2 text-sm font-medium text-slate-700 group-hover:text-purple-600 transition-colors">
               <span>Services</span>
               <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
             </button>
@@ -81,14 +81,12 @@ export function Navbar() {
             Contact
           </Link>
           
-          <div className="pl-2">
+          <div className="flex items-center space-x-3 ml-6">
             <Button size="sm" variant="outline" className="w-8 h-8 p-0 rounded-full border-slate-200">
               <Search className="h-4 w-4 text-slate-600" />
               <span className="sr-only">Search</span>
             </Button>
-          </div>
-          
-          <div className="pl-2">
+            
             <Button size="sm" className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-lg shadow-sm">
               Get Started
             </Button>
@@ -96,7 +94,7 @@ export function Navbar() {
         </nav>
 
         {/* Mobile Navigation */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-3 md:hidden">
           <Button size="sm" variant="outline" className="w-8 h-8 p-0 rounded-full border-slate-200">
             <Search className="h-4 w-4 text-slate-600" />
             <span className="sr-only">Search</span>
