@@ -28,6 +28,23 @@ export function ProjectsSection() {
       image: "/empower.png?height=300&width=600",
       tags: ["React Native", "GraphQL", "AWS", "Firebase"],
       featured: false
+    },
+    {
+      title: "AB-SITE Technologies",
+      category: "Ecommerce Website",
+      description: "Networking and security solutions provider with a comprehensive online store.",
+      image: "/absite.png?height=300&width=600",
+      tags: ["React Native"],
+      featured: false
+      
+    },
+    {
+      title: "Stocks Management System",
+      category: "Website",
+      description: "Stock management system for tracking inventory levels, orders, sales, and deliveries.",
+      image: "/absite.png?height=300&width=600",
+      tags: ["React Native"],
+      featured: false
     }
   ]
 
