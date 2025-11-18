@@ -101,9 +101,7 @@ function ConsultationCalendar({ isOpen, onClose, onSubmit }: ConsultationCalenda
     };
     
     try {
-      // In a real implementation, you would send this data to your backend
-      // For example using fetch or axios:
-      /*
+      // Send booking data to API endpoint
       await fetch('/api/schedule-consultation', {
         method: 'POST',
         headers: {
@@ -111,7 +109,6 @@ function ConsultationCalendar({ isOpen, onClose, onSubmit }: ConsultationCalenda
         },
         body: JSON.stringify(bookingData),
       });
-      */
       
       // Submit the form data to the parent component
       onSubmit(bookingData);
