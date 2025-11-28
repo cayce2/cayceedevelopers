@@ -1,9 +1,13 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowUpRight, ArrowRight } from "lucide-react"
 import Link from 'next/link';
+import { useTranslation } from "@/lib/use-translation"
 
 export function ProjectsSection() {
+  const { t } = useTranslation()
   const projects = [
     {
       title: "E-commerce Platform",
@@ -49,22 +53,24 @@ export function ProjectsSection() {
   ]
 
   return (
-    <section id="projects" className="py-24 bg-gradient-to-b from-slate-50 to-white">
+    <section id="projects" className="py-24 bg-white">
       <div className="container px-4 md:px-6 mx-auto max-w-6xl">
         {/* Section Header with centered styling */}
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
-          <div className="inline-flex items-center px-3 py-1 mb-4 text-xs font-medium rounded-full bg-purple-50 text-purple-700 border border-purple-100">
-            Featured Work
+          <div className="inline-flex items-center px-3 py-1 mb-4 text-xs font-medium rounded-full bg-purple-100 text-purple-700 border border-purple-200">
+            {t('Featured Work')}
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">Projects</span>
+            {t('Our Projects').split(' ').map((word, index) => 
+              index === 1 ? <span key={index} className="text-purple-600">{word}</span> : <span key={index}>{word} </span>
+            )}
           </h2>
           <p className="mt-4 text-lg text-slate-600 max-w-2xl">
-            Recent work we&apos;ve delivered for our clients that showcase our expertise and creativity.
+            {t('Recent work showcase')}
           </p>
           <div className="mt-6">
-            <Button variant="ghost" className="group text-slate-700 hover:text-purple-700 hover:bg-purple-50">
-              View All Projects <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <Button variant="ghost" className="group text-slate-700 hover:text-purple-600 hover:bg-purple-50">
+              {t('View All Projects')} <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
         </div>
@@ -92,8 +98,8 @@ export function ProjectsSection() {
                     
                     <div className="pt-4">
                       <Link href="https://www.drunkbycaycee.co.ke/" target="_blank" rel="noopener noreferrer">
-                        <Button className="group bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm">
-                          View Case Study
+                        <Button className="group bg-purple-600 hover:bg-purple-700 text-white shadow-sm">
+                          {t('View Case Study')}
                            <ArrowUpRight className="ml-2 h-4 w-4 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </Button>
                       </Link>
@@ -108,7 +114,7 @@ export function ProjectsSection() {
                     alt={project.title}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
               </div>
             </div>
@@ -126,7 +132,7 @@ export function ProjectsSection() {
                   alt={project.title}
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
               
               <div className="p-6">
@@ -137,7 +143,7 @@ export function ProjectsSection() {
                     </div>
                     <h3 className="text-xl font-semibold text-slate-900">{project.title}</h3>
                   </div>
-                  <div className="p-1 rounded-full bg-slate-50 border border-slate-100 group-hover:bg-purple-50 group-hover:border-purple-100 transition-colors">
+                  <div className="p-1 rounded-full bg-slate-50 border border-slate-100 group-hover:bg-purple-50 group-hover:border-purple-200 transition-colors">
                     <ArrowUpRight className="h-4 w-4 text-slate-400 group-hover:text-purple-600 transition-colors" />
                   </div>
                 </div>
