@@ -15,6 +15,7 @@ const translations = {
     
     // Hero Section
     'New Services Available': 'New Services Available',
+    'Digital Solutions': 'Digital Solutions',
     'Where Design Meets Creativity': 'Where Design Meets Creativity',
     'We create innovative digital solutions': 'We create innovative digital solutions that help businesses thrive in the modern world, combining cutting-edge technology with exceptional design.',
     'View Our Work': 'View Our Work',
@@ -74,6 +75,7 @@ const translations = {
     'Privacy Policy': 'Privacy Policy',
     'Terms of Service': 'Terms of Service',
     'All rights reserved': 'All rights reserved',
+    'Creating innovative digital solutions': 'Creating innovative digital solutions that help businesses thrive in the modern world. We combine cutting-edge technology with creative thinking.',
     
     // Language Switcher
     'AI detected your language': 'AI detected your language',
@@ -115,6 +117,7 @@ const translations = {
     
     // Hero Section
     'New Services Available': 'Nuevos Servicios Disponibles',
+    'Digital Solutions': 'Soluciones Digitales',
     'Where Design Meets Creativity': 'Donde el Diseño se Encuentra con la Creatividad',
     'We create innovative digital solutions': 'Creamos soluciones digitales innovadoras que ayudan a las empresas a prosperar en el mundo moderno, combinando tecnología de vanguardia con un diseño excepcional.',
     'View Our Work': 'Ver Nuestro Trabajo',
@@ -174,6 +177,7 @@ const translations = {
     'Privacy Policy': 'Política de Privacidad',
     'Terms of Service': 'Términos de Servicio',
     'All rights reserved': 'Todos los derechos reservados',
+    'Creating innovative digital solutions': 'Creando soluciones digitales innovadoras que ayudan a las empresas a prosperar en el mundo moderno. Combinamos tecnología de vanguardia con pensamiento creativo.',
     
     // Language Switcher
     'AI detected your language': 'IA detectó tu idioma',
@@ -215,6 +219,7 @@ const translations = {
     
     // Hero Section
     'New Services Available': 'Nouveaux Services Disponibles',
+    'Digital Solutions': 'Solutions Numériques',
     'Where Design Meets Creativity': 'Où le Design Rencontre la Créativité',
     'We create innovative digital solutions': 'Nous créons des solutions numériques innovantes qui aident les entreprises à prospérer dans le monde moderne, en combinant une technologie de pointe avec un design exceptionnel.',
     'View Our Work': 'Voir Notre Travail',
@@ -274,6 +279,7 @@ const translations = {
     'Privacy Policy': 'Politique de Confidentialité',
     'Terms of Service': 'Conditions de Service',
     'All rights reserved': 'Tous droits réservés',
+    'Creating innovative digital solutions': 'Créer des solutions numériques innovantes qui aident les entreprises à prospérer dans le monde moderne. Nous combinons une technologie de pointe avec une pensée créative.',
     
     // Language Switcher
     'AI detected your language': 'L\'IA a détecté votre langue',
@@ -315,6 +321,7 @@ const translations = {
     
     // Hero Section
     'New Services Available': 'Neue Dienstleistungen Verfügbar',
+    'Digital Solutions': 'Digitale Lösungen',
     'Where Design Meets Creativity': 'Wo Design auf Kreativität trifft',
     'We create innovative digital solutions': 'Wir schaffen innovative digitale Lösungen, die Unternehmen dabei helfen, in der modernen Welt erfolgreich zu sein, indem wir modernste Technologie mit außergewöhnlichem Design kombinieren.',
     'View Our Work': 'Unsere Arbeit Ansehen',
@@ -374,6 +381,7 @@ const translations = {
     'Privacy Policy': 'Datenschutzrichtlinie',
     'Terms of Service': 'Nutzungsbedingungen',
     'All rights reserved': 'Alle Rechte vorbehalten',
+    'Creating innovative digital solutions': 'Innovative digitale Lösungen schaffen, die Unternehmen helfen, in der modernen Welt erfolgreich zu sein. Wir kombinieren modernste Technologie mit kreativem Denken.',
     
     // Language Switcher
     'AI detected your language': 'KI hat Ihre Sprache erkannt',

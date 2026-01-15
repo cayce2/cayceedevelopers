@@ -18,24 +18,24 @@ function ServiceCard({ icon: Icon, title, subtitle, description, color, featured
   const { t } = useTranslation()
 
   return (
-    <div className={`group relative bg-white rounded-xl p-6 md:p-8 ${featured ? 'border-2 border-purple-300' : 'border border-slate-200'} hover:shadow-md transition-all overflow-hidden`}>
+    <div className={`group relative bg-[#0a0f1e]/80 backdrop-blur-sm p-6 md:p-8 ${featured ? 'border-2 border-sky-500/50 shadow-lg shadow-sky-500/20' : 'border border-sky-500/20'} hover:shadow-xl hover:shadow-sky-500/30 transition-all hover:-translate-y-2 overflow-hidden`}>
       {featured && (
         <div className="absolute top-0 right-0">
-          <div className="bg-purple-100 text-purple-700 text-xs font-medium py-1 px-3 rounded-bl-lg">{t('Popular')}</div>
+          <div className="bg-sky-500 text-white text-xs font-medium py-1 px-3 shadow-lg">{t('Popular')}</div>
         </div>
       )}
       
-      <div className={`rounded-xl p-3 w-14 h-14 flex items-center justify-center mb-5 mx-auto ${color}`}>
+      <div className={`p-3 w-14 h-14 flex items-center justify-center mb-5 mx-auto transition-transform group-hover:scale-110 ${color}`}>
         <Icon className="h-6 w-6" />
       </div>
       
-      <h3 className="text-xl font-bold mb-2 text-slate-900 group-hover:text-purple-700 transition-colors text-center">{title}</h3>
-      <p className="text-sm font-medium text-slate-500 mb-3 text-center">{subtitle}</p>
-      <p className="text-slate-600 mb-6 text-center">{description}</p>
+      <h3 className="text-xl font-bold mb-2 text-white group-hover:text-sky-400 transition-colors text-center">{title}</h3>
+      <p className="text-sm font-medium text-gray-400 mb-3 text-center">{subtitle}</p>
+      <p className="text-gray-300 mb-6 text-center">{description}</p>
       
       <div className="flex justify-center">
         <Button variant="ghost" className="group/btn p-0 h-auto hover:bg-transparent">
-          <span className="text-purple-600 font-medium group-hover/btn:text-purple-700 flex items-center">
+          <span className="text-sky-400 font-medium group-hover/btn:text-sky-300 flex items-center">
             {t('Learn more')} 
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
           </span>
@@ -133,8 +133,8 @@ function ConsultationCalendar({ isOpen, onClose, onSubmit }: ConsultationCalenda
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
-        <div className="flex justify-between items-center p-4 border-b">
+      <div className="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden border border-sky-500/20">
+        <div className="flex justify-between items-center p-4 border-b border-sky-500/20 bg-gradient-to-r from-sky-500/10 to-blue-600/10">
           <h3 className="text-xl font-bold text-slate-900">{t('Schedule a Consultation')}</h3>
           <button onClick={onClose} className="text-slate-500 hover:text-slate-700">
             <X className="h-5 w-5" />
@@ -184,9 +184,9 @@ function ConsultationCalendar({ isOpen, onClose, onSubmit }: ConsultationCalenda
                   key={index}
                   type="button"
                   onClick={() => setSelectedDate(date)}
-                  className={`text-center p-2 rounded-md text-sm ${
+                  className={`text-center p-2 text-sm transition-all ${
                     selectedDate && date.toDateString() === selectedDate.toDateString()
-                      ? 'bg-slate-200 text-slate-900 border border-slate-400'
+                      ? 'bg-sky-500 text-white border border-sky-400 shadow-lg scale-105'
                       : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                   }`}
                 >
@@ -208,9 +208,9 @@ function ConsultationCalendar({ isOpen, onClose, onSubmit }: ConsultationCalenda
                   key={index}
                   type="button"
                   onClick={() => setSelectedTime(time)}
-                  className={`text-center p-2 rounded-md text-sm ${
+                  className={`text-center p-2 text-sm transition-all ${
                     selectedTime === time
-                      ? 'bg-slate-200 text-slate-900 border border-slate-400'
+                      ? 'bg-sky-500 text-white border border-sky-400 shadow-lg scale-105'
                       : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                   }`}
                 >
@@ -224,7 +224,7 @@ function ConsultationCalendar({ isOpen, onClose, onSubmit }: ConsultationCalenda
           <div className="mt-6">
             <Button 
               type="submit" 
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-md transition-colors"
+              className="w-full bg-sky-500 hover:bg-sky-600 text-white font-medium py-2 transition-all shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40"
               disabled={submitting}
             >
               {submitting ? t('Processing...') : t('Confirm Appointment')}
@@ -255,7 +255,7 @@ export function ServicesSection() {
       title: t("Web Development"),
       subtitle: t("Custom websites and web applications"),
       description: t("Modern, responsive websites built with the latest technologies like React, Next.js, and Tailwind CSS."),
-      color: "bg-purple-50 text-purple-600",
+      color: "bg-sky-500/10 text-sky-400",
       featured: true
     },
     {
@@ -263,58 +263,59 @@ export function ServicesSection() {
       title: t("Mobile Apps"),
       subtitle: t("Native and cross-platform solutions"),
       description: t("Engaging mobile experiences for iOS and Android platforms using React Native and Flutter."),
-      color: "bg-blue-50 text-blue-600"
+      color: "bg-blue-500/10 text-blue-400"
     },
     {
       icon: Palette,
       title: t("UI/UX Design"),
       subtitle: t("User-centered design solutions"),
       description: t("Beautiful, intuitive interfaces that deliver exceptional user experiences across all devices."),
-      color: "bg-indigo-50 text-indigo-600"
+      color: "bg-cyan-500/10 text-cyan-400"
     },
     {
       icon: Zap,
       title: t("Performance Optimization"),
       subtitle: t("Speed and efficiency improvements"),
       description: t("Enhance your digital products with optimized loading times and smoother interactions."),
-      color: "bg-amber-50 text-amber-600"
+      color: "bg-indigo-500/10 text-indigo-400"
     },
     {
       icon: LineChart,
       title: t("Growth Strategy"),
       subtitle: t("Data-driven approach"),
       description: t("Leverage analytics and user insights to drive continuous improvement and business growth."),
-      color: "bg-emerald-50 text-emerald-600"
+      color: "bg-violet-500/10 text-violet-400"
     },
     {
       icon: Lock,
       title: t("Security Solutions"),
       subtitle: t("Protection for digital assets"),
       description: t("Implement robust security measures to safeguard your applications and user data."),
-      color: "bg-rose-50 text-rose-600"
+      color: "bg-purple-500/10 text-purple-400"
     }
   ];
 
   return (
-    <section id="services" className="py-24 bg-purple-50 relative overflow-hidden">
+    <section id="services" className="py-24 bg-[#0a0f1e] relative overflow-hidden">
       {/* Background design elements */}
+      <div className="absolute inset-0 tech-grid"></div>
       <div className="absolute inset-0 -z-10 opacity-20">
-        <div className="absolute -top-48 -left-48 w-96 h-96 rounded-full bg-purple-200 blur-3xl"></div>
-        <div className="absolute -bottom-48 -right-48 w-96 h-96 rounded-full bg-purple-100 blur-3xl"></div>
+        <div className="absolute -top-48 -left-48 w-96 h-96 rounded-full bg-sky-500/10 blur-3xl animate-float"></div>
+        <div className="absolute -bottom-48 -right-48 w-96 h-96 rounded-full bg-sky-500/10 blur-3xl animate-float" style={{animationDelay: '3s'}}></div>
       </div>
       
       <div className="container px-4 md:px-6 mx-auto max-w-6xl">
         {/* Section header */}
         <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
-          <div className="inline-flex items-center px-3 py-1 mb-4 text-xs font-medium rounded-full bg-purple-100 text-purple-700 border border-purple-200">
+          <div className="inline-flex items-center px-3 py-1 mb-4 text-xs font-medium rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/30 backdrop-blur-sm">
             {t('What We Offer')}
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4">
             {t('Our Services').split(' ').map((word, index) => 
-              index === 1 ? <span key={index} className="text-purple-600">{word}</span> : <span key={index}>{word} </span>
+              index === 1 ? <span key={index} className="text-sky-400">{word}</span> : <span key={index}>{word} </span>
             )}
           </h2>
-          <p className="text-lg text-slate-600">
+          <p className="text-lg text-gray-400">
             {t('Comprehensive solutions')}
           </p>
         </div>
@@ -335,8 +336,8 @@ export function ServicesSection() {
         </div>
         
         {/* CTA Section */}
-        <div className="mt-16 bg-purple-600 rounded-2xl p-8 md:p-10 text-white shadow-lg relative overflow-hidden">
-  <div className="absolute inset-0 -z-10 opacity-10">
+        <div className="mt-16 bg-sky-500/10 backdrop-blur-sm p-8 md:p-10 text-white shadow-lg border border-sky-500/20 relative overflow-hidden hover:border-sky-400 transition-all">
+  <div className="absolute inset-0 -z-10 opacity-5">
     <svg className="absolute right-0 top-0 h-full" width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="400" cy="0" r="200" fill="white" />
       <circle cx="0" cy="400" r="200" fill="white" />
@@ -345,12 +346,12 @@ export function ServicesSection() {
   
   <div className="max-w-3xl mx-auto text-center">
     <h3 className="text-2xl md:text-3xl font-bold mb-4">{t('Ready to transform')}</h3>
-    <p className="text-purple-100 mb-8 max-w-lg mx-auto">
+    <p className="text-gray-300 mb-8 max-w-lg mx-auto">
       {t('Schedule consultation')}
     </p>
     <Button 
       onClick={() => setIsCalendarOpen(true)}
-      className="bg-white text-purple-600 hover:bg-purple-50 px-6 py-3 font-medium rounded-lg shadow-sm transition-colors"
+      className="bg-sky-500 hover:bg-sky-600 text-white px-6 py-3 font-medium shadow-lg shadow-sky-500/30 transition-all hover:shadow-sky-500/50 hover:scale-105"
     >
       {t('Book a Consultation')}
     </Button>

@@ -53,23 +53,23 @@ export function ProjectsSection() {
   ]
 
   return (
-    <section id="projects" className="py-24 bg-white">
+    <section id="projects" className="py-24 bg-[#0a0f1e]">
       <div className="container px-4 md:px-6 mx-auto max-w-6xl">
         {/* Section Header with centered styling */}
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
-          <div className="inline-flex items-center px-3 py-1 mb-4 text-xs font-medium rounded-full bg-purple-100 text-purple-700 border border-purple-200">
+          <div className="inline-flex items-center px-3 py-1 mb-4 text-xs font-medium bg-sky-500/10 text-sky-400 border border-sky-500/30 backdrop-blur-sm animate-slide-up">
             {t('Featured Work')}
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight animate-slide-up" style={{animationDelay: '0.1s'}}>
             {t('Our Projects').split(' ').map((word, index) => 
-              index === 1 ? <span key={index} className="text-purple-600">{word}</span> : <span key={index}>{word} </span>
+              index === 1 ? <span key={index} className="text-sky-400">{word}</span> : <span key={index}>{word} </span>
             )}
           </h2>
-          <p className="mt-4 text-lg text-slate-600 max-w-2xl">
+          <p className="mt-4 text-lg text-gray-400 max-w-2xl animate-slide-up" style={{animationDelay: '0.2s'}}>
             {t('Recent work showcase')}
           </p>
-          <div className="mt-6">
-            <Button variant="ghost" className="group text-slate-700 hover:text-purple-600 hover:bg-purple-50">
+          <div className="mt-6 animate-slide-up" style={{animationDelay: '0.3s'}}>
+            <Button variant="ghost" className="group text-gray-300 hover:text-sky-400 hover:bg-sky-500/10 transition-all">
               {t('View All Projects')} <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
@@ -78,19 +78,19 @@ export function ProjectsSection() {
         {/* Featured Project - Centered */}
         <div className="mb-12">
           {projects.filter(p => p.featured).map((project, index) => (
-            <div key={index} className="group relative bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition-all hover:shadow-md mx-auto">
+            <div key={index} className="group relative bg-[#050a14]/80 backdrop-blur-sm shadow-lg border border-sky-500/20 overflow-hidden transition-all hover:shadow-xl hover:shadow-sky-500/30 hover:border-sky-400 hover:-translate-y-1 mx-auto">
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="order-2 md:order-1 p-8 md:p-10 flex flex-col justify-center">
                   <div className="space-y-4">
-                    <div className="inline-flex px-3 py-1 text-xs font-medium rounded-full bg-indigo-50 text-indigo-700">
+                    <div className="inline-flex px-3 py-1 text-xs font-medium rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/30">
                       {project.category}
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-slate-900">{project.title}</h3>
-                    <p className="text-slate-600">{project.description}</p>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white">{project.title}</h3>
+                    <p className="text-gray-400">{project.description}</p>
                     
                     <div className="flex flex-wrap gap-2 pt-2">
                       {project.tags.map((tag, tagIndex) => (
-                        <span key={tagIndex} className="px-3 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-700">
+                        <span key={tagIndex} className="px-3 py-1 text-xs font-medium rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">
                           {tag}
                         </span>
                       ))}
@@ -98,7 +98,7 @@ export function ProjectsSection() {
                     
                     <div className="pt-4">
                       <Link href="https://www.drunkbycaycee.co.ke/" target="_blank" rel="noopener noreferrer">
-                        <Button className="group bg-purple-600 hover:bg-purple-700 text-white shadow-sm">
+                        <Button className="group bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-sky-500/20 transition-all hover:shadow-sky-500/40 hover:scale-105">
                           {t('View Case Study')}
                            <ArrowUpRight className="ml-2 h-4 w-4 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </Button>
@@ -107,14 +107,14 @@ export function ProjectsSection() {
                   </div>
                 </div>
                 
-                <div className="order-1 md:order-2 relative aspect-[4/3] md:aspect-auto">
+                <div className="order-1 md:order-2 relative aspect-[4/3] md:aspect-auto border-l border-sky-500/20">
                   <Image
                     src={project.image}
                     fill
                     alt={project.title}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute inset-0 bg-sky-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
               </div>
             </div>
@@ -124,35 +124,35 @@ export function ProjectsSection() {
         {/* Regular Projects Grid - Centered */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mx-auto">
           {projects.filter(p => !p.featured).map((project, index) => (
-            <div key={index} className="group bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-all">
-              <div className="aspect-[16/10] relative overflow-hidden">
+            <div key={index} className="group bg-[#050a14]/80 backdrop-blur-sm shadow-lg border border-sky-500/20 overflow-hidden hover:shadow-xl hover:shadow-sky-500/30 transition-all hover:border-sky-400 hover:-translate-y-2">
+              <div className="aspect-[16/10] relative overflow-hidden border-b border-sky-500/20">
                 <Image
                   src={project.image}
                   fill
                   alt={project.title}
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute inset-0 bg-sky-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
               
               <div className="p-6">
                 <div className="flex items-start justify-between mb-2">
                   <div>
-                    <div className="inline-flex px-2 py-0.5 text-xs font-medium rounded-full bg-indigo-50 text-indigo-700 mb-2">
+                    <div className="inline-flex px-2 py-0.5 text-xs font-medium bg-sky-500/10 text-sky-400 border border-sky-500/30 mb-2">
                       {project.category}
                     </div>
-                    <h3 className="text-xl font-semibold text-slate-900">{project.title}</h3>
+                    <h3 className="text-xl font-semibold text-white">{project.title}</h3>
                   </div>
-                  <div className="p-1 rounded-full bg-slate-50 border border-slate-100 group-hover:bg-purple-50 group-hover:border-purple-200 transition-colors">
-                    <ArrowUpRight className="h-4 w-4 text-slate-400 group-hover:text-purple-600 transition-colors" />
+                  <div className="p-1 bg-sky-500/10 border border-sky-500/20 group-hover:bg-sky-500/20 group-hover:border-sky-400 transition-all group-hover:scale-110">
+                    <ArrowUpRight className="h-4 w-4 text-sky-400 group-hover:text-sky-300 transition-colors" />
                   </div>
                 </div>
                 
-                <p className="text-sm text-slate-600 mb-4">{project.description}</p>
+                <p className="text-sm text-gray-400 mb-4">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-1.5">
                   {project.tags.map((tag, tagIndex) => (
-                    <span key={tagIndex} className="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-100 text-slate-700">
+                    <span key={tagIndex} className="px-2 py-0.5 text-xs font-medium bg-sky-500/10 text-sky-400 border border-sky-500/20">
                       {tag}
                     </span>
                   ))}
