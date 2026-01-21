@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Plus, Edit, Trash2, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -30,7 +30,7 @@ type Invoice = {
   createdAt: string
 }
 
-export default function InvoicesPage() {
+function InvoicesContent() {
   const searchParams = useSearchParams()
   const projectFilter = searchParams.get("project")
   
@@ -418,5 +418,13 @@ export default function InvoicesPage() {
         </table>
       </div>
     </div>
+  )
+}
+
+export default function InvoicesPage() {
+  return (
+    <Suspense fallback={<div className="px-4 py-6">Loading...</div>}>
+      <InvoicesContent />
+    </Suspense>
   )
 }

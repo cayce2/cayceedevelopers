@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Plus, Edit, Trash2, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -20,7 +20,7 @@ type Project = {
   createdAt: string
 }
 
-export default function ProjectsPage() {
+function ProjectsContent() {
   const searchParams = useSearchParams()
   const clientFilter = searchParams.get("client")
   
@@ -182,5 +182,13 @@ export default function ProjectsPage() {
         </table>
       </div>
     </div>
+  )
+}
+
+export default function ProjectsPage() {
+  return (
+    <Suspense fallback={<div className="px-4 py-6">Loading...</div>}>
+      <ProjectsContent />
+    </Suspense>
   )
 }
