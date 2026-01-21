@@ -13,8 +13,16 @@ export async function GET(req: NextRequest) {
   if (type === 'devices') {
     const devices = await ActivityLog.aggregate([
       { $match: { timestamp: { $gte: last30d } } },
-      { $group: { _id: '$device', count: { $sum: 1 } } },
-      { $sort: { count: -1 } }
+      { $sort: { timestamp: -1 } },
+      { $group: { 
+        _id: { device: '$device', ip: '$ip', browser: '$browser', os: '$os' },
+        count: { $sum: 1 },
+        lastSeen: { $first: '$timestamp' },
+        userAgent: { $first: '$userAgent' },
+        location: { $first: '$location' }
+      }},
+      { $sort: { count: -1 } },
+      { $limit: 50 }
     ])
     return NextResponse.json(devices)
   }
