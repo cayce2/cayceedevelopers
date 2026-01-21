@@ -3,7 +3,7 @@
 import { useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
-import { LogOut, Users, FolderKanban, FileText } from "lucide-react"
+import { LogOut, Users, FolderKanban, FileText, Activity, Shield, BarChart3, Monitor } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -50,6 +50,22 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Link href="/admin/invoices" className="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors text-foreground">
                 <FileText className="w-4 h-4 mr-2" />
                 Invoices
+              </Link>
+              <Link href="/admin/activity-logs" className="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors text-foreground">
+                <Activity className="w-4 h-4 mr-2" />
+                Activity
+              </Link>
+              <Link href="/admin/audit-logs" className="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors text-foreground">
+                <Shield className="w-4 h-4 mr-2" />
+                Audit
+              </Link>
+              <Link href="/admin/analytics" className="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors text-foreground">
+                <BarChart3 className="w-4 h-4 mr-2" />
+                Analytics
+              </Link>
+              <Link href="/admin/system-monitor" className="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors text-foreground">
+                <Monitor className="w-4 h-4 mr-2" />
+                Monitor
               </Link>
             </div>
             <Button onClick={handleLogout} variant="ghost" size="sm" className="hover:bg-destructive/10 hover:text-destructive transition-colors">
