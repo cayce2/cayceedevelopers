@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
   const action = searchParams.get('action')
   const userId = searchParams.get('userId')
   
-  const filter: any = {}
+  const filter: Record<string, string> = {}
   if (action) filter.action = action
   if (userId) filter.userId = userId
   

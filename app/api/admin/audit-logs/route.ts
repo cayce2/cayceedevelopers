@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   const limit = parseInt(searchParams.get('limit') || '50')
   const entity = searchParams.get('entity')
   
-  const filter: any = {}
+  const filter: Record<string, string> = {}
   if (entity) filter.entity = entity
   
   const logs = await AuditLog.find(filter)
