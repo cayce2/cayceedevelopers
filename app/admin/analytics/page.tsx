@@ -11,10 +11,16 @@ export default function AnalyticsPage() {
   const [os, setOs] = useState<any[]>([])
 
   useEffect(() => {
-    fetch('/api/admin/analytics?type=devices').then(r => r.json()).then(setDevices)
-    fetch('/api/admin/analytics?type=browsers').then(r => r.json()).then(setBrowsers)
-    fetch('/api/admin/analytics?type=locations').then(r => r.json()).then(setLocations)
-    fetch('/api/admin/analytics?type=os').then(r => r.json()).then(setOs)
+    const fetchData = () => {
+      fetch('/api/admin/analytics?type=devices').then(r => r.json()).then(setDevices)
+      fetch('/api/admin/analytics?type=browsers').then(r => r.json()).then(setBrowsers)
+      fetch('/api/admin/analytics?type=locations').then(r => r.json()).then(setLocations)
+      fetch('/api/admin/analytics?type=os').then(r => r.json()).then(setOs)
+    }
+    
+    fetchData()
+    const interval = setInterval(fetchData, 5000)
+    return () => clearInterval(interval)
   }, [])
 
   const StatCard = ({ title, data, icon: Icon }: any) => (
@@ -49,7 +55,7 @@ export default function AnalyticsPage() {
     <div className="px-4 py-6">
       <div className="mb-6">
         <h1 className="text-4xl font-bold text-primary mb-2">Analytics</h1>
-        <p className="text-muted-foreground">User behavior and system usage insights (Last 30 days)</p>
+        <p className="text-muted-foreground">Real-time user behavior and system usage insights (Last 30 days)</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

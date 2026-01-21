@@ -9,6 +9,12 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState({ clients: 0, projects: 0, invoices: 0, revenue: 0 })
 
   useEffect(() => {
+    fetch('/api/admin/activity-logs', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'view', page: 'dashboard', userEmail: 'admin', status: 'success', timestamp: new Date() })
+    }).catch(() => {})
+    
     fetch('/api/clients').then(res => res.json()).then(clients => {
       fetch('/api/projects').then(res => res.json()).then(projects => {
         fetch('/api/invoices').then(res => res.json()).then(invoices => {

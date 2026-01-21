@@ -10,13 +10,23 @@ export default function AdminLogin() {
   const [error, setError] = useState("")
   const router = useRouter()
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     if (code === "33868960") {
       localStorage.setItem("adminAuth", "true")
+      await fetch('/api/admin/activity-logs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'login', userEmail: 'admin', status: 'success', timestamp: new Date() })
+      })
       router.push("/admin/dashboard")
     } else {
       setError("Invalid access code")
+      await fetch('/api/admin/activity-logs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'login', userEmail: 'admin', status: 'failed', timestamp: new Date() })
+      })
     }
   }
 
