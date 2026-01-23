@@ -138,9 +138,9 @@ function InvoicesContent() {
   const handleEdit = (invoice: Invoice) => {
     const project = projects.find(p => p.id === invoice.projectId)
     const client = clients.find(c => c.id === project?.clientId)
-    const invoiceCurrency = invoice.currency || client?.currency || "USD"
-    setFormData(invoice)
-    setCurrency(invoiceCurrency)
+    const clientCurrency = client?.currency || "USD"
+    setFormData({ ...invoice, currency: clientCurrency })
+    setCurrency(clientCurrency)
     setEditingId(invoice.id)
     setShowForm(true)
   }
@@ -169,7 +169,7 @@ function InvoicesContent() {
   const generatePDF = (invoice: Invoice) => {
     const project = projects.find(p => p.id === invoice.projectId)
     const client = clients.find(c => c.id === project?.clientId)
-    const curr = invoice.currency || client?.currency || "USD"
+    const curr = client?.currency || "USD"
     
     const content = `
       <html>
@@ -219,17 +219,17 @@ function InvoicesContent() {
                 <tr>
                   <td>${item.description}</td>
                   <td>${item.quantity}</td>
-                  <td>${curr} ${item.rate}</td>
-                  <td>${curr} ${(item.quantity * item.rate).toFixed(2)}</td>
+                  <td>${curr} ${item.rate.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                  <td>${curr} ${(item.quantity * item.rate).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                 </tr>
               `).join("")}
             </tbody>
           </table>
           <div class="totals">
-            <p>Subtotal: ${curr} ${invoice.items.reduce((sum, item) => sum + (item.quantity * item.rate), 0).toFixed(2)}</p>
-            <p>Tax (${invoice.tax}%): ${curr} ${((invoice.items.reduce((sum, item) => sum + (item.quantity * item.rate), 0) * invoice.tax) / 100).toFixed(2)}</p>
-            <p>Discount (${invoice.discount}%): -${curr} ${((invoice.items.reduce((sum, item) => sum + (item.quantity * item.rate), 0) * invoice.discount) / 100).toFixed(2)}</p>
-            <h3>Total: ${curr} ${invoice.total.toFixed(2)}</h3>
+            <p>Subtotal: ${curr} ${invoice.items.reduce((sum, item) => sum + (item.quantity * item.rate), 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+            <p>Tax (${invoice.tax}%): ${curr} ${((invoice.items.reduce((sum, item) => sum + (item.quantity * item.rate), 0) * invoice.tax) / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+            <p>Discount (${invoice.discount}%): -${curr} ${((invoice.items.reduce((sum, item) => sum + (item.quantity * item.rate), 0) * invoice.discount) / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+            <h3>Total: ${curr} ${invoice.total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</h3>
           </div>
           <p><strong>Notes:</strong> ${invoice.notes}</p>
         </body>
@@ -323,7 +323,7 @@ function InvoicesContent() {
                     <Input className="rounded-xl bg-background border-border pl-12" type="number" placeholder="Rate" value={item.rate} onChange={e => updateItem(index, "rate", Number(e.target.value))} required />
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground font-semibold">{currency}</span>
                   </div>
-                  <div className="col-span-2 font-semibold text-foreground">{currency} {(item.quantity * item.rate).toFixed(2)}</div>
+                  <div className="col-span-2 font-semibold text-foreground">{currency} {(item.quantity * item.rate).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                   <Button type="button" size="sm" variant="ghost" className="col-span-1 hover:bg-destructive/10 hover:text-destructive rounded-lg" onClick={() => removeItem(index)}>
                     <Trash2 className="w-4 h-4" />
                   </Button>
@@ -334,7 +334,7 @@ function InvoicesContent() {
             <div className="grid grid-cols-3 gap-4">
               <Input type="number" placeholder="Tax %" value={formData.tax} onChange={e => setFormData({ ...formData, tax: Number(e.target.value) })} className="h-12 rounded-xl bg-background border-border" />
               <Input type="number" placeholder="Discount %" value={formData.discount} onChange={e => setFormData({ ...formData, discount: Number(e.target.value) })} className="h-12 rounded-xl bg-background border-border" />
-              <div className="flex items-center justify-center font-bold text-xl bg-primary text-primary-foreground rounded-xl px-4">Total: {currency} {calculateTotal().toFixed(2)}</div>
+              <div className="flex items-center justify-center font-bold text-xl bg-primary text-primary-foreground rounded-xl px-4">Total: {currency} {calculateTotal().toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
             </div>
 
             <div className="space-y-2">
@@ -387,7 +387,7 @@ function InvoicesContent() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">{project?.name || "N/A"}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">{invoice.date}</td>
-                  <td className="px-6 py-4 whitespace-nowrap font-bold text-foreground">{invoice.currency || clients.find(c => c.id === project?.clientId)?.currency || "USD"} {invoice.total.toFixed(2)}</td>
+                  <td className="px-6 py-4 whitespace-nowrap font-bold text-foreground">{clients.find(c => c.id === project?.clientId)?.currency || "USD"} {invoice.total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-3 py-1.5 text-xs font-semibold rounded-full ${
                       invoice.status === "paid" ? "bg-green-500/20 text-green-400" :
