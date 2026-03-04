@@ -170,78 +170,229 @@ function InvoicesContent() {
     const project = projects.find(p => p.id === invoice.projectId)
     const client = clients.find(c => c.id === project?.clientId)
     const curr = client?.currency || "USD"
-    
-    const content = `
-      <html>
-        <head>
-          <style>
-            body { font-family: Arial, sans-serif; padding: 40px; }
-            .header { text-align: center; margin-bottom: 30px; }
-            .company { margin-bottom: 30px; }
-            .info { display: flex; justify-content: space-between; margin-bottom: 30px; }
-            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-            th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-            th { background-color: #f4f4f4; }
-            .totals { text-align: right; }
-          </style>
-        </head>
-        <body>
-          <div class="company">
-            <h2>Caycee Developers</h2>
-            <p>Email: cayceedevelopers@gmail.com<br>Phone: +254 (741) 481-008<br>Website: www.cayceedevelopers.com</p>
-          </div>
-          <div class="header">
-            <h1>${invoice.type === "invoice" ? "INVOICE" : "QUOTATION"}</h1>
-            <p>${invoice.number}</p>
-          </div>
-          <div class="info">
-            <div>
-              <h3>Bill To:</h3>
-              <p>${client?.name || "N/A"}<br>${client?.company || ""}<br>${client?.email || ""}</p>
-            </div>
-            <div>
-              <p><strong>Date:</strong> ${invoice.date}</p>
-              <p><strong>Due Date:</strong> ${invoice.dueDate}</p>
-              <p><strong>Project:</strong> ${project?.name || "N/A"}</p>
-            </div>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Rate</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${invoice.items.map(item => `
-                <tr>
-                  <td>${item.description}</td>
-                  <td>${item.quantity}</td>
-                  <td>${curr} ${item.rate.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                  <td>${curr} ${(item.quantity * item.rate).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                </tr>
-              `).join("")}
-            </tbody>
-          </table>
-          <div class="totals">
-            <p>Subtotal: ${curr} ${invoice.items.reduce((sum, item) => sum + (item.quantity * item.rate), 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
-            <p>Tax (${invoice.tax}%): ${curr} ${((invoice.items.reduce((sum, item) => sum + (item.quantity * item.rate), 0) * invoice.tax) / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
-            <p>Discount (${invoice.discount}%): -${curr} ${((invoice.items.reduce((sum, item) => sum + (item.quantity * item.rate), 0) * invoice.discount) / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
-            <h3>Total: ${curr} ${invoice.total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</h3>
-          </div>
-          <p><strong>Notes:</strong> ${invoice.notes}</p>
-        </body>
-      </html>
-    `
-    
-    const blob = new Blob([content], { type: "text/html" })
+
+    const fmt = (value: number) =>
+      value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    const subtotal = invoice.items.reduce((sum, item) => sum + item.quantity * item.rate, 0)
+    const taxAmount = (subtotal * invoice.tax) / 100
+    const discountAmount = (subtotal * invoice.discount) / 100
+
+    const sanitizePdfText = (value: string) =>
+      value
+        .replace(/\\/g, "\\\\")
+        .replace(/\(/g, "\\(")
+        .replace(/\)/g, "\\)")
+        .replace(/[^\x20-\x7E]/g, " ")
+
+    const estimateTextWidth = (text: string, fontSize: number) =>
+      sanitizePdfText(text).length * fontSize * 0.52
+
+    const wrapText = (text: string, maxWidth: number, fontSize = 10): string[] => {
+      const cleaned = (text || "").replace(/\s+/g, " ").trim()
+      if (!cleaned) return [""]
+      const words = cleaned.split(" ")
+      const lines: string[] = []
+      let line = ""
+      for (const word of words) {
+        const next = line ? `${line} ${word}` : word
+        if (estimateTextWidth(next, fontSize) > maxWidth && line) {
+          lines.push(line)
+          line = word
+        } else {
+          line = next
+        }
+      }
+      if (line) lines.push(line)
+      return lines
+    }
+
+    const cmds: string[] = []
+    const pageWidth = 595
+    const margin = 40
+    const right = pageWidth - margin
+    const contentWidth = pageWidth - margin * 2
+
+    const text = (x: number, y: number, value: string, size = 10, font: "F1" | "F2" = "F1") => {
+      cmds.push(`BT /${font} ${size} Tf 1 0 0 1 ${x.toFixed(2)} ${y.toFixed(2)} Tm (${sanitizePdfText(value)}) Tj ET`)
+    }
+    const textRight = (rightX: number, y: number, value: string, size = 10, font: "F1" | "F2" = "F1") => {
+      const x = rightX - estimateTextWidth(value, size)
+      text(Math.max(margin, x), y, value, size, font)
+    }
+    const hLine = (x1: number, y: number, x2: number, width = 1) => {
+      cmds.push(`${width.toFixed(2)} w ${x1.toFixed(2)} ${y.toFixed(2)} m ${x2.toFixed(2)} ${y.toFixed(2)} l S`)
+    }
+    const vLine = (x: number, y1: number, y2: number, width = 1) => {
+      cmds.push(`${width.toFixed(2)} w ${x.toFixed(2)} ${y1.toFixed(2)} m ${x.toFixed(2)} ${y2.toFixed(2)} l S`)
+    }
+    const rect = (x: number, y: number, w: number, h: number) => {
+      cmds.push(`${x.toFixed(2)} ${y.toFixed(2)} ${w.toFixed(2)} ${h.toFixed(2)} re S`)
+    }
+    const fillRectGray = (x: number, y: number, w: number, h: number, gray = 0.95) => {
+      cmds.push(`${gray} g ${x.toFixed(2)} ${y.toFixed(2)} ${w.toFixed(2)} ${h.toFixed(2)} re f 0 g`)
+    }
+
+    let y = 800
+
+    text(margin, y, "Caycee Developers", 20, "F2")
+    y -= 16
+    text(margin, y, "Email: cayceedevelopers@gmail.com", 10)
+    y -= 12
+    text(margin, y, "Phone: +254 (741) 481-008 | Website: www.cayceedevelopers.com", 10)
+
+    textRight(right, 800, invoice.type === "invoice" ? "INVOICE" : "QUOTATION", 22, "F2")
+    textRight(right, 782, invoice.number, 11, "F1")
+
+    y -= 16
+    hLine(margin, y, right, 1.2)
+
+    y -= 22
+    const boxTop = y
+    const boxHeight = 98
+    const boxGap = 15
+    const halfWidth = (contentWidth - boxGap) / 2
+    const leftBoxX = margin
+    const rightBoxX = leftBoxX + halfWidth + boxGap
+
+    rect(leftBoxX, boxTop - boxHeight, halfWidth, boxHeight)
+    rect(rightBoxX, boxTop - boxHeight, halfWidth, boxHeight)
+    fillRectGray(leftBoxX, boxTop - 22, halfWidth, 22, 0.94)
+    fillRectGray(rightBoxX, boxTop - 22, halfWidth, 22, 0.94)
+    text(leftBoxX + 8, boxTop - 15, "Bill To", 11, "F2")
+    text(rightBoxX + 8, boxTop - 15, "Document Info", 11, "F2")
+
+    let leftY = boxTop - 38
+    text(leftBoxX + 8, leftY, client?.name || "N/A", 11, "F2")
+    leftY -= 14
+    if (client?.company) {
+      text(leftBoxX + 8, leftY, client.company, 10)
+      leftY -= 13
+    }
+    if (client?.email) {
+      text(leftBoxX + 8, leftY, client.email, 10)
+    }
+
+    let rightY = boxTop - 38
+    text(rightBoxX + 8, rightY, `Date: ${invoice.date}`, 10)
+    rightY -= 14
+    text(rightBoxX + 8, rightY, `Due Date: ${invoice.dueDate || "N/A"}`, 10)
+    rightY -= 14
+    text(rightBoxX + 8, rightY, `Project: ${project?.name || "N/A"}`, 10)
+    rightY -= 14
+    text(rightBoxX + 8, rightY, `Status: ${invoice.status.toUpperCase()}`, 10)
+
+    y = boxTop - boxHeight - 22
+
+    const tableX = margin
+    const colWidths = [240, 55, 100, 120]
+    const colX = [
+      tableX,
+      tableX + colWidths[0],
+      tableX + colWidths[0] + colWidths[1],
+      tableX + colWidths[0] + colWidths[1] + colWidths[2],
+      tableX + colWidths[0] + colWidths[1] + colWidths[2] + colWidths[3]
+    ]
+    const headerHeight = 24
+
+    fillRectGray(tableX, y - headerHeight, contentWidth, headerHeight, 0.9)
+    rect(tableX, y - headerHeight, contentWidth, headerHeight)
+    vLine(colX[1], y - headerHeight, y)
+    vLine(colX[2], y - headerHeight, y)
+    vLine(colX[3], y - headerHeight, y)
+    text(tableX + 8, y - 16, "Description", 10, "F2")
+    text(colX[1] + 8, y - 16, "Qty", 10, "F2")
+    text(colX[2] + 8, y - 16, "Rate", 10, "F2")
+    text(colX[3] + 8, y - 16, "Amount", 10, "F2")
+    y -= headerHeight
+
+    for (const item of invoice.items) {
+      const descLines = wrapText(item.description || "N/A", colWidths[0] - 16, 10)
+      const rowHeight = Math.max(24, descLines.length * 12 + 8)
+
+      rect(tableX, y - rowHeight, contentWidth, rowHeight)
+      vLine(colX[1], y - rowHeight, y)
+      vLine(colX[2], y - rowHeight, y)
+      vLine(colX[3], y - rowHeight, y)
+
+      let descY = y - 15
+      for (const line of descLines) {
+        text(tableX + 8, descY, line, 10)
+        descY -= 12
+      }
+      textRight(colX[2] - 8, y - 15, `${item.quantity}`, 10)
+      textRight(colX[3] - 8, y - 15, `${curr} ${fmt(item.rate)}`, 10)
+      textRight(colX[4] - 8, y - 15, `${curr} ${fmt(item.quantity * item.rate)}`, 10)
+      y -= rowHeight
+    }
+
+    y -= 16
+
+    const totalsX = right - 220
+    const totalsW = 220
+    const totalsRowH = 20
+    rect(totalsX, y - totalsRowH * 4, totalsW, totalsRowH * 4)
+    hLine(totalsX, y - totalsRowH, totalsX + totalsW)
+    hLine(totalsX, y - totalsRowH * 2, totalsX + totalsW)
+    hLine(totalsX, y - totalsRowH * 3, totalsX + totalsW)
+    fillRectGray(totalsX, y - totalsRowH * 4, totalsW, totalsRowH, 0.9)
+
+    text(totalsX + 8, y - 14, "Subtotal", 10, "F2")
+    textRight(totalsX + totalsW - 8, y - 14, `${curr} ${fmt(subtotal)}`, 10)
+    text(totalsX + 8, y - 34, `Tax (${invoice.tax}%)`, 10, "F2")
+    textRight(totalsX + totalsW - 8, y - 34, `${curr} ${fmt(taxAmount)}`, 10)
+    text(totalsX + 8, y - 54, `Discount (${invoice.discount}%)`, 10, "F2")
+    textRight(totalsX + totalsW - 8, y - 54, `-${curr} ${fmt(discountAmount)}`, 10)
+    text(totalsX + 8, y - 74, "Total", 11, "F2")
+    textRight(totalsX + totalsW - 8, y - 74, `${curr} ${fmt(invoice.total)}`, 11, "F2")
+
+    y -= totalsRowH * 4 + 24
+
+    const notesLines = wrapText(invoice.notes || "N/A", contentWidth - 16, 10)
+    const notesBoxHeight = Math.max(44, notesLines.length * 12 + 16)
+    fillRectGray(margin, y - 22, contentWidth, 22, 0.94)
+    rect(margin, y - notesBoxHeight, contentWidth, notesBoxHeight)
+    text(margin + 8, y - 15, "Notes", 11, "F2")
+    let notesY = y - 36
+    for (const line of notesLines) {
+      text(margin + 8, notesY, line, 10)
+      notesY -= 12
+    }
+
+    const contentStream = cmds.join("\n")
+
+    const encoder = new TextEncoder()
+    const contentLength = encoder.encode(contentStream).length
+    const objects = [
+      "",
+      "<< /Type /Catalog /Pages 2 0 R >>",
+      "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+      "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>",
+      "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+      "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>",
+      `<< /Length ${contentLength} >>\nstream\n${contentStream}\nendstream`
+    ]
+
+    let pdf = "%PDF-1.4\n"
+    const offsets: number[] = [0]
+    for (let i = 1; i < objects.length; i++) {
+      offsets[i] = encoder.encode(pdf).length
+      pdf += `${i} 0 obj\n${objects[i]}\nendobj\n`
+    }
+    const xrefStart = encoder.encode(pdf).length
+    pdf += `xref\n0 ${objects.length}\n`
+    pdf += "0000000000 65535 f \n"
+    for (let i = 1; i < objects.length; i++) {
+      pdf += `${offsets[i].toString().padStart(10, "0")} 00000 n \n`
+    }
+    pdf += `trailer\n<< /Size ${objects.length} /Root 1 0 R >>\nstartxref\n${xrefStart}\n%%EOF`
+
+    const blob = new Blob([encoder.encode(pdf)], { type: "application/pdf" })
     const url = URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = `${invoice.type}-${invoice.number}.html`
-    a.click()
+    const link = document.createElement("a")
+    link.href = url
+    link.download = `${invoice.type}-${invoice.number}.pdf`.replace(/[\\/:*?"<>|]/g, "-")
+    link.click()
+    URL.revokeObjectURL(url)
   }
 
   const filteredInvoices = projectFilter ? invoices.filter(inv => inv.projectId === projectFilter) : invoices
