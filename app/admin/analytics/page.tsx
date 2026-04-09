@@ -54,7 +54,7 @@ export default function AnalyticsPage() {
   return (
     <div className="px-4 py-6">
       <div className="mb-6">
-        <h1 className="text-4xl font-bold text-primary mb-2">Analytics</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">Analytics</h1>
         <p className="text-muted-foreground">Real-time user behavior and system usage insights (Last 30 days)</p>
       </div>
 
@@ -67,7 +67,7 @@ export default function AnalyticsPage() {
             <h3 className="font-semibold text-lg">Active Devices</h3>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="min-w-[920px] w-full">
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left py-3 px-2 text-sm font-medium">Device</th>

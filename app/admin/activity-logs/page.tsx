@@ -46,9 +46,9 @@ export default function ActivityLogsPage() {
 
   return (
     <div className="px-4 py-6">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
         <div>
-          <h1 className="text-4xl font-bold text-primary mb-2">Activity Logs</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">Activity Logs</h1>
           <p className="text-muted-foreground">Track all system activities and user actions</p>
         </div>
         <Button onClick={exportLogs} className="gap-2">
@@ -58,7 +58,7 @@ export default function ActivityLogsPage() {
       </div>
 
       <div className="bg-card rounded-2xl shadow-sm border border-border p-6 mb-6">
-        <div className="flex gap-4 items-center">
+        <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
           <Filter className="w-5 h-5 text-muted-foreground" />
           <select 
             value={filter} 
@@ -78,7 +78,7 @@ export default function ActivityLogsPage() {
 
       <div className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="min-w-[1000px] w-full">
             <thead className="bg-muted/50">
               <tr>
                 <th className="px-6 py-4 text-left text-xs font-medium text-muted-foreground uppercase">Timestamp</th>
@@ -102,7 +102,7 @@ export default function ActivityLogsPage() {
                   </td>
                   <td className="px-6 py-4 text-sm">{log.userEmail || 'Anonymous'}</td>
                   <td className="px-6 py-4 text-sm font-mono">{log.ip}</td>
-                  <td className="px-6 py-4 text-sm">{log.device} • {log.browser}</td>
+                  <td className="px-6 py-4 text-sm">{log.device} - {log.browser}</td>
                   <td className="px-6 py-4 text-sm">{log.location?.city}, {log.location?.country}</td>
                   <td className="px-6 py-4">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -118,7 +118,7 @@ export default function ActivityLogsPage() {
             </tbody>
           </table>
         </div>
-        <div className="flex justify-between items-center px-6 py-4 border-t border-border">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-3 px-6 py-4 border-t border-border">
           <Button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} variant="outline">
             Previous
           </Button>
@@ -131,3 +131,5 @@ export default function ActivityLogsPage() {
     </div>
   )
 }
+
+

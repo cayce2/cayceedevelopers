@@ -85,9 +85,9 @@ function ProjectsContent() {
 
   return (
     <div className="px-4 py-6">
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
         <div>
-          <h1 className="text-4xl font-bold text-primary mb-2">Projects</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">Projects</h1>
           <p className="text-muted-foreground">Track and manage all your projects</p>
         </div>
         <Button onClick={() => { setShowForm(!showForm); setEditingId(null); setFormData({ clientId: clientFilter || "", name: "", description: "", status: "pending", budget: 0, startDate: "", endDate: "" }) }} className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
@@ -99,8 +99,8 @@ function ProjectsContent() {
       {showForm && (
         <div className="bg-card/80 backdrop-blur-xl p-8 rounded-2xl shadow-xl mb-6 border border-border">
           <h2 className="text-2xl font-bold mb-6 text-foreground">{editingId ? "Edit Project" : "New Project"}</h2>
-          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
-            <select className="col-span-2 border border-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary bg-background text-foreground" value={formData.clientId} onChange={e => {
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <select className="md:col-span-2 border border-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary bg-background text-foreground" value={formData.clientId} onChange={e => {
               setFormData({ ...formData, clientId: e.target.value })
               setSelectedClient(clients.find(c => c.id === e.target.value))
             }} required>
@@ -112,17 +112,17 @@ function ProjectsContent() {
               <Input type="number" placeholder="Budget" value={formData.budget} onChange={e => setFormData({ ...formData, budget: Number(e.target.value) })} required className="h-12 rounded-xl bg-background border-border pl-12" />
               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-semibold">{selectedClient?.currency || "USD"}</span>
             </div>
-            <Textarea className="col-span-2 rounded-xl bg-background border-border" placeholder="Description" value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })} required />
+            <Textarea className="md:col-span-2 rounded-xl bg-background border-border" placeholder="Description" value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })} required />
             <select className="border border-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary bg-background text-foreground" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value })}>
               <option value="pending">Pending</option>
               <option value="in-progress">In Progress</option>
               <option value="completed">Completed</option>
               <option value="on-hold">On Hold</option>
             </select>
-            <div></div>
+            <div className="hidden md:block"></div>
             <Input type="date" placeholder="Start Date" value={formData.startDate} onChange={e => setFormData({ ...formData, startDate: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
             <Input type="date" placeholder="End Date" value={formData.endDate} onChange={e => setFormData({ ...formData, endDate: e.target.value })} className="h-12 rounded-xl bg-background border-border" />
-            <div className="col-span-2 flex gap-3 mt-2">
+            <div className="md:col-span-2 flex flex-col sm:flex-row gap-3 mt-2">
               <Button type="submit" className="bg-primary hover:bg-primary/90">Save Project</Button>
               <Button type="button" variant="outline" onClick={() => { setShowForm(false); setEditingId(null) }} className="rounded-xl">Cancel</Button>
             </div>
@@ -130,8 +130,8 @@ function ProjectsContent() {
         </div>
       )}
 
-      <div className="bg-card/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden border border-border">
-        <table className="min-w-full divide-y divide-border">
+      <div className="bg-card/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-x-auto border border-border">
+        <table className="min-w-[900px] w-full divide-y divide-border">
           <thead className="bg-muted/50">
             <tr>
               <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Project</th>

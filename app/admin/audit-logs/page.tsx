@@ -22,12 +22,12 @@ export default function AuditLogsPage() {
   return (
     <div className="px-4 py-6">
       <div className="mb-6">
-        <h1 className="text-4xl font-bold text-primary mb-2">Audit Logs</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">Audit Logs</h1>
         <p className="text-muted-foreground">Compliance and data change tracking</p>
       </div>
 
       <div className="bg-card rounded-2xl shadow-sm border border-border p-6 mb-6">
-        <div className="flex gap-4 items-center">
+        <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
           <Search className="w-5 h-5 text-muted-foreground" />
           <select 
             value={entity} 
@@ -47,17 +47,17 @@ export default function AuditLogsPage() {
       <div className="space-y-4">
         {logs.map((log) => (
           <div key={log._id} className="bg-card rounded-2xl shadow-sm border border-border p-6 hover:shadow-lg transition-shadow">
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
                   <Shield className="w-5 h-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg">{log.action}</h3>
-                  <p className="text-sm text-muted-foreground">{log.entity} • {log.entityId}</p>
+                  <p className="text-sm text-muted-foreground">{log.entity} - {log.entityId}</p>
                 </div>
               </div>
-              <div className="text-right">
+              <div className="sm:text-right">
                 <p className="text-sm font-medium">{log.userEmail}</p>
                 <p className="text-xs text-muted-foreground">{new Date(log.timestamp).toLocaleString()}</p>
                 <p className="text-xs text-muted-foreground font-mono">{log.ip}</p>
@@ -65,7 +65,7 @@ export default function AuditLogsPage() {
             </div>
             
             {log.changes && (
-              <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-border">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 pt-4 border-t border-border">
                 <div>
                   <p className="text-xs font-medium text-muted-foreground mb-2">BEFORE</p>
                   <pre className="text-xs bg-muted/50 p-3 rounded-lg overflow-auto max-h-40">
@@ -84,7 +84,7 @@ export default function AuditLogsPage() {
         ))}
       </div>
 
-      <div className="flex justify-center gap-4 mt-6">
+      <div className="flex flex-wrap justify-center gap-3 mt-6">
         <button 
           onClick={() => setPage(p => Math.max(1, p - 1))} 
           disabled={page === 1}
@@ -104,3 +104,5 @@ export default function AuditLogsPage() {
     </div>
   )
 }
+
+

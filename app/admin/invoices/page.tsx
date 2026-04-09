@@ -522,9 +522,9 @@ function InvoicesContent() {
 
   return (
     <div className="px-4 py-6">
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
         <div>
-          <h1 className="text-4xl font-bold text-primary mb-2">Invoices & Quotations</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">Invoices & Quotations</h1>
           <p className="text-muted-foreground">Generate and manage financial documents</p>
         </div>
         <Button onClick={() => { setShowForm(true); setEditingId(null); setCurrency("USD"); setFormData({ projectId: projectFilter || "", type: "invoice", number: "", date: new Date().toISOString().split("T")[0], dueDate: "", items: [{ description: "", quantity: 1, rate: 0 }], tax: 0, discount: 0, amountPaid: 0, includeBalance: true, notes: "", status: "draft", currency: "USD" }) }} className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
@@ -537,7 +537,7 @@ function InvoicesContent() {
         <div className="bg-card/80 backdrop-blur-xl p-8 rounded-2xl shadow-xl mb-6 border border-border">
           <h2 className="text-2xl font-bold mb-6 text-foreground">{editingId ? "Edit" : "Create"} {formData.type === "invoice" ? "Invoice" : "Quotation"}</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <select className="border border-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary bg-background text-foreground" value={formData.type} onChange={e => {
                 const newType = e.target.value as "invoice" | "quotation"
                 if (formData.projectId) {

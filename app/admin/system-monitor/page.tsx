@@ -22,7 +22,7 @@ export default function SystemMonitorPage() {
   return (
     <div className="px-4 py-6">
       <div className="mb-6">
-        <h1 className="text-4xl font-bold text-primary mb-2">System Monitor</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">System Monitor</h1>
         <p className="text-muted-foreground">Real-time system health and performance metrics</p>
       </div>
 

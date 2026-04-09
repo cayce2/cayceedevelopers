@@ -70,9 +70,9 @@ export default function ClientsPage() {
 
   return (
     <div className="px-4 py-6">
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
         <div>
-          <h1 className="text-4xl font-bold text-primary mb-2">Clients</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">Clients</h1>
           <p className="text-muted-foreground">Manage your client relationships</p>
         </div>
         <Button onClick={() => { setShowForm(!showForm); setEditingId(null); setFormData({ name: "", email: "", phone: "", company: "", country: "", currency: "USD" }) }} className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
@@ -84,7 +84,7 @@ export default function ClientsPage() {
       {showForm && (
         <div className="bg-card/80 backdrop-blur-xl p-8 rounded-2xl shadow-xl mb-6 border border-border">
           <h2 className="text-2xl font-bold mb-6 text-foreground">{editingId ? "Edit Client" : "New Client"}</h2>
-          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input placeholder="Name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
             <Input placeholder="Email" type="email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
             <Input placeholder="Phone" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
@@ -102,7 +102,7 @@ export default function ClientsPage() {
               <option value="Other">Other</option>
             </select>
             <Input placeholder="Currency" value={formData.currency} onChange={e => setFormData({ ...formData, currency: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
-            <div className="col-span-2 flex gap-3 mt-2">
+            <div className="md:col-span-2 flex flex-col sm:flex-row gap-3 mt-2">
               <Button type="submit" className="bg-primary hover:bg-primary/90">Save Client</Button>
               <Button type="button" variant="outline" onClick={() => { setShowForm(false); setEditingId(null) }} className="rounded-xl">Cancel</Button>
             </div>
@@ -110,8 +110,8 @@ export default function ClientsPage() {
         </div>
       )}
 
-      <div className="bg-card/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden border border-border">
-        <table className="min-w-full divide-y divide-border">
+      <div className="bg-card/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-x-auto border border-border">
+        <table className="min-w-[980px] w-full divide-y divide-border">
           <thead className="bg-muted/50">
             <tr>
               <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Name</th>

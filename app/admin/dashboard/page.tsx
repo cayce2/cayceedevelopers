@@ -32,7 +32,7 @@ export default function AdminDashboard() {
   return (
     <div className="px-4 py-6">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-primary mb-2">Dashboard</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">Dashboard</h1>
         <p className="text-muted-foreground">Welcome back! Here&apos;s your business overview</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
