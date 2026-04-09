@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   await dbConnect()
   const data = await request.json()
   const invoice = await Invoice.create(data)
-  await logActivity('create', { entity: 'Invoice', entityId: invoice._id, amount: data.amount }, request)
+  await logActivity('create', { entity: 'Invoice', entityId: invoice._id, amount: data.total }, request)
   await logAudit('Invoice', invoice._id.toString(), 'CREATE', { before: null, after: invoice }, 'admin', request)
   return NextResponse.json(invoice)
 }
@@ -23,7 +23,7 @@ export async function PUT(request: Request) {
   const { id, ...data } = await request.json()
   const before = await Invoice.findById(id)
   const invoice = await Invoice.findByIdAndUpdate(id, data, { new: true })
-  await logActivity('update', { entity: 'Invoice', entityId: id, amount: data.amount }, request)
+  await logActivity('update', { entity: 'Invoice', entityId: id, amount: data.total }, request)
   await logAudit('Invoice', id, 'UPDATE', { before, after: invoice }, 'admin', request)
   return NextResponse.json(invoice)
 }

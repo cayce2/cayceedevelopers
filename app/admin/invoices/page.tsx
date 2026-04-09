@@ -13,6 +13,8 @@ type InvoiceItem = {
   rate: number
 }
 
+type InvoiceStatus = "draft" | "sent" | "partial" | "paid" | "overdue"
+
 type Invoice = {
   id: string
   projectId: string
@@ -24,10 +26,49 @@ type Invoice = {
   tax: number
   discount: number
   total: number
+  amountPaid: number
+  includeBalance: boolean
   notes: string
-  status: string
+  status: InvoiceStatus
   currency: string
   createdAt: string
+}
+
+const normalizeMoney = (value: number) => {
+  if (!Number.isFinite(value)) return 0
+  return Math.max(value, 0)
+}
+
+const getBalanceAmount = (total: number, amountPaid: number) =>
+  Math.max(normalizeMoney(total) - normalizeMoney(amountPaid), 0)
+
+const resolveInvoiceStatus = (invoice: {
+  type: "invoice" | "quotation"
+  status: string
+  dueDate: string
+  total: number
+  amountPaid?: number
+}): InvoiceStatus => {
+  if (invoice.type !== "invoice") {
+    return (invoice.status as InvoiceStatus) || "draft"
+  }
+
+  const total = normalizeMoney(invoice.total)
+  const hasAmountPaid = invoice.amountPaid !== undefined && invoice.amountPaid !== null
+  const amountPaid = normalizeMoney(Number(invoice.amountPaid ?? 0))
+
+  if (hasAmountPaid && total > 0 && amountPaid >= total) return "paid"
+  if (hasAmountPaid && amountPaid > 0 && amountPaid < total) return "partial"
+  if (invoice.status === "paid") return "paid"
+  if (invoice.status === "partial") return "partial"
+  if (invoice.status === "draft") return "draft"
+
+  if (invoice.dueDate) {
+    const dueDate = new Date(`${invoice.dueDate}T23:59:59`)
+    if (!Number.isNaN(dueDate.getTime()) && dueDate < new Date()) return "overdue"
+  }
+
+  return "sent"
 }
 
 function InvoicesContent() {
@@ -49,8 +90,10 @@ function InvoicesContent() {
     items: [{ description: "", quantity: 1, rate: 0 }],
     tax: 0,
     discount: 0,
+    amountPaid: 0,
+    includeBalance: true,
     notes: "",
-    status: "draft",
+    status: "draft" as InvoiceStatus,
     currency: "USD"
   })
 
@@ -62,7 +105,25 @@ function InvoicesContent() {
         fetch('/api/clients').then(res => res.json())
       ])
       
-      setInvoices(invoicesData.map((i: any) => ({ ...i, id: i._id })))
+      setInvoices(invoicesData.map((i: any) => {
+        const total = normalizeMoney(Number(i.total ?? 0))
+        const amountPaid = normalizeMoney(Number(i.amountPaid ?? 0))
+        const status = resolveInvoiceStatus({
+          type: i.type,
+          status: i.status || "draft",
+          dueDate: i.dueDate || "",
+          total,
+          amountPaid
+        })
+        return {
+          ...i,
+          id: i._id,
+          total,
+          amountPaid,
+          includeBalance: i.includeBalance !== false,
+          status
+        }
+      }))
       const projects = projectsData.map((p: any) => ({ ...p, id: p._id }))
       const clients = clientsData.map((c: any) => ({ ...c, id: c._id }))
       setProjects(projects)
@@ -88,30 +149,59 @@ function InvoicesContent() {
     return subtotal + taxAmount - discountAmount
   }
 
+  const liveTotal = normalizeMoney(calculateTotal())
+  const livePaidAmount = Math.min(normalizeMoney(formData.amountPaid), liveTotal)
+  const liveBalance = getBalanceAmount(liveTotal, livePaidAmount)
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!formData.number) {
       alert('Please select a project to generate invoice number')
       return
     }
-    const total = calculateTotal()
+    const total = liveTotal
+    const amountPaid = Math.min(normalizeMoney(formData.amountPaid), total)
+    const status = resolveInvoiceStatus({
+      type: formData.type,
+      status: formData.status,
+      dueDate: formData.dueDate,
+      total,
+      amountPaid
+    })
+    const payload = { ...formData, total, amountPaid, status }
     if (editingId) {
       await fetch('/api/invoices', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: editingId, ...formData, total })
+        body: JSON.stringify({ id: editingId, ...payload })
       })
-      const updated = invoices.map(inv => inv.id === editingId ? { ...inv, ...formData, total } : inv)
+      const updated = invoices.map(inv => inv.id === editingId ? { ...inv, ...payload } : inv)
       setInvoices(updated)
       setEditingId(null)
     } else {
       const res = await fetch('/api/invoices', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, total })
+        body: JSON.stringify(payload)
       })
       const newInvoice = await res.json()
-      setInvoices([...invoices, { ...newInvoice, id: newInvoice._id }])
+      setInvoices([
+        ...invoices,
+        {
+          ...newInvoice,
+          id: newInvoice._id,
+          total: normalizeMoney(Number(newInvoice.total ?? total)),
+          amountPaid: normalizeMoney(Number(newInvoice.amountPaid ?? amountPaid)),
+          includeBalance: newInvoice.includeBalance !== false,
+          status: resolveInvoiceStatus({
+            type: newInvoice.type,
+            status: newInvoice.status || status,
+            dueDate: newInvoice.dueDate || formData.dueDate,
+            total: normalizeMoney(Number(newInvoice.total ?? total)),
+            amountPaid: normalizeMoney(Number(newInvoice.amountPaid ?? amountPaid))
+          })
+        }
+      ])
     }
     resetForm()
   }
@@ -126,6 +216,8 @@ function InvoicesContent() {
       items: [{ description: "", quantity: 1, rate: 0 }],
       tax: 0,
       discount: 0,
+      amountPaid: 0,
+      includeBalance: true,
       notes: "",
       status: "draft",
       currency: "USD"
@@ -139,7 +231,22 @@ function InvoicesContent() {
     const project = projects.find(p => p.id === invoice.projectId)
     const client = clients.find(c => c.id === project?.clientId)
     const clientCurrency = client?.currency || "USD"
-    setFormData({ ...invoice, currency: clientCurrency })
+    const amountPaid = Math.min(normalizeMoney(invoice.amountPaid ?? 0), normalizeMoney(invoice.total))
+    setFormData({
+      projectId: invoice.projectId,
+      type: invoice.type,
+      number: invoice.number,
+      date: invoice.date,
+      dueDate: invoice.dueDate,
+      items: invoice.items,
+      tax: invoice.tax,
+      discount: invoice.discount,
+      amountPaid,
+      includeBalance: invoice.includeBalance !== false,
+      notes: invoice.notes || "",
+      status: resolveInvoiceStatus({ ...invoice, amountPaid }),
+      currency: clientCurrency
+    })
     setCurrency(clientCurrency)
     setEditingId(invoice.id)
     setShowForm(true)
@@ -176,6 +283,10 @@ function InvoicesContent() {
     const subtotal = invoice.items.reduce((sum, item) => sum + item.quantity * item.rate, 0)
     const taxAmount = (subtotal * invoice.tax) / 100
     const discountAmount = (subtotal * invoice.discount) / 100
+    const amountPaid = Math.min(normalizeMoney(invoice.amountPaid ?? 0), normalizeMoney(invoice.total))
+    const balanceDue = getBalanceAmount(invoice.total, amountPaid)
+    const showBalance = invoice.type === "invoice" && invoice.includeBalance !== false
+    const resolvedStatus = resolveInvoiceStatus({ ...invoice, amountPaid })
 
     const sanitizePdfText = (value: string) =>
       value
@@ -279,7 +390,7 @@ function InvoicesContent() {
     rightY -= 14
     text(rightBoxX + 8, rightY, `Project: ${project?.name || "N/A"}`, 10)
     rightY -= 14
-    text(rightBoxX + 8, rightY, `Status: ${invoice.status.toUpperCase()}`, 10)
+    text(rightBoxX + 8, rightY, `Status: ${resolvedStatus.toUpperCase()}`, 10)
 
     y = boxTop - boxHeight - 22
 
@@ -330,22 +441,34 @@ function InvoicesContent() {
     const totalsX = right - 220
     const totalsW = 220
     const totalsRowH = 20
-    rect(totalsX, y - totalsRowH * 4, totalsW, totalsRowH * 4)
-    hLine(totalsX, y - totalsRowH, totalsX + totalsW)
-    hLine(totalsX, y - totalsRowH * 2, totalsX + totalsW)
-    hLine(totalsX, y - totalsRowH * 3, totalsX + totalsW)
-    fillRectGray(totalsX, y - totalsRowH * 4, totalsW, totalsRowH, 0.9)
+    const totalsRows = [
+      { label: "Subtotal", value: `${curr} ${fmt(subtotal)}`, size: 10 as const, font: "F2" as const },
+      { label: `Tax (${invoice.tax}%)`, value: `${curr} ${fmt(taxAmount)}`, size: 10 as const, font: "F2" as const },
+      { label: `Discount (${invoice.discount}%)`, value: `-${curr} ${fmt(discountAmount)}`, size: 10 as const, font: "F2" as const },
+      { label: "Total", value: `${curr} ${fmt(invoice.total)}`, size: 11 as const, font: "F2" as const }
+    ]
 
-    text(totalsX + 8, y - 14, "Subtotal", 10, "F2")
-    textRight(totalsX + totalsW - 8, y - 14, `${curr} ${fmt(subtotal)}`, 10)
-    text(totalsX + 8, y - 34, `Tax (${invoice.tax}%)`, 10, "F2")
-    textRight(totalsX + totalsW - 8, y - 34, `${curr} ${fmt(taxAmount)}`, 10)
-    text(totalsX + 8, y - 54, `Discount (${invoice.discount}%)`, 10, "F2")
-    textRight(totalsX + totalsW - 8, y - 54, `-${curr} ${fmt(discountAmount)}`, 10)
-    text(totalsX + 8, y - 74, "Total", 11, "F2")
-    textRight(totalsX + totalsW - 8, y - 74, `${curr} ${fmt(invoice.total)}`, 11, "F2")
+    if (showBalance) {
+      totalsRows.push(
+        { label: "Amount Paid", value: `${curr} ${fmt(amountPaid)}`, size: 10 as const, font: "F2" as const },
+        { label: "Balance Due", value: `${curr} ${fmt(balanceDue)}`, size: 11 as const, font: "F2" as const }
+      )
+    }
 
-    y -= totalsRowH * 4 + 24
+    const totalsHeight = totalsRowH * totalsRows.length
+    rect(totalsX, y - totalsHeight, totalsW, totalsHeight)
+    for (let row = 1; row < totalsRows.length; row++) {
+      hLine(totalsX, y - totalsRowH * row, totalsX + totalsW)
+    }
+    fillRectGray(totalsX, y - totalsHeight, totalsW, totalsRowH, 0.9)
+
+    totalsRows.forEach((row, index) => {
+      const rowY = y - 14 - index * totalsRowH
+      text(totalsX + 8, rowY, row.label, row.size, row.font)
+      textRight(totalsX + totalsW - 8, rowY, row.value, row.size, row.font)
+    })
+
+    y -= totalsHeight + 24
 
     const notesLines = wrapText(invoice.notes || "N/A", contentWidth - 16, 10)
     const notesBoxHeight = Math.max(44, notesLines.length * 12 + 16)
@@ -404,7 +527,7 @@ function InvoicesContent() {
           <h1 className="text-4xl font-bold text-primary mb-2">Invoices & Quotations</h1>
           <p className="text-muted-foreground">Generate and manage financial documents</p>
         </div>
-        <Button onClick={() => { setShowForm(true); setEditingId(null); setCurrency("USD"); setFormData({ projectId: projectFilter || "", type: "invoice", number: "", date: new Date().toISOString().split("T")[0], dueDate: "", items: [{ description: "", quantity: 1, rate: 0 }], tax: 0, discount: 0, notes: "", status: "draft", currency: "USD" }) }} className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
+        <Button onClick={() => { setShowForm(true); setEditingId(null); setCurrency("USD"); setFormData({ projectId: projectFilter || "", type: "invoice", number: "", date: new Date().toISOString().split("T")[0], dueDate: "", items: [{ description: "", quantity: 1, rate: 0 }], tax: 0, discount: 0, amountPaid: 0, includeBalance: true, notes: "", status: "draft", currency: "USD" }) }} className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
           <Plus className="w-4 h-4 mr-2" />
           Create New
         </Button>
@@ -451,9 +574,10 @@ function InvoicesContent() {
                 {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
               </select>
               <Input placeholder="Invoice Number (auto-generated)" value={formData.number} onChange={e => setFormData({ ...formData, number: e.target.value })} required className="h-12 rounded-xl bg-background border-border" readOnly />
-              <select className="border border-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary bg-background text-foreground" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value })}>
+              <select className="border border-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary bg-background text-foreground" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value as InvoiceStatus })}>
                 <option value="draft">Draft</option>
                 <option value="sent">Sent</option>
+                <option value="partial">Partial</option>
                 <option value="paid">Paid</option>
                 <option value="overdue">Overdue</option>
               </select>
@@ -482,10 +606,35 @@ function InvoicesContent() {
               ))}
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <Input type="number" placeholder="Tax %" value={formData.tax} onChange={e => setFormData({ ...formData, tax: Number(e.target.value) })} className="h-12 rounded-xl bg-background border-border" />
               <Input type="number" placeholder="Discount %" value={formData.discount} onChange={e => setFormData({ ...formData, discount: Number(e.target.value) })} className="h-12 rounded-xl bg-background border-border" />
-              <div className="flex items-center justify-center font-bold text-xl bg-primary text-primary-foreground rounded-xl px-4">Total: {currency} {calculateTotal().toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+              <Input type="number" placeholder="Amount Paid" value={formData.amountPaid} onChange={e => setFormData({ ...formData, amountPaid: Number(e.target.value) || 0 })} className="h-12 rounded-xl bg-background border-border" />
+              <div className="flex items-center justify-center font-bold text-xl bg-primary text-primary-foreground rounded-xl px-4">Total: {currency} {liveTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Input
+                type="number"
+                placeholder="Balance"
+                value={liveBalance}
+                onChange={e => {
+                  const rawBalance = Number(e.target.value)
+                  const normalizedBalance = Math.min(Math.max(Number.isFinite(rawBalance) ? rawBalance : 0, 0), liveTotal)
+                  const nextAmountPaid = Math.max(liveTotal - normalizedBalance, 0)
+                  setFormData({ ...formData, amountPaid: nextAmountPaid })
+                }}
+                className="h-12 rounded-xl bg-background border-border"
+              />
+              <label className="flex items-center gap-3 rounded-xl border border-border px-4 py-3 bg-background text-foreground">
+                <input
+                  type="checkbox"
+                  checked={formData.includeBalance}
+                  onChange={e => setFormData({ ...formData, includeBalance: e.target.checked })}
+                  className="h-4 w-4 rounded border-border"
+                />
+                <span className="text-sm font-medium">Include balance in invoice output</span>
+              </label>
             </div>
 
             <div className="space-y-2">
@@ -510,8 +659,8 @@ function InvoicesContent() {
         </div>
       )}
 
-      <div className="bg-card/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden border border-border">
-        <table className="min-w-full divide-y divide-border">
+      <div className="bg-card/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-x-auto border border-border">
+        <table className="min-w-[1100px] w-full divide-y divide-border">
           <thead className="bg-muted/50">
             <tr>
               <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Number</th>
@@ -519,6 +668,7 @@ function InvoicesContent() {
               <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Project</th>
               <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Date</th>
               <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Total</th>
+              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Balance</th>
               <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Status</th>
               <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Actions</th>
             </tr>
@@ -526,6 +676,10 @@ function InvoicesContent() {
           <tbody className="bg-card/50 divide-y divide-border">
             {filteredInvoices.map(invoice => {
               const project = projects.find(p => p.id === invoice.projectId)
+              const invoiceCurrency = clients.find(c => c.id === project?.clientId)?.currency || "USD"
+              const resolvedStatus = resolveInvoiceStatus(invoice)
+              const amountPaid = Math.min(normalizeMoney(invoice.amountPaid ?? 0), normalizeMoney(invoice.total))
+              const balanceDue = getBalanceAmount(invoice.total, amountPaid)
               return (
                 <tr key={invoice.id} className="hover:bg-primary/5 transition-colors">
                   <td className="px-6 py-4 whitespace-nowrap font-semibold text-foreground">{invoice.number}</td>
@@ -538,15 +692,21 @@ function InvoicesContent() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">{project?.name || "N/A"}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">{invoice.date}</td>
-                  <td className="px-6 py-4 whitespace-nowrap font-bold text-foreground">{clients.find(c => c.id === project?.clientId)?.currency || "USD"} {invoice.total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                  <td className="px-6 py-4 whitespace-nowrap font-bold text-foreground">{invoiceCurrency} {invoice.total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-foreground">
+                    {invoice.type === "invoice" && invoice.includeBalance !== false
+                      ? `${invoiceCurrency} ${balanceDue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`
+                      : "N/A"}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-3 py-1.5 text-xs font-semibold rounded-full ${
-                      invoice.status === "paid" ? "bg-green-500/20 text-green-400" :
-                      invoice.status === "sent" ? "bg-primary/20 text-primary" :
-                      invoice.status === "overdue" ? "bg-destructive/20 text-destructive" :
+                      resolvedStatus === "paid" ? "bg-green-500/20 text-green-400" :
+                      resolvedStatus === "partial" ? "bg-amber-500/20 text-amber-400" :
+                      resolvedStatus === "sent" ? "bg-primary/20 text-primary" :
+                      resolvedStatus === "overdue" ? "bg-destructive/20 text-destructive" :
                       "bg-muted text-muted-foreground"
                     }`}>
-                      {invoice.status}
+                      {resolvedStatus}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">

@@ -14,6 +14,8 @@ const InvoiceSchema = new mongoose.Schema({
   tax: { type: Number, default: 0 },
   discount: { type: Number, default: 0 },
   total: { type: Number, required: true },
+  amountPaid: { type: Number, default: 0 },
+  includeBalance: { type: Boolean, default: true },
   notes: { type: String },
   status: { type: String, required: true },
   currency: { type: String, default: 'USD' },

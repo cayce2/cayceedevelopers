@@ -1,0 +1,1265 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.8.2
+2 info using node@v20.20.1
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\Caleb\Documents\dev\cayceedevelopers\.npmrc
+5 silly config load:file:C:\Users\Caleb\.npmrc
+6 silly config load:file:C:\Users\Caleb\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install" "--cache" ".npm-cache-local"
+9 verbose logfile logs-max:10 dir:C:\Users\Caleb\Documents\dev\cayceedevelopers\.npm-cache-local\_logs\2026-04-09T13_32_59_940Z-
+10 verbose logfile C:\Users\Caleb\Documents\dev\cayceedevelopers\.npm-cache-local\_logs\2026-04-09T13_32_59_940Z-debug-0.log
+11 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 http fetch GET https://registry.npmjs.org/npm attempt 1 failed with EACCES
+15 silly reify mark retired [
+15 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\acorn'
+15 silly reify ]
+16 silly reify mark retired [
+16 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\aria-hidden'
+16 silly reify ]
+17 silly reify mark retired [
+17 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\array-includes'
+17 silly reify ]
+18 silly reify mark retired [
+18 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\array.prototype.findlastindex'
+18 silly reify ]
+19 silly reify mark retired [
+19 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\axe-core'
+19 silly reify ]
+20 silly reify mark retired [
+20 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\axios'
+20 silly reify ]
+21 silly reify mark retired [
+21 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\brace-expansion'
+21 silly reify ]
+22 silly reify mark retired [
+22 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\bson'
+22 silly reify ]
+23 silly reify mark retired [
+23 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\camelcase-css'
+23 silly reify ]
+24 silly reify mark retired [
+24 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\caniuse-lite'
+24 silly reify ]
+25 silly reify mark retired [
+25 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\cssesc'
+25 silly reify ]
+26 silly reify mark retired [
+26 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\csstype'
+26 silly reify ]
+27 silly reify mark retired [
+27 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\debug'
+27 silly reify ]
+28 silly reify mark retired [
+28 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\didyoumean'
+28 silly reify ]
+29 silly reify mark retired [
+29 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\dlv'
+29 silly reify ]
+30 silly reify mark retired [
+30 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\doctrine'
+30 silly reify ]
+31 silly reify mark retired [
+31 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\enhanced-resolve'
+31 silly reify ]
+32 silly reify mark retired [
+32 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\es-abstract'
+32 silly reify ]
+33 silly reify mark retired [
+33 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\es-iterator-helpers'
+33 silly reify ]
+34 silly reify mark retired [
+34 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint'
+34 silly reify ]
+35 silly reify mark retired [
+35 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-config-next'
+35 silly reify ]
+36 silly reify mark retired [
+36 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-import-resolver-typescript'
+36 silly reify ]
+37 silly reify mark retired [
+37 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-module-utils'
+37 silly reify ]
+38 silly reify mark retired [
+38 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-plugin-import'
+38 silly reify ]
+39 silly reify mark retired [
+39 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-plugin-react'
+39 silly reify ]
+40 silly reify mark retired [
+40 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-plugin-react-hooks'
+40 silly reify ]
+41 silly reify mark retired [
+41 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-scope'
+41 silly reify ]
+42 silly reify mark retired [
+42 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\espree'
+42 silly reify ]
+43 silly reify mark retired [
+43 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\esquery'
+43 silly reify ]
+44 silly reify mark retired [
+44 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\fast-glob'
+44 silly reify ]
+45 silly reify mark retired [
+45 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\fastq'
+45 silly reify ]
+46 silly reify mark retired [
+46 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\file-entry-cache'
+46 silly reify ]
+47 silly reify mark retired [
+47 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\flat-cache'
+47 silly reify ]
+48 silly reify mark retired [
+48 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\fsevents'
+48 silly reify ]
+49 silly reify mark retired [
+49 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\get-tsconfig'
+49 silly reify ]
+50 silly reify mark retired [
+50 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\glob'
+50 silly reify ]
+51 silly reify mark retired [
+51 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\globals'
+51 silly reify ]
+52 silly reify mark retired [
+52 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\graphemer'
+52 silly reify ]
+53 silly reify mark retired [
+53 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\is-bun-module'
+53 silly reify ]
+54 silly reify mark retired [
+54 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\is-generator-function'
+54 silly reify ]
+55 silly reify mark retired [
+55 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\is-path-inside'
+55 silly reify ]
+56 silly reify mark retired [
+56 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\jackspeak'
+56 silly reify ]
+57 silly reify mark retired [
+57 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\jiti'
+57 silly reify ]
+58 silly reify mark retired [
+58 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\js-yaml'
+58 silly reify ]
+59 silly reify mark retired [
+59 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\lucide-react'
+59 silly reify ]
+60 silly reify mark retired [
+60 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\mongoose'
+60 silly reify ]
+61 silly reify mark retired [
+61 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\nanoid'
+61 silly reify ]
+62 silly reify mark retired [
+62 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\next'
+62 silly reify ]
+63 silly reify mark retired [
+63 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\object-hash'
+63 silly reify ]
+64 silly reify mark retired [
+64 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\object.entries'
+64 silly reify ]
+65 silly reify mark retired [
+65 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\pify'
+65 silly reify ]
+66 silly reify mark retired [
+66 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\pirates'
+66 silly reify ]
+67 silly reify mark retired [
+67 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss'
+67 silly reify ]
+68 silly reify mark retired [
+68 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss-import'
+68 silly reify ]
+69 silly reify mark retired [
+69 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss-js'
+69 silly reify ]
+70 silly reify mark retired [
+70 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss-load-config'
+70 silly reify ]
+71 silly reify mark retired [
+71 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss-nested'
+71 silly reify ]
+72 silly reify mark retired [
+72 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss-selector-parser'
+72 silly reify ]
+73 silly reify mark retired [
+73 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\react-remove-scroll'
+73 silly reify ]
+74 silly reify mark retired [
+74 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\read-cache'
+74 silly reify ]
+75 silly reify mark retired [
+75 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\resolve'
+75 silly reify ]
+76 silly reify mark retired [
+76 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\semver'
+76 silly reify ]
+77 silly reify mark retired [
+77 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\stable-hash'
+77 silly reify ]
+78 silly reify mark retired [
+78 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\tailwind-merge'
+78 silly reify ]
+79 silly reify mark retired [
+79 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\tailwindcss'
+79 silly reify ]
+80 silly reify mark retired [
+80 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\tailwindcss-animate'
+80 silly reify ]
+81 silly reify mark retired [
+81 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\tapable'
+81 silly reify ]
+82 silly reify mark retired [
+82 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\tinyglobby'
+82 silly reify ]
+83 silly reify mark retired [
+83 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\ts-api-utils'
+83 silly reify ]
+84 silly reify mark retired [
+84 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\type-fest'
+84 silly reify ]
+85 silly reify mark retired [
+85 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\typescript'
+85 silly reify ]
+86 silly reify mark retired [
+86 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\undici-types'
+86 silly reify ]
+87 silly reify mark retired [
+87 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\which-typed-array'
+87 silly reify ]
+88 silly reify mark retired [
+88 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\yaml'
+88 silly reify ]
+89 silly reify mark retired [
+89 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint\\js'
+89 silly reify ]
+90 silly reify mark retired [
+90 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint\\eslintrc'
+90 silly reify ]
+91 silly reify mark retired [
+91 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint-community\\eslint-utils'
+91 silly reify ]
+92 silly reify mark retired [
+92 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint-community\\regexpp'
+92 silly reify ]
+93 silly reify mark retired [
+93 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@humanwhocodes\\config-array'
+93 silly reify ]
+94 silly reify mark retired [
+94 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@humanwhocodes\\object-schema'
+94 silly reify ]
+95 silly reify mark retired [
+95 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\gen-mapping'
+95 silly reify ]
+96 silly reify mark retired [
+96 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\trace-mapping'
+96 silly reify ]
+97 silly reify mark retired [
+97 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\sourcemap-codec'
+97 silly reify ]
+98 silly reify mark retired [
+98 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\set-array'
+98 silly reify ]
+99 silly reify mark retired [
+99 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@mongodb-js\\saslprep'
+99 silly reify ]
+100 silly reify mark retired [
+100 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\env'
+100 silly reify ]
+101 silly reify mark retired [
+101 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-darwin-arm64'
+101 silly reify ]
+102 silly reify mark retired [
+102 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\eslint-plugin-next'
+102 silly reify ]
+103 silly reify mark retired [
+103 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-arm64-gnu'
+103 silly reify ]
+104 silly reify mark retired [
+104 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-darwin-x64'
+104 silly reify ]
+105 silly reify mark retired [
+105 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-arm64-musl'
+105 silly reify ]
+106 silly reify mark retired [
+106 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-x64-gnu'
+106 silly reify ]
+107 silly reify mark retired [
+107 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-x64-musl'
+107 silly reify ]
+108 silly reify mark retired [
+108 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-win32-arm64-msvc'
+108 silly reify ]
+109 silly reify mark retired [
+109 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-win32-ia32-msvc'
+109 silly reify ]
+110 silly reify mark retired [
+110 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-win32-x64-msvc'
+110 silly reify ]
+111 silly reify mark retired [
+111 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\primitive'
+111 silly reify ]
+112 silly reify mark retired [
+112 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-compose-refs'
+112 silly reify ]
+113 silly reify mark retired [
+113 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-context'
+113 silly reify ]
+114 silly reify mark retired [
+114 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-dismissable-layer'
+114 silly reify ]
+115 silly reify mark retired [
+115 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-dialog'
+115 silly reify ]
+116 silly reify mark retired [
+116 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-focus-guards'
+116 silly reify ]
+117 silly reify mark retired [
+117 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-focus-scope'
+117 silly reify ]
+118 silly reify mark retired [
+118 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-portal'
+118 silly reify ]
+119 silly reify mark retired [
+119 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-id'
+119 silly reify ]
+120 silly reify mark retired [
+120 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-presence'
+120 silly reify ]
+121 silly reify mark retired [
+121 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-primitive'
+121 silly reify ]
+122 silly reify mark retired [
+122 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-slot'
+122 silly reify ]
+123 silly reify mark retired [
+123 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-use-callback-ref'
+123 silly reify ]
+124 silly reify mark retired [
+124 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-use-escape-keydown'
+124 silly reify ]
+125 silly reify mark retired [
+125 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-use-controllable-state'
+125 silly reify ]
+126 silly reify mark retired [
+126 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-use-layout-effect'
+126 silly reify ]
+127 silly reify mark retired [
+127 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@sendgrid\\mail'
+127 silly reify ]
+128 silly reify mark retired [
+128 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@sendgrid\\helpers'
+128 silly reify ]
+129 silly reify mark retired [
+129 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@sendgrid\\client'
+129 silly reify ]
+130 silly reify mark retired [
+130 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@rushstack\\eslint-patch'
+130 silly reify ]
+131 silly reify mark retired [
+131 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\prop-types'
+131 silly reify ]
+132 silly reify mark retired [
+132 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\node'
+132 silly reify ]
+133 silly reify mark retired [
+133 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\react-dom'
+133 silly reify ]
+134 silly reify mark retired [
+134 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\react'
+134 silly reify ]
+135 silly reify mark retired [
+135 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\eslint-plugin'
+135 silly reify ]
+136 silly reify mark retired [
+136 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\type-utils'
+136 silly reify ]
+137 silly reify mark retired [
+137 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\parser'
+137 silly reify ]
+138 silly reify mark retired [
+138 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\types'
+138 silly reify ]
+139 silly reify mark retired [
+139 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\scope-manager'
+139 silly reify ]
+140 silly reify mark retired [
+140 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\typescript-estree'
+140 silly reify ]
+141 silly reify mark retired [
+141 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\visitor-keys'
+141 silly reify ]
+142 silly reify mark retired [
+142 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\utils'
+142 silly reify ]
+143 silly reify mark retired [
+143 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\json5',
+143 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\json5',
+143 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\json5.cmd',
+143 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\json5.ps1'
+143 silly reify ]
+144 silly reify mark retired [
+144 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\loose-envify',
+144 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\loose-envify',
+144 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\loose-envify.cmd',
+144 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\loose-envify.ps1'
+144 silly reify ]
+145 silly reify mark retired [
+145 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\rimraf',
+145 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\rimraf',
+145 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\rimraf.cmd',
+145 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\rimraf.ps1'
+145 silly reify ]
+146 silly reify mark retired [
+146 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\string-width\\node_modules\\ansi-regex'
+146 silly reify ]
+147 silly reify mark retired [
+147 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\string-width\\node_modules\\strip-ansi'
+147 silly reify ]
+148 silly reify mark retired [
+148 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\sucrase',
+148 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase',
+148 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase.cmd',
+148 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase.ps1',
+148 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase-node',
+148 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase-node.cmd',
+148 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase-node.ps1'
+148 silly reify ]
+149 silly reify mark retired [
+149 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\which',
+149 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\node-which',
+149 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\node-which.cmd',
+149 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\node-which.ps1'
+149 silly reify ]
+150 silly reify mark retired [
+150 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\wrap-ansi\\node_modules\\ansi-regex'
+150 silly reify ]
+151 silly reify mark retired [
+151 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\wrap-ansi\\node_modules\\ansi-styles'
+151 silly reify ]
+152 silly reify mark retired [
+152 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\wrap-ansi\\node_modules\\strip-ansi'
+152 silly reify ]
+153 silly reify mark retired [
+153 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@isaacs\\cliui\\node_modules\\ansi-regex'
+153 silly reify ]
+154 silly reify mark retired [
+154 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@isaacs\\cliui\\node_modules\\strip-ansi'
+154 silly reify ]
+155 silly reify moves {
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\acorn': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.acorn-9RmtnR0W',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\aria-hidden': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.aria-hidden-MOXPp5M5',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\array-includes': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.array-includes-QoJjlwdK',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\array.prototype.findlastindex': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.array.prototype.findlastindex-lNnCJLa1',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\axe-core': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.axe-core-23YUQipw',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\axios': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.axios-ZRh76rEW',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\brace-expansion': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.brace-expansion-Urx8l1Dj',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\bson': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bson-5ZKqlwwl',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\camelcase-css': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.camelcase-css-q7Y59mRN',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\caniuse-lite': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.caniuse-lite-TxVh8wZW',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\cssesc': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.cssesc-bmhShSNB',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\csstype': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.csstype-WGOqRS9J',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\debug': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.debug-BJKGIW4G',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\didyoumean': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.didyoumean-M9ZwX4qY',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\dlv': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.dlv-Zi6SemG5',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\doctrine': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.doctrine-P82hcfJC',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\enhanced-resolve': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.enhanced-resolve-ZpxG2etW',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\es-abstract': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.es-abstract-Q8YUWmhd',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\es-iterator-helpers': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.es-iterator-helpers-o6swmcA5',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.eslint-BEqQgkhu',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-config-next': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.eslint-config-next-FsDYaptr',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-import-resolver-typescript': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.eslint-import-resolver-typescript-eeWyyoov',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-module-utils': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.eslint-module-utils-ZbhBkOpg',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-plugin-import': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.eslint-plugin-import-OwU4nX24',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-plugin-react': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.eslint-plugin-react-H4Oj4vhc',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-plugin-react-hooks': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.eslint-plugin-react-hooks-ixuOX99c',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\eslint-scope': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.eslint-scope-gV2CRP4r',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\espree': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.espree-aiyaGK2w',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\esquery': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.esquery-oHR28Ew6',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\fast-glob': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.fast-glob-XaaozcPi',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\fastq': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.fastq-fMJ2CqG5',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\file-entry-cache': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.file-entry-cache-iPLQXJfB',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\flat-cache': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.flat-cache-IgDTfqr9',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\fsevents': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.fsevents-UmUmPEiD',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\get-tsconfig': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.get-tsconfig-7TahIa8w',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\glob': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.glob-t9JG0AgJ',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\globals': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.globals-Wi1kD3f3',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\graphemer': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.graphemer-W65Yrok1',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\is-bun-module': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.is-bun-module-3ghJmAXY',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\is-generator-function': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.is-generator-function-xPp0wkPn',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\is-path-inside': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.is-path-inside-NNMCM4TM',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\jackspeak': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.jackspeak-pX9i8tcU',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\jiti': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.jiti-AqVEhFHF',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\js-yaml': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.js-yaml-mWQGlhmw',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\lucide-react': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.lucide-react-UqIjVTgd',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\mongoose': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.mongoose-sT5fKtwN',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\nanoid': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.nanoid-CzC5xyHC',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\next': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.next-LpZ6xfp8',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\object-hash': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.object-hash-dPETxU3J',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\object.entries': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.object.entries-7pNwvbY8',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\pify': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.pify-7xhCjDL8',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\pirates': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.pirates-piFWpI4R',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.postcss-Qbir7yJN',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss-import': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.postcss-import-fpGCGjUM',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss-js': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.postcss-js-6JvoxsVF',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss-load-config': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.postcss-load-config-P8K9VFJ5',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss-nested': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.postcss-nested-CEevoLvN',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\postcss-selector-parser': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.postcss-selector-parser-V3NTs1cT',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\react-remove-scroll': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.react-remove-scroll-76S3jVLt',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\read-cache': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.read-cache-KYiW88bW',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\resolve': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.resolve-5v3UviY0',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\semver': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.semver-SKFsAI55',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\stable-hash': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.stable-hash-M6wJHV8F',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\tailwind-merge': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.tailwind-merge-nAwf8DPo',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\tailwindcss': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.tailwindcss-qVzIQR1Y',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\tailwindcss-animate': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.tailwindcss-animate-3YOT1dil',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\tapable': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.tapable-trDfSLWe',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\tinyglobby': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.tinyglobby-l9qvmUGU',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\ts-api-utils': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.ts-api-utils-1NxhOacX',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\type-fest': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.type-fest-rhOl6L4Y',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\typescript': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.typescript-G2DINVqo',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\undici-types': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.undici-types-9okwc8In',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\which-typed-array': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.which-typed-array-GdODro2J',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\yaml': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.yaml-7PwELwIX',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint\\js': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint\\.js-pwVUrItT',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint\\eslintrc': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint\\.eslintrc-1lMdCxQU',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint-community\\eslint-utils': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint-community\\.eslint-utils-5fiCdnFO',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint-community\\regexpp': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@eslint-community\\.regexpp-5q8Gndn6',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@humanwhocodes\\config-array': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@humanwhocodes\\.config-array-BgAVytTq',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@humanwhocodes\\object-schema': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@humanwhocodes\\.object-schema-I9SLdTPf',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\gen-mapping': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\.gen-mapping-Tyru1nGv',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\trace-mapping': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\.trace-mapping-uBa0xDOB',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\sourcemap-codec': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\.sourcemap-codec-l5ktmdtj',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\set-array': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@jridgewell\\.set-array-mIdj6h4R',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@mongodb-js\\saslprep': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@mongodb-js\\.saslprep-t4yairXH',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\env': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\.env-jV7oGS6R',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-darwin-arm64': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\.swc-darwin-arm64-Zn8cnKtP',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\eslint-plugin-next': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\.eslint-plugin-next-pmK4sV6B',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-arm64-gnu': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\.swc-linux-arm64-gnu-pnYEn4Fn',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-darwin-x64': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\.swc-darwin-x64-DdqP33AJ',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-arm64-musl': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\.swc-linux-arm64-musl-OA7uI6T5',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-x64-gnu': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\.swc-linux-x64-gnu-P11hjZkk',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-x64-musl': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\.swc-linux-x64-musl-CyjRbOGc',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-win32-arm64-msvc': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\.swc-win32-arm64-msvc-oqwuJ3Qx',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-win32-ia32-msvc': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\.swc-win32-ia32-msvc-W6OE2itT',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-win32-x64-msvc': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\.swc-win32-x64-msvc-XfeD6uE2',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\primitive': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.primitive-vTUiCkHr',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-compose-refs': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-compose-refs-dyyvGnBn',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-context': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-context-dSiKt5hq',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-dismissable-layer': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-dismissable-layer-w1bfsXlz',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-dialog': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-dialog-he0vIwir',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-focus-guards': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-focus-guards-tlhb6jfD',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-focus-scope': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-focus-scope-IiDJWzHs',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-portal': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-portal-LTZv2AWV',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-id': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-id-TnnxS6HY',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-presence': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-presence-Pq6Xmp18',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-primitive': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-primitive-to8vtzXm',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-slot': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-slot-i3C886TS',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-use-callback-ref': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-use-callback-ref-gg3Takfr',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-use-escape-keydown': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-use-escape-keydown-7DGG00s5',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-use-controllable-state': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-use-controllable-state-f8wEi2qX',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\react-use-layout-effect': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@radix-ui\\.react-use-layout-effect-5nrA4CRj',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@sendgrid\\mail': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@sendgrid\\.mail-zXtK6dxq',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@sendgrid\\helpers': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@sendgrid\\.helpers-ywo7JThE',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@sendgrid\\client': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@sendgrid\\.client-m3P9c3Yj',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@rushstack\\eslint-patch': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@rushstack\\.eslint-patch-N1QWjSNH',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\prop-types': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\.prop-types-2vG72QfQ',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\node': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\.node-0guxKHmO',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\react-dom': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\.react-dom-ssJ9yttA',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\react': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@types\\.react-h4GGKS43',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\eslint-plugin': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\.eslint-plugin-62SHYGx4',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\type-utils': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\.type-utils-JHoqDhW3',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\parser': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\.parser-rGBHJvZE',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\types': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\.types-UzDMJd0o',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\scope-manager': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\.scope-manager-X5fHaFK2',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\typescript-estree': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\.typescript-estree-TitBISCD',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\visitor-keys': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\.visitor-keys-Nl43Lwv8',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\utils': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@typescript-eslint\\.utils-aEBO8EL9',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\json5': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.json5-oWR4gkwJ',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\json5': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.json5-AVo4K5aN',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\json5.cmd': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.json5.cmd-HsGBJr6e',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\json5.ps1': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.json5.ps1-FHV1nQxa',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\loose-envify': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.loose-envify-osOesW4b',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\loose-envify': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.loose-envify-TTebXiiG',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\loose-envify.cmd': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.loose-envify.cmd-04BRIp0j',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\loose-envify.ps1': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.loose-envify.ps1-GjNNYTRP',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\rimraf': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.rimraf-QdjQuNVN',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\rimraf': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.rimraf-t3ldwSuT',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\rimraf.cmd': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.rimraf.cmd-HuacXfBU',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\rimraf.ps1': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.rimraf.ps1-1gxaklq6',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\string-width\\node_modules\\ansi-regex': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\string-width\\node_modules\\.ansi-regex-KdCClkU2',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\string-width\\node_modules\\strip-ansi': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\string-width\\node_modules\\.strip-ansi-TI0dNibX',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\sucrase': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.sucrase-zetQm6cP',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.sucrase-oH6CwCFd',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase.cmd': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.sucrase.cmd-au7Iz2Dr',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase.ps1': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.sucrase.ps1-E9M0z1pG',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase-node': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.sucrase-node-yafIy7vP',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase-node.cmd': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.sucrase-node.cmd-SiVHYBJN',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\sucrase-node.ps1': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.sucrase-node.ps1-lD6FEbXh',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\which': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.which-CThWCx4J',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\node-which': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.node-which-6HjAOAko',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\node-which.cmd': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.node-which.cmd-n9NSvnLU',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\node-which.ps1': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\.bin\\.node-which.ps1-PreVTWAQ',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\wrap-ansi\\node_modules\\ansi-regex': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\wrap-ansi\\node_modules\\.ansi-regex-0eWVfV1m',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\wrap-ansi\\node_modules\\ansi-styles': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\wrap-ansi\\node_modules\\.ansi-styles-Cz1uGpnj',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\wrap-ansi\\node_modules\\strip-ansi': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\wrap-ansi\\node_modules\\.strip-ansi-ewsN6Wb5',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@isaacs\\cliui\\node_modules\\ansi-regex': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@isaacs\\cliui\\node_modules\\.ansi-regex-uFkUi6Au',
+155 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@isaacs\\cliui\\node_modules\\strip-ansi': 'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@isaacs\\cliui\\node_modules\\.strip-ansi-EpIPpKG1'
+155 silly reify }
+156 silly audit bulk request {
+156 silly audit   '@alloc/quick-lru': [ '5.2.0' ],
+156 silly audit   '@eslint-community/eslint-utils': [ '4.4.1' ],
+156 silly audit   '@eslint-community/regexpp': [ '4.12.1' ],
+156 silly audit   '@eslint/eslintrc': [ '2.1.4' ],
+156 silly audit   '@eslint/js': [ '8.57.1' ],
+156 silly audit   '@humanwhocodes/config-array': [ '0.13.0' ],
+156 silly audit   '@humanwhocodes/module-importer': [ '1.0.1' ],
+156 silly audit   '@humanwhocodes/object-schema': [ '2.0.3' ],
+156 silly audit   '@isaacs/cliui': [ '8.0.2' ],
+156 silly audit   'ansi-regex': [ '6.1.0', '5.0.1' ],
+156 silly audit   'strip-ansi': [ '7.1.0', '6.0.1' ],
+156 silly audit   '@jridgewell/gen-mapping': [ '0.3.8' ],
+156 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+156 silly audit   '@jridgewell/set-array': [ '1.2.1' ],
+156 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.0' ],
+156 silly audit   '@jridgewell/trace-mapping': [ '0.3.25' ],
+156 silly audit   '@mongodb-js/saslprep': [ '1.4.5' ],
+156 silly audit   '@next/env': [ '14.2.24' ],
+156 silly audit   '@next/eslint-plugin-next': [ '14.2.24' ],
+156 silly audit   '@next/swc-darwin-arm64': [ '14.2.24' ],
+156 silly audit   '@next/swc-darwin-x64': [ '14.2.24' ],
+156 silly audit   '@next/swc-linux-arm64-gnu': [ '14.2.24' ],
+156 silly audit   '@next/swc-linux-arm64-musl': [ '14.2.24' ],
+156 silly audit   '@next/swc-linux-x64-gnu': [ '14.2.24' ],
+156 silly audit   '@next/swc-linux-x64-musl': [ '14.2.24' ],
+156 silly audit   '@next/swc-win32-arm64-msvc': [ '14.2.24' ],
+156 silly audit   '@next/swc-win32-ia32-msvc': [ '14.2.24' ],
+156 silly audit   '@next/swc-win32-x64-msvc': [ '14.2.24' ],
+156 silly audit   '@nodelib/fs.scandir': [ '2.1.5' ],
+156 silly audit   '@nodelib/fs.stat': [ '2.0.5' ],
+156 silly audit   '@nodelib/fs.walk': [ '1.2.8' ],
+156 silly audit   '@nolyfill/is-core-module': [ '1.0.39' ],
+156 silly audit   '@pkgjs/parseargs': [ '0.11.0' ],
+156 silly audit   '@radix-ui/primitive': [ '1.1.1' ],
+156 silly audit   '@radix-ui/react-compose-refs': [ '1.1.1' ],
+156 silly audit   '@radix-ui/react-context': [ '1.1.1' ],
+156 silly audit   '@radix-ui/react-dialog': [ '1.1.6' ],
+156 silly audit   '@radix-ui/react-dismissable-layer': [ '1.1.5' ],
+156 silly audit   '@radix-ui/react-focus-guards': [ '1.1.1' ],
+156 silly audit   '@radix-ui/react-focus-scope': [ '1.1.2' ],
+156 silly audit   '@radix-ui/react-id': [ '1.1.0' ],
+156 silly audit   '@radix-ui/react-portal': [ '1.1.4' ],
+156 silly audit   '@radix-ui/react-presence': [ '1.1.2' ],
+156 silly audit   '@radix-ui/react-primitive': [ '2.0.2' ],
+156 silly audit   '@radix-ui/react-slot': [ '1.1.2' ],
+156 silly audit   '@radix-ui/react-use-callback-ref': [ '1.1.0' ],
+156 silly audit   '@radix-ui/react-use-controllable-state': [ '1.1.0' ],
+156 silly audit   '@radix-ui/react-use-escape-keydown': [ '1.1.0' ],
+156 silly audit   '@radix-ui/react-use-layout-effect': [ '1.1.0' ],
+156 silly audit   '@rtsao/scc': [ '1.1.0' ],
+156 silly audit   '@rushstack/eslint-patch': [ '1.10.5' ],
+156 silly audit   '@sendgrid/client': [ '8.1.6' ],
+156 silly audit   '@sendgrid/helpers': [ '8.0.0' ],
+156 silly audit   '@sendgrid/mail': [ '8.1.6' ],
+156 silly audit   '@swc/counter': [ '0.1.3' ],
+156 silly audit   '@swc/helpers': [ '0.5.5' ],
+156 silly audit   '@types/json5': [ '0.0.29' ],
+156 silly audit   '@types/node': [ '20.17.23' ],
+156 silly audit   '@types/prop-types': [ '15.7.14' ],
+156 silly audit   '@types/react': [ '18.3.18' ],
+156 silly audit   '@types/react-dom': [ '18.3.5' ],
+156 silly audit   '@types/webidl-conversions': [ '7.0.3' ],
+156 silly audit   '@types/whatwg-url': [ '13.0.0' ],
+156 silly audit   '@typescript-eslint/eslint-plugin': [ '8.26.0' ],
+156 silly audit   '@typescript-eslint/parser': [ '8.26.0' ],
+156 silly audit   '@typescript-eslint/scope-manager': [ '8.26.0' ],
+156 silly audit   '@typescript-eslint/type-utils': [ '8.26.0' ],
+156 silly audit   '@typescript-eslint/types': [ '8.26.0' ],
+156 silly audit   '@typescript-eslint/typescript-estree': [ '8.26.0' ],
+156 silly audit   'brace-expansion': [ '2.0.1', '1.1.11' ],
+156 silly audit   minimatch: [ '9.0.5', '3.1.2' ],
+156 silly audit   '@typescript-eslint/utils': [ '8.26.0' ],
+156 silly audit   '@typescript-eslint/visitor-keys': [ '8.26.0' ],
+156 silly audit   'eslint-visitor-keys': [ '4.2.0', '3.4.3' ],
+156 silly audit   '@ungap/structured-clone': [ '1.3.0' ],
+156 silly audit   acorn: [ '8.14.1' ],
+156 silly audit   'acorn-jsx': [ '5.3.2' ],
+156 silly audit   ajv: [ '6.12.6' ],
+156 silly audit   'ansi-styles': [ '4.3.0', '6.2.1' ],
+156 silly audit   'any-promise': [ '1.3.0' ],
+156 silly audit   anymatch: [ '3.1.3' ],
+156 silly audit   arg: [ '5.0.2' ],
+156 silly audit   argparse: [ '2.0.1' ],
+156 silly audit   'aria-hidden': [ '1.2.4' ],
+156 silly audit   'aria-query': [ '5.3.2' ],
+156 silly audit   'array-buffer-byte-length': [ '1.0.2' ],
+156 silly audit   'array-includes': [ '3.1.8' ],
+156 silly audit   'array.prototype.findlast': [ '1.2.5' ],
+156 silly audit   'array.prototype.findlastindex': [ '1.2.5' ],
+156 silly audit   'array.prototype.flat': [ '1.3.3' ],
+156 silly audit   'array.prototype.flatmap': [ '1.3.3' ],
+156 silly audit   'array.prototype.tosorted': [ '1.1.4' ],
+156 silly audit   'arraybuffer.prototype.slice': [ '1.0.4' ],
+156 silly audit   'ast-types-flow': [ '0.0.8' ],
+156 silly audit   'async-function': [ '1.0.0' ],
+156 silly audit   asynckit: [ '0.4.0' ],
+156 silly audit   'available-typed-arrays': [ '1.0.7' ],
+156 silly audit   'axe-core': [ '4.10.3' ],
+156 silly audit   axios: [ '1.13.2' ],
+156 silly audit   'axobject-query': [ '4.1.0' ],
+156 silly audit   'balanced-match': [ '1.0.2' ],
+156 silly audit   'binary-extensions': [ '2.3.0' ],
+156 silly audit   braces: [ '3.0.3' ],
+156 silly audit   bson: [ '7.1.1' ],
+156 silly audit   busboy: [ '1.6.0' ],
+156 silly audit   'call-bind': [ '1.0.8' ],
+156 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+156 silly audit   'call-bound': [ '1.0.4' ],
+156 silly audit   callsites: [ '3.1.0' ],
+156 silly audit   'camelcase-css': [ '2.0.1' ],
+156 silly audit   'caniuse-lite': [ '1.0.30001757' ],
+156 silly audit   chalk: [ '4.1.2' ],
+156 silly audit   chokidar: [ '3.6.0' ],
+156 silly audit   'glob-parent': [ '5.1.2', '6.0.2' ],
+156 silly audit   'class-variance-authority': [ '0.7.1' ],
+156 silly audit   'client-only': [ '0.0.1' ],
+156 silly audit   clsx: [ '2.1.1' ],
+156 silly audit   'color-convert': [ '2.0.1' ],
+156 silly audit   'color-name': [ '1.1.4' ],
+156 silly audit   'combined-stream': [ '1.0.8' ],
+156 silly audit   commander: [ '4.1.1' ],
+156 silly audit   'concat-map': [ '0.0.1' ],
+156 silly audit   'cross-spawn': [ '7.0.6' ],
+156 silly audit   cssesc: [ '3.0.0' ],
+156 silly audit   csstype: [ '3.1.3' ],
+156 silly audit   'damerau-levenshtein': [ '1.0.8' ],
+156 silly audit   'data-view-buffer': [ '1.0.2' ],
+156 silly audit   'data-view-byte-length': [ '1.0.2' ],
+156 silly audit   'data-view-byte-offset': [ '1.0.1' ],
+156 silly audit   debug: [ '4.4.0', '3.2.7' ],
+156 silly audit   'deep-is': [ '0.1.4' ],
+156 silly audit   deepmerge: [ '4.3.1' ],
+156 silly audit   'define-data-property': [ '1.1.4' ],
+156 silly audit   'define-properties': [ '1.2.1' ],
+156 silly audit   'delayed-stream': [ '1.0.0' ],
+156 silly audit   'detect-node-es': [ '1.1.0' ],
+156 silly audit   didyoumean: [ '1.2.2' ],
+156 silly audit   dlv: [ '1.1.3' ],
+156 silly audit   doctrine: [ '3.0.0', '2.1.0' ],
+156 silly audit   'dunder-proto': [ '1.0.1' ],
+156 silly audit   eastasianwidth: [ '0.2.0' ],
+156 silly audit   'emoji-regex': [ '9.2.2', '8.0.0' ],
+156 silly audit   'enhanced-resolve': [ '5.18.1' ],
+156 silly audit   'es-abstract': [ '1.23.9' ],
+156 silly audit   'es-define-property': [ '1.0.1' ],
+156 silly audit   'es-errors': [ '1.3.0' ],
+156 silly audit   'es-iterator-helpers': [ '1.2.1' ],
+156 silly audit   'es-object-atoms': [ '1.1.1' ],
+156 silly audit   'es-set-tostringtag': [ '2.1.0' ],
+156 silly audit   'es-shim-unscopables': [ '1.1.0' ],
+156 silly audit   'es-to-primitive': [ '1.3.0' ],
+156 silly audit   'escape-string-regexp': [ '4.0.0' ],
+156 silly audit   eslint: [ '8.57.1' ],
+156 silly audit   'eslint-config-next': [ '14.2.24' ],
+156 silly audit   'eslint-import-resolver-node': [ '0.3.9' ],
+156 silly audit   'eslint-import-resolver-typescript': [ '3.8.3' ],
+156 silly audit   'eslint-module-utils': [ '2.12.0' ],
+156 silly audit   'eslint-plugin-import': [ '2.31.0' ],
+156 silly audit   semver: [ '6.3.1', '7.7.1' ],
+156 silly audit   'eslint-plugin-jsx-a11y': [ '6.10.2' ],
+156 silly audit   'eslint-plugin-react': [ '7.37.4' ],
+156 silly audit   'eslint-plugin-react-hooks': [ '5.0.0-canary-7118f5dd7-20230705' ],
+156 silly audit   resolve: [ '2.0.0-next.5', '1.22.10' ],
+156 silly audit   'eslint-scope': [ '7.2.2' ],
+156 silly audit   espree: [ '9.6.1' ],
+156 silly audit   esquery: [ '1.6.0' ],
+156 silly audit   esrecurse: [ '4.3.0' ],
+156 silly audit   estraverse: [ '5.3.0' ],
+156 silly audit   esutils: [ '2.0.3' ],
+156 silly audit   'fast-deep-equal': [ '3.1.3' ],
+156 silly audit   'fast-glob': [ '3.3.3' ],
+156 silly audit   'fast-json-stable-stringify': [ '2.1.0' ],
+156 silly audit   'fast-levenshtein': [ '2.0.6' ],
+156 silly audit   fastq: [ '1.19.1' ],
+156 silly audit   'file-entry-cache': [ '6.0.1' ],
+156 silly audit   'fill-range': [ '7.1.1' ],
+156 silly audit   'find-up': [ '5.0.0' ],
+156 silly audit   'flat-cache': [ '3.2.0' ],
+156 silly audit   flatted: [ '3.3.3' ],
+156 silly audit   'follow-redirects': [ '1.15.11' ],
+156 silly audit   'for-each': [ '0.3.5' ],
+156 silly audit   'foreground-child': [ '3.3.1' ],
+156 silly audit   'form-data': [ '4.0.5' ],
+156 silly audit   'fs.realpath': [ '1.0.0' ],
+156 silly audit   fsevents: [ '2.3.3' ],
+156 silly audit   'function-bind': [ '1.1.2' ],
+156 silly audit   'function.prototype.name': [ '1.1.8' ],
+156 silly audit   'functions-have-names': [ '1.2.3' ],
+156 silly audit   'get-intrinsic': [ '1.3.0' ],
+156 silly audit   'get-nonce': [ '1.0.1' ],
+156 silly audit   'get-proto': [ '1.0.1' ],
+156 silly audit   'get-symbol-description': [ '1.1.0' ],
+156 silly audit   'get-tsconfig': [ '4.10.0' ],
+156 silly audit   glob: [ '10.3.10', '7.2.3' ],
+156 silly audit   globals: [ '13.24.0' ],
+156 silly audit   globalthis: [ '1.0.4' ],
+156 silly audit   gopd: [ '1.2.0' ],
+156 silly audit   'graceful-fs': [ '4.2.11' ],
+156 silly audit   graphemer: [ '1.4.0' ],
+156 silly audit   'has-bigints': [ '1.1.0' ],
+156 silly audit   'has-flag': [ '4.0.0' ],
+156 silly audit   'has-property-descriptors': [ '1.0.2' ],
+156 silly audit   'has-proto': [ '1.2.0' ],
+156 silly audit   'has-symbols': [ '1.1.0' ],
+156 silly audit   'has-tostringtag': [ '1.0.2' ],
+156 silly audit   hasown: [ '2.0.2' ],
+156 silly audit   ignore: [ '5.3.2' ],
+156 silly audit   'import-fresh': [ '3.3.1' ],
+156 silly audit   imurmurhash: [ '0.1.4' ],
+156 silly audit   inflight: [ '1.0.6' ],
+156 silly audit   inherits: [ '2.0.4' ],
+156 silly audit   'internal-slot': [ '1.1.0' ],
+156 silly audit   'is-array-buffer': [ '3.0.5' ],
+156 silly audit   'is-async-function': [ '2.1.1' ],
+156 silly audit   'is-bigint': [ '1.1.0' ],
+156 silly audit   'is-binary-path': [ '2.1.0' ],
+156 silly audit   'is-boolean-object': [ '1.2.2' ],
+156 silly audit   'is-bun-module': [ '1.3.0' ],
+156 silly audit   'is-callable': [ '1.2.7' ],
+156 silly audit   'is-core-module': [ '2.16.1' ],
+156 silly audit   'is-data-view': [ '1.0.2' ],
+156 silly audit   'is-date-object': [ '1.1.0' ],
+156 silly audit   'is-extglob': [ '2.1.1' ],
+156 silly audit   'is-finalizationregistry': [ '1.1.1' ],
+156 silly audit   'is-fullwidth-code-point': [ '3.0.0' ],
+156 silly audit   'is-generator-function': [ '1.1.0' ],
+156 silly audit   'is-glob': [ '4.0.3' ],
+156 silly audit   'is-map': [ '2.0.3' ],
+156 silly audit   'is-number': [ '7.0.0' ],
+156 silly audit   'is-number-object': [ '1.1.1' ],
+156 silly audit   'is-path-inside': [ '3.0.3' ],
+156 silly audit   'is-regex': [ '1.2.1' ],
+156 silly audit   'is-set': [ '2.0.3' ],
+156 silly audit   'is-shared-array-buffer': [ '1.0.4' ],
+156 silly audit   'is-string': [ '1.1.1' ],
+156 silly audit   'is-symbol': [ '1.1.1' ],
+156 silly audit   'is-typed-array': [ '1.1.15' ],
+156 silly audit   'is-weakmap': [ '2.0.2' ],
+156 silly audit   'is-weakref': [ '1.1.1' ],
+156 silly audit   'is-weakset': [ '2.0.4' ],
+156 silly audit   isarray: [ '2.0.5' ],
+156 silly audit   isexe: [ '2.0.0' ],
+156 silly audit   'iterator.prototype': [ '1.1.5' ],
+156 silly audit   jackspeak: [ '2.3.6' ],
+156 silly audit   jiti: [ '1.21.7' ],
+156 silly audit   'js-tokens': [ '4.0.0' ],
+156 silly audit   'js-yaml': [ '4.1.0' ],
+156 silly audit   'json-buffer': [ '3.0.1' ],
+156 silly audit   'json-schema-traverse': [ '0.4.1' ],
+156 silly audit   'json-stable-stringify-without-jsonify': [ '1.0.1' ],
+156 silly audit   json5: [ '1.0.2' ],
+156 silly audit   'jsx-ast-utils': [ '3.3.5' ],
+156 silly audit   kareem: [ '3.0.0' ],
+156 silly audit   keyv: [ '4.5.4' ],
+156 silly audit   'language-subtag-registry': [ '0.3.23' ],
+156 silly audit   'language-tags': [ '1.0.9' ],
+156 silly audit   levn: [ '0.4.1' ],
+156 silly audit   lilconfig: [ '3.1.3' ],
+156 silly audit   'lines-and-columns': [ '1.2.4' ],
+156 silly audit   'locate-path': [ '6.0.0' ],
+156 silly audit   'lodash.merge': [ '4.6.2' ],
+156 silly audit   'loose-envify': [ '1.4.0' ],
+156 silly audit   'lru-cache': [ '10.4.3' ],
+156 silly audit   'lucide-react': [ '0.479.0' ],
+156 silly audit   'math-intrinsics': [ '1.1.0' ],
+156 silly audit   'memory-pager': [ '1.5.0' ],
+156 silly audit   merge2: [ '1.4.1' ],
+156 silly audit   micromatch: [ '4.0.8' ],
+156 silly audit   'mime-db': [ '1.52.0' ],
+156 silly audit   'mime-types': [ '2.1.35' ],
+156 silly audit   minimist: [ '1.2.8' ],
+156 silly audit   minipass: [ '7.1.2' ],
+156 silly audit   mongodb: [ '7.0.0' ],
+156 silly audit   'mongodb-connection-string-url': [ '7.0.0' ],
+156 silly audit   mongoose: [ '9.1.5' ],
+156 silly audit   mpath: [ '0.9.0' ],
+156 silly audit   mquery: [ '6.0.0' ],
+156 silly audit   ms: [ '2.1.3' ],
+156 silly audit   mz: [ '2.7.0' ],
+156 silly audit   nanoid: [ '3.3.9' ],
+156 silly audit   'natural-compare': [ '1.4.0' ],
+156 silly audit   next: [ '14.2.24' ],
+156 silly audit   postcss: [ '8.4.31', '8.5.3' ],
+156 silly audit   'normalize-path': [ '3.0.0' ],
+156 silly audit   'object-assign': [ '4.1.1' ],
+156 silly audit   'object-hash': [ '3.0.0' ],
+156 silly audit   'object-inspect': [ '1.13.4' ],
+156 silly audit   'object-keys': [ '1.1.1' ],
+156 silly audit   'object.assign': [ '4.1.7' ],
+156 silly audit   'object.entries': [ '1.1.8' ],
+156 silly audit   'object.fromentries': [ '2.0.8' ],
+156 silly audit   'object.groupby': [ '1.0.3' ],
+156 silly audit   'object.values': [ '1.2.1' ],
+156 silly audit   once: [ '1.4.0' ],
+156 silly audit   optionator: [ '0.9.4' ],
+156 silly audit   'own-keys': [ '1.0.1' ],
+156 silly audit   'p-limit': [ '3.1.0' ],
+156 silly audit   'p-locate': [ '5.0.0' ],
+156 silly audit   'parent-module': [ '1.0.1' ],
+156 silly audit   'path-exists': [ '4.0.0' ],
+156 silly audit   'path-is-absolute': [ '1.0.1' ],
+156 silly audit   'path-key': [ '3.1.1' ],
+156 silly audit   'path-parse': [ '1.0.7' ],
+156 silly audit   'path-scurry': [ '1.11.1' ],
+156 silly audit   picocolors: [ '1.1.1' ],
+156 silly audit   picomatch: [ '2.3.1', '4.0.2' ],
+156 silly audit   pify: [ '2.3.0' ],
+156 silly audit   pirates: [ '4.0.6' ],
+156 silly audit   'possible-typed-array-names': [ '1.1.0' ],
+156 silly audit   'postcss-import': [ '15.1.0' ],
+156 silly audit   'postcss-js': [ '4.0.1' ],
+156 silly audit   'postcss-load-config': [ '4.0.2' ],
+156 silly audit   'postcss-nested': [ '6.2.0' ],
+156 silly audit   'postcss-selector-parser': [ '6.1.2' ],
+156 silly audit   'postcss-value-parser': [ '4.2.0' ],
+156 silly audit   'prelude-ls': [ '1.2.1' ],
+156 silly audit   'prop-types': [ '15.8.1' ],
+156 silly audit   'proxy-from-env': [ '1.1.0' ],
+156 silly audit   punycode: [ '2.3.1' ],
+156 silly audit   'queue-microtask': [ '1.2.3' ],
+156 silly audit   react: [ '18.3.1' ],
+156 silly audit   'react-dom': [ '18.3.1' ],
+156 silly audit   'react-is': [ '16.13.1' ],
+156 silly audit   'react-remove-scroll': [ '2.6.3' ],
+156 silly audit   'react-remove-scroll-bar': [ '2.3.8' ],
+156 silly audit   'react-style-singleton': [ '2.2.3' ],
+156 silly audit   'read-cache': [ '1.0.0' ],
+156 silly audit   readdirp: [ '3.6.0' ],
+156 silly audit   'reflect.getprototypeof': [ '1.0.10' ],
+156 silly audit   'regexp.prototype.flags': [ '1.5.4' ],
+156 silly audit   'resolve-from': [ '4.0.0' ],
+156 silly audit   'resolve-pkg-maps': [ '1.0.0' ],
+156 silly audit   reusify: [ '1.1.0' ],
+156 silly audit   rimraf: [ '3.0.2' ],
+156 silly audit   'run-parallel': [ '1.2.0' ],
+156 silly audit   'safe-array-concat': [ '1.1.3' ],
+156 silly audit   'safe-push-apply': [ '1.0.0' ],
+156 silly audit   'safe-regex-test': [ '1.1.0' ],
+156 silly audit   scheduler: [ '0.23.2' ],
+156 silly audit   'set-function-length': [ '1.2.2' ],
+156 silly audit   'set-function-name': [ '2.0.2' ],
+156 silly audit   'set-proto': [ '1.0.0' ],
+156 silly audit   'shebang-command': [ '2.0.0' ],
+156 silly audit   'shebang-regex': [ '3.0.0' ],
+156 silly audit   'side-channel': [ '1.1.0' ],
+156 silly audit   'side-channel-list': [ '1.0.0' ],
+156 silly audit   'side-channel-map': [ '1.0.1' ],
+156 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+156 silly audit   sift: [ '17.1.3' ],
+156 silly audit   'signal-exit': [ '4.1.0' ],
+156 silly audit   'source-map-js': [ '1.2.1' ],
+156 silly audit   'sparse-bitfield': [ '3.0.3' ],
+156 silly audit   'stable-hash': [ '0.0.4' ],
+156 silly audit   streamsearch: [ '1.1.0' ],
+156 silly audit   'string-width': [ '5.1.2', '4.2.3' ],
+156 silly audit   'string.prototype.includes': [ '2.0.1' ],
+156 silly audit   'string.prototype.matchall': [ '4.0.12' ],
+156 silly audit   'string.prototype.repeat': [ '1.0.0' ],
+156 silly audit   'string.prototype.trim': [ '1.2.10' ],
+156 silly audit   'string.prototype.trimend': [ '1.0.9' ],
+156 silly audit   'string.prototype.trimstart': [ '1.0.8' ],
+156 silly audit   'strip-bom': [ '3.0.0' ],
+156 silly audit   'strip-json-comments': [ '3.1.1' ],
+156 silly audit   'styled-jsx': [ '5.1.1' ],
+156 silly audit   sucrase: [ '3.35.0' ],
+156 silly audit   'supports-color': [ '7.2.0' ],
+156 silly audit   'supports-preserve-symlinks-flag': [ '1.0.0' ],
+156 silly audit   'tailwind-merge': [ '3.0.2' ],
+156 silly audit   tailwindcss: [ '3.4.17' ],
+156 silly audit   'tailwindcss-animate': [ '1.0.7' ],
+156 silly audit   tapable: [ '2.2.1' ],
+156 silly audit   'text-table': [ '0.2.0' ],
+156 silly audit   thenify: [ '3.3.1' ],
+156 silly audit   'thenify-all': [ '1.6.0' ],
+156 silly audit   tinyglobby: [ '0.2.12' ],
+156 silly audit   fdir: [ '6.4.3' ],
+156 silly audit   'to-regex-range': [ '5.0.1' ],
+156 silly audit   tr46: [ '5.1.1' ],
+156 silly audit   'ts-api-utils': [ '2.0.1' ],
+156 silly audit   'ts-interface-checker': [ '0.1.13' ],
+156 silly audit   'tsconfig-paths': [ '3.15.0' ],
+156 silly audit   tslib: [ '2.8.1' ],
+156 silly audit   'type-check': [ '0.4.0' ],
+156 silly audit   'type-fest': [ '0.20.2' ],
+156 silly audit   'typed-array-buffer': [ '1.0.3' ],
+156 silly audit   'typed-array-byte-length': [ '1.0.3' ],
+156 silly audit   'typed-array-byte-offset': [ '1.0.4' ],
+156 silly audit   'typed-array-length': [ '1.0.7' ],
+156 silly audit   typescript: [ '5.8.2' ],
+156 silly audit   'unbox-primitive': [ '1.1.0' ],
+156 silly audit   'undici-types': [ '6.19.8' ],
+156 silly audit   'uri-js': [ '4.4.1' ],
+156 silly audit   'use-callback-ref': [ '1.3.3' ],
+156 silly audit   'use-sidecar': [ '1.1.3' ],
+156 silly audit   'util-deprecate': [ '1.0.2' ],
+156 silly audit   'webidl-conversions': [ '7.0.0' ],
+156 silly audit   'whatwg-url': [ '14.2.0' ],
+156 silly audit   which: [ '2.0.2' ],
+156 silly audit   'which-boxed-primitive': [ '1.1.1' ],
+156 silly audit   'which-builtin-type': [ '1.2.1' ],
+156 silly audit   'which-collection': [ '1.0.2' ],
+156 silly audit   'which-typed-array': [ '1.1.18' ],
+156 silly audit   'word-wrap': [ '1.2.5' ],
+156 silly audit   'wrap-ansi': [ '8.1.0', '7.0.0' ],
+156 silly audit   wrappy: [ '1.0.2' ],
+156 silly audit   yaml: [ '2.7.0' ],
+156 silly audit   'yocto-queue': [ '0.1.0' ]
+156 silly audit }
+157 verbose reify failed optional dependency C:\Users\Caleb\Documents\dev\cayceedevelopers\node_modules\@next\swc-win32-ia32-msvc
+158 silly reify mark deleted [
+158 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-win32-ia32-msvc'
+158 silly reify ]
+159 verbose reify failed optional dependency C:\Users\Caleb\Documents\dev\cayceedevelopers\node_modules\@next\swc-win32-arm64-msvc
+160 silly reify mark deleted [
+160 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-win32-arm64-msvc'
+160 silly reify ]
+161 verbose reify failed optional dependency C:\Users\Caleb\Documents\dev\cayceedevelopers\node_modules\@next\swc-linux-x64-musl
+162 silly reify mark deleted [
+162 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-x64-musl'
+162 silly reify ]
+163 verbose reify failed optional dependency C:\Users\Caleb\Documents\dev\cayceedevelopers\node_modules\@next\swc-linux-x64-gnu
+164 silly reify mark deleted [
+164 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-x64-gnu'
+164 silly reify ]
+165 verbose reify failed optional dependency C:\Users\Caleb\Documents\dev\cayceedevelopers\node_modules\@next\swc-linux-arm64-musl
+166 silly reify mark deleted [
+166 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-arm64-musl'
+166 silly reify ]
+167 verbose reify failed optional dependency C:\Users\Caleb\Documents\dev\cayceedevelopers\node_modules\@next\swc-darwin-x64
+168 silly reify mark deleted [
+168 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-darwin-x64'
+168 silly reify ]
+169 verbose reify failed optional dependency C:\Users\Caleb\Documents\dev\cayceedevelopers\node_modules\@next\swc-linux-arm64-gnu
+170 silly reify mark deleted [
+170 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-linux-arm64-gnu'
+170 silly reify ]
+171 verbose reify failed optional dependency C:\Users\Caleb\Documents\dev\cayceedevelopers\node_modules\@next\swc-darwin-arm64
+172 silly reify mark deleted [
+172 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\@next\\swc-darwin-arm64'
+172 silly reify ]
+173 verbose reify failed optional dependency C:\Users\Caleb\Documents\dev\cayceedevelopers\node_modules\fsevents
+174 silly reify mark deleted [
+174 silly reify   'C:\\Users\\Caleb\\Documents\\dev\\cayceedevelopers\\node_modules\\fsevents'
+174 silly reify ]
+175 silly tarball no local data for sucrase@https://registry.npmjs.org/sucrase/-/sucrase-3.35.0.tgz. Extracting by manifest.
+176 silly tarball no local data for which@https://registry.npmjs.org/which/-/which-2.0.2.tgz. Extracting by manifest.
+177 silly tarball no local data for loose-envify@https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz. Extracting by manifest.
+178 silly tarball no local data for rimraf@https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz. Extracting by manifest.
+179 silly tarball no local data for json5@https://registry.npmjs.org/json5/-/json5-1.0.2.tgz. Extracting by manifest.
+180 silly tarball no local data for @typescript-eslint/visitor-keys@https://registry.npmjs.org/@typescript-eslint/visitor-keys/-/visitor-keys-8.26.0.tgz. Extracting by manifest.
+181 silly tarball no local data for @typescript-eslint/utils@https://registry.npmjs.org/@typescript-eslint/utils/-/utils-8.26.0.tgz. Extracting by manifest.
+182 silly tarball no local data for @typescript-eslint/typescript-estree@https://registry.npmjs.org/@typescript-eslint/typescript-estree/-/typescript-estree-8.26.0.tgz. Extracting by manifest.
+183 silly tarball no local data for @typescript-eslint/scope-manager@https://registry.npmjs.org/@typescript-eslint/scope-manager/-/scope-manager-8.26.0.tgz. Extracting by manifest.
+184 silly tarball no local data for @typescript-eslint/types@https://registry.npmjs.org/@typescript-eslint/types/-/types-8.26.0.tgz. Extracting by manifest.
+185 silly tarball no local data for @typescript-eslint/parser@https://registry.npmjs.org/@typescript-eslint/parser/-/parser-8.26.0.tgz. Extracting by manifest.
+186 silly tarball no local data for @types/react@https://registry.npmjs.org/@types/react/-/react-18.3.18.tgz. Extracting by manifest.
+187 silly tarball no local data for @typescript-eslint/eslint-plugin@https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.26.0.tgz. Extracting by manifest.
+188 silly tarball no local data for @typescript-eslint/type-utils@https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-8.26.0.tgz. Extracting by manifest.
+189 silly tarball no local data for @types/react-dom@https://registry.npmjs.org/@types/react-dom/-/react-dom-18.3.5.tgz. Extracting by manifest.
+190 silly tarball no local data for @types/node@https://registry.npmjs.org/@types/node/-/node-20.17.23.tgz. Extracting by manifest.
+191 silly tarball no local data for @rushstack/eslint-patch@https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.10.5.tgz. Extracting by manifest.
+192 silly tarball no local data for @types/prop-types@https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.14.tgz. Extracting by manifest.
+193 silly tarball no local data for @sendgrid/client@https://registry.npmjs.org/@sendgrid/client/-/client-8.1.6.tgz. Extracting by manifest.
+194 silly tarball no local data for @sendgrid/mail@https://registry.npmjs.org/@sendgrid/mail/-/mail-8.1.6.tgz. Extracting by manifest.
+195 silly tarball no local data for @sendgrid/helpers@https://registry.npmjs.org/@sendgrid/helpers/-/helpers-8.0.0.tgz. Extracting by manifest.
+196 silly tarball no local data for @radix-ui/react-use-layout-effect@https://registry.npmjs.org/@radix-ui/react-use-layout-effect/-/react-use-layout-effect-1.1.0.tgz. Extracting by manifest.
+197 silly tarball no local data for @radix-ui/react-use-controllable-state@https://registry.npmjs.org/@radix-ui/react-use-controllable-state/-/react-use-controllable-state-1.1.0.tgz. Extracting by manifest.
+198 silly tarball no local data for @radix-ui/react-use-escape-keydown@https://registry.npmjs.org/@radix-ui/react-use-escape-keydown/-/react-use-escape-keydown-1.1.0.tgz. Extracting by manifest.
+199 silly tarball no local data for @radix-ui/react-slot@https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.1.2.tgz. Extracting by manifest.
+200 silly tarball no local data for @radix-ui/react-primitive@https://registry.npmjs.org/@radix-ui/react-primitive/-/react-primitive-2.0.2.tgz. Extracting by manifest.
+201 silly tarball no local data for @radix-ui/react-use-callback-ref@https://registry.npmjs.org/@radix-ui/react-use-callback-ref/-/react-use-callback-ref-1.1.0.tgz. Extracting by manifest.
+202 silly tarball no local data for @radix-ui/react-id@https://registry.npmjs.org/@radix-ui/react-id/-/react-id-1.1.0.tgz. Extracting by manifest.
+203 silly tarball no local data for @radix-ui/react-portal@https://registry.npmjs.org/@radix-ui/react-portal/-/react-portal-1.1.4.tgz. Extracting by manifest.
+204 silly tarball no local data for @radix-ui/react-presence@https://registry.npmjs.org/@radix-ui/react-presence/-/react-presence-1.1.2.tgz. Extracting by manifest.
+205 silly tarball no local data for @radix-ui/react-focus-guards@https://registry.npmjs.org/@radix-ui/react-focus-guards/-/react-focus-guards-1.1.1.tgz. Extracting by manifest.
+206 silly tarball no local data for @radix-ui/react-focus-scope@https://registry.npmjs.org/@radix-ui/react-focus-scope/-/react-focus-scope-1.1.2.tgz. Extracting by manifest.
+207 silly tarball no local data for @radix-ui/react-dialog@https://registry.npmjs.org/@radix-ui/react-dialog/-/react-dialog-1.1.6.tgz. Extracting by manifest.
+208 silly tarball no local data for @radix-ui/react-dismissable-layer@https://registry.npmjs.org/@radix-ui/react-dismissable-layer/-/react-dismissable-layer-1.1.5.tgz. Extracting by manifest.
+209 silly tarball no local data for @radix-ui/react-context@https://registry.npmjs.org/@radix-ui/react-context/-/react-context-1.1.1.tgz. Extracting by manifest.
+210 silly tarball no local data for @next/swc-win32-x64-msvc@https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-14.2.24.tgz. Extracting by manifest.
+211 silly tarball no local data for @radix-ui/primitive@https://registry.npmjs.org/@radix-ui/primitive/-/primitive-1.1.1.tgz. Extracting by manifest.
+212 silly tarball no local data for @radix-ui/react-compose-refs@https://registry.npmjs.org/@radix-ui/react-compose-refs/-/react-compose-refs-1.1.1.tgz. Extracting by manifest.
+213 silly tarball no local data for @next/eslint-plugin-next@https://registry.npmjs.org/@next/eslint-plugin-next/-/eslint-plugin-next-14.2.24.tgz. Extracting by manifest.
+214 silly tarball no local data for @mongodb-js/saslprep@https://registry.npmjs.org/@mongodb-js/saslprep/-/saslprep-1.4.5.tgz. Extracting by manifest.
+215 silly tarball no local data for @jridgewell/set-array@https://registry.npmjs.org/@jridgewell/set-array/-/set-array-1.2.1.tgz. Extracting by manifest.
+216 silly tarball no local data for @next/env@https://registry.npmjs.org/@next/env/-/env-14.2.24.tgz. Extracting by manifest.
+217 silly tarball no local data for @jridgewell/trace-mapping@https://registry.npmjs.org/@jridgewell/trace-mapping/-/trace-mapping-0.3.25.tgz. Extracting by manifest.
+218 silly tarball no local data for @jridgewell/sourcemap-codec@https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.0.tgz. Extracting by manifest.
+219 silly tarball no local data for @jridgewell/gen-mapping@https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.8.tgz. Extracting by manifest.
+220 silly tarball no local data for @eslint-community/regexpp@https://registry.npmjs.org/@eslint-community/regexpp/-/regexpp-4.12.1.tgz. Extracting by manifest.
+221 silly tarball no local data for @humanwhocodes/config-array@https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.13.0.tgz. Extracting by manifest.
+222 silly tarball no local data for @eslint-community/eslint-utils@https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.4.1.tgz. Extracting by manifest.
+223 silly tarball no local data for @humanwhocodes/object-schema@https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-2.0.3.tgz. Extracting by manifest.
+224 silly tarball no local data for @eslint/js@https://registry.npmjs.org/@eslint/js/-/js-8.57.1.tgz. Extracting by manifest.
+225 silly tarball no local data for @eslint/eslintrc@https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-2.1.4.tgz. Extracting by manifest.
+226 silly tarball no local data for yaml@https://registry.npmjs.org/yaml/-/yaml-2.7.0.tgz. Extracting by manifest.
+227 silly tarball no local data for undici-types@https://registry.npmjs.org/undici-types/-/undici-types-6.19.8.tgz. Extracting by manifest.
+228 silly tarball no local data for which-typed-array@https://registry.npmjs.org/which-typed-array/-/which-typed-array-1.1.18.tgz. Extracting by manifest.
+229 silly tarball no local data for type-fest@https://registry.npmjs.org/type-fest/-/type-fest-0.20.2.tgz. Extracting by manifest.
+230 silly tarball no local data for ts-api-utils@https://registry.npmjs.org/ts-api-utils/-/ts-api-utils-2.0.1.tgz. Extracting by manifest.
+231 silly tarball no local data for typescript@https://registry.npmjs.org/typescript/-/typescript-5.8.2.tgz. Extracting by manifest.
+232 silly tarball no local data for tapable@https://registry.npmjs.org/tapable/-/tapable-2.2.1.tgz. Extracting by manifest.
+233 silly tarball no local data for tinyglobby@https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.12.tgz. Extracting by manifest.
+234 silly tarball no local data for tailwindcss-animate@https://registry.npmjs.org/tailwindcss-animate/-/tailwindcss-animate-1.0.7.tgz. Extracting by manifest.
+235 silly tarball no local data for tailwind-merge@https://registry.npmjs.org/tailwind-merge/-/tailwind-merge-3.0.2.tgz. Extracting by manifest.
+236 silly tarball no local data for tailwindcss@https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.17.tgz. Extracting by manifest.
+237 silly tarball no local data for semver@https://registry.npmjs.org/semver/-/semver-7.7.1.tgz. Extracting by manifest.
+238 silly tarball no local data for stable-hash@https://registry.npmjs.org/stable-hash/-/stable-hash-0.0.4.tgz. Extracting by manifest.
+239 silly tarball no local data for resolve@https://registry.npmjs.org/resolve/-/resolve-1.22.10.tgz. Extracting by manifest.
+240 silly tarball no local data for read-cache@https://registry.npmjs.org/read-cache/-/read-cache-1.0.0.tgz. Extracting by manifest.
+241 silly tarball no local data for react-remove-scroll@https://registry.npmjs.org/react-remove-scroll/-/react-remove-scroll-2.6.3.tgz. Extracting by manifest.
+242 silly tarball no local data for postcss-nested@https://registry.npmjs.org/postcss-nested/-/postcss-nested-6.2.0.tgz. Extracting by manifest.
+243 silly tarball no local data for postcss-selector-parser@https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.2.tgz. Extracting by manifest.
+244 silly tarball no local data for postcss-js@https://registry.npmjs.org/postcss-js/-/postcss-js-4.0.1.tgz. Extracting by manifest.
+245 silly tarball no local data for postcss-import@https://registry.npmjs.org/postcss-import/-/postcss-import-15.1.0.tgz. Extracting by manifest.
+246 silly tarball no local data for postcss-load-config@https://registry.npmjs.org/postcss-load-config/-/postcss-load-config-4.0.2.tgz. Extracting by manifest.
+247 silly tarball no local data for pirates@https://registry.npmjs.org/pirates/-/pirates-4.0.6.tgz. Extracting by manifest.
+248 silly tarball no local data for postcss@https://registry.npmjs.org/postcss/-/postcss-8.5.3.tgz. Extracting by manifest.
+249 silly tarball no local data for pify@https://registry.npmjs.org/pify/-/pify-2.3.0.tgz. Extracting by manifest.
+250 silly tarball no local data for object.entries@https://registry.npmjs.org/object.entries/-/object.entries-1.1.8.tgz. Extracting by manifest.
+251 silly tarball no local data for object-hash@https://registry.npmjs.org/object-hash/-/object-hash-3.0.0.tgz. Extracting by manifest.
+252 silly tarball no local data for nanoid@https://registry.npmjs.org/nanoid/-/nanoid-3.3.9.tgz. Extracting by manifest.
+253 silly tarball no local data for next@https://registry.npmjs.org/next/-/next-14.2.24.tgz. Extracting by manifest.
+254 silly tarball no local data for lucide-react@https://registry.npmjs.org/lucide-react/-/lucide-react-0.479.0.tgz. Extracting by manifest.
+255 silly tarball no local data for js-yaml@https://registry.npmjs.org/js-yaml/-/js-yaml-4.1.0.tgz. Extracting by manifest.
+256 silly tarball no local data for mongoose@https://registry.npmjs.org/mongoose/-/mongoose-9.1.5.tgz. Extracting by manifest.
+257 silly tarball no local data for jackspeak@https://registry.npmjs.org/jackspeak/-/jackspeak-2.3.6.tgz. Extracting by manifest.
+258 silly tarball no local data for jiti@https://registry.npmjs.org/jiti/-/jiti-1.21.7.tgz. Extracting by manifest.
+259 silly tarball no local data for is-path-inside@https://registry.npmjs.org/is-path-inside/-/is-path-inside-3.0.3.tgz. Extracting by manifest.
+260 silly tarball no local data for is-generator-function@https://registry.npmjs.org/is-generator-function/-/is-generator-function-1.1.0.tgz. Extracting by manifest.
+261 silly tarball no local data for is-bun-module@https://registry.npmjs.org/is-bun-module/-/is-bun-module-1.3.0.tgz. Extracting by manifest.
+262 silly tarball no local data for globals@https://registry.npmjs.org/globals/-/globals-13.24.0.tgz. Extracting by manifest.
+263 silly tarball no local data for graphemer@https://registry.npmjs.org/graphemer/-/graphemer-1.4.0.tgz. Extracting by manifest.
+264 silly tarball no local data for glob@https://registry.npmjs.org/glob/-/glob-10.3.10.tgz. Extracting by manifest.
+265 silly tarball no local data for flat-cache@https://registry.npmjs.org/flat-cache/-/flat-cache-3.2.0.tgz. Extracting by manifest.
+266 silly tarball no local data for get-tsconfig@https://registry.npmjs.org/get-tsconfig/-/get-tsconfig-4.10.0.tgz. Extracting by manifest.
+267 silly tarball no local data for fastq@https://registry.npmjs.org/fastq/-/fastq-1.19.1.tgz. Extracting by manifest.
+268 silly tarball no local data for file-entry-cache@https://registry.npmjs.org/file-entry-cache/-/file-entry-cache-6.0.1.tgz. Extracting by manifest.
+269 silly tarball no local data for fast-glob@https://registry.npmjs.org/fast-glob/-/fast-glob-3.3.3.tgz. Extracting by manifest.
+270 silly tarball no local data for esquery@https://registry.npmjs.org/esquery/-/esquery-1.6.0.tgz. Extracting by manifest.
+271 silly tarball no local data for espree@https://registry.npmjs.org/espree/-/espree-9.6.1.tgz. Extracting by manifest.
+272 silly tarball no local data for eslint-scope@https://registry.npmjs.org/eslint-scope/-/eslint-scope-7.2.2.tgz. Extracting by manifest.
+273 silly tarball no local data for eslint-plugin-react@https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-7.37.4.tgz. Extracting by manifest.
+274 silly tarball no local data for eslint-plugin-react-hooks@https://registry.npmjs.org/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-5.0.0-canary-7118f5dd7-20230705.tgz. Extracting by manifest.
+275 silly tarball no local data for eslint-plugin-import@https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-2.31.0.tgz. Extracting by manifest.
+276 silly tarball no local data for eslint-module-utils@https://registry.npmjs.org/eslint-module-utils/-/eslint-module-utils-2.12.0.tgz. Extracting by manifest.
+277 silly tarball no local data for eslint-import-resolver-typescript@https://registry.npmjs.org/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.8.3.tgz. Extracting by manifest.
+278 silly tarball no local data for eslint-config-next@https://registry.npmjs.org/eslint-config-next/-/eslint-config-next-14.2.24.tgz. Extracting by manifest.
+279 silly tarball no local data for eslint@https://registry.npmjs.org/eslint/-/eslint-8.57.1.tgz. Extracting by manifest.
+280 silly tarball no local data for es-iterator-helpers@https://registry.npmjs.org/es-iterator-helpers/-/es-iterator-helpers-1.2.1.tgz. Extracting by manifest.
+281 silly tarball no local data for es-abstract@https://registry.npmjs.org/es-abstract/-/es-abstract-1.23.9.tgz. Extracting by manifest.
+282 silly tarball no local data for enhanced-resolve@https://registry.npmjs.org/enhanced-resolve/-/enhanced-resolve-5.18.1.tgz. Extracting by manifest.
+283 silly tarball no local data for doctrine@https://registry.npmjs.org/doctrine/-/doctrine-3.0.0.tgz. Extracting by manifest.
+284 silly tarball no local data for dlv@https://registry.npmjs.org/dlv/-/dlv-1.1.3.tgz. Extracting by manifest.
+285 silly tarball no local data for didyoumean@https://registry.npmjs.org/didyoumean/-/didyoumean-1.2.2.tgz. Extracting by manifest.
+286 silly tarball no local data for debug@https://registry.npmjs.org/debug/-/debug-4.4.0.tgz. Extracting by manifest.
+287 silly tarball no local data for csstype@https://registry.npmjs.org/csstype/-/csstype-3.1.3.tgz. Extracting by manifest.
+288 silly tarball no local data for cssesc@https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz. Extracting by manifest.
+289 silly tarball no local data for caniuse-lite@https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001757.tgz. Extracting by manifest.
+290 silly tarball no local data for camelcase-css@https://registry.npmjs.org/camelcase-css/-/camelcase-css-2.0.1.tgz. Extracting by manifest.
+291 silly tarball no local data for brace-expansion@https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.11.tgz. Extracting by manifest.
+292 silly tarball no local data for bson@https://registry.npmjs.org/bson/-/bson-7.1.1.tgz. Extracting by manifest.
+293 silly tarball no local data for axios@https://registry.npmjs.org/axios/-/axios-1.13.2.tgz. Extracting by manifest.
+294 silly tarball no local data for axe-core@https://registry.npmjs.org/axe-core/-/axe-core-4.10.3.tgz. Extracting by manifest.
+295 silly tarball no local data for array.prototype.findlastindex@https://registry.npmjs.org/array.prototype.findlastindex/-/array.prototype.findlastindex-1.2.5.tgz. Extracting by manifest.
+296 silly tarball no local data for array-includes@https://registry.npmjs.org/array-includes/-/array-includes-3.1.8.tgz. Extracting by manifest.
+297 silly tarball no local data for acorn@https://registry.npmjs.org/acorn/-/acorn-8.14.1.tgz. Extracting by manifest.
+298 silly tarball no local data for aria-hidden@https://registry.npmjs.org/aria-hidden/-/aria-hidden-1.2.4.tgz. Extracting by manifest.
+299 silly tarball no local data for strip-ansi@https://registry.npmjs.org/strip-ansi/-/strip-ansi-7.1.0.tgz. Extracting by manifest.
+300 silly tarball no local data for strip-ansi@https://registry.npmjs.org/strip-ansi/-/strip-ansi-7.1.0.tgz. Extracting by manifest.
+301 silly tarball no local data for ansi-regex@https://registry.npmjs.org/ansi-regex/-/ansi-regex-6.1.0.tgz. Extracting by manifest.
+302 silly tarball no local data for eslint-visitor-keys@https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-4.2.0.tgz. Extracting by manifest.
+303 silly tarball no local data for ansi-styles@https://registry.npmjs.org/ansi-styles/-/ansi-styles-6.2.1.tgz. Extracting by manifest.
+304 silly tarball no local data for ansi-regex@https://registry.npmjs.org/ansi-regex/-/ansi-regex-6.1.0.tgz. Extracting by manifest.
+305 silly tarball no local data for strip-ansi@https://registry.npmjs.org/strip-ansi/-/strip-ansi-7.1.0.tgz. Extracting by manifest.
+306 silly tarball no local data for brace-expansion@https://registry.npmjs.org/brace-expansion/-/brace-expansion-2.0.1.tgz. Extracting by manifest.
+307 silly tarball no local data for ansi-regex@https://registry.npmjs.org/ansi-regex/-/ansi-regex-6.1.0.tgz. Extracting by manifest.
+308 silly tarball no local data for brace-expansion@https://registry.npmjs.org/brace-expansion/-/brace-expansion-2.0.1.tgz. Extracting by manifest.
+309 silly tarball no local data for fdir@https://registry.npmjs.org/fdir/-/fdir-6.4.3.tgz. Extracting by manifest.
+310 silly tarball no local data for semver@https://registry.npmjs.org/semver/-/semver-6.3.1.tgz. Extracting by manifest.
+311 silly tarball no local data for picomatch@https://registry.npmjs.org/picomatch/-/picomatch-4.0.2.tgz. Extracting by manifest.
+312 silly tarball no local data for resolve@https://registry.npmjs.org/resolve/-/resolve-2.0.0-next.5.tgz. Extracting by manifest.
+313 silly tarball no local data for semver@https://registry.npmjs.org/semver/-/semver-6.3.1.tgz. Extracting by manifest.
+314 silly audit bulk request failed undefined
+315 http fetch GET https://registry.npmjs.org/sucrase/-/sucrase-3.35.0.tgz attempt 1 failed with EACCES
+316 http fetch GET https://registry.npmjs.org/which/-/which-2.0.2.tgz attempt 1 failed with EACCES
+317 http fetch GET https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz attempt 1 failed with EACCES
+318 http fetch GET https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz attempt 1 failed with EACCES
+319 http fetch GET https://registry.npmjs.org/json5/-/json5-1.0.2.tgz attempt 1 failed with EACCES
+320 http fetch GET https://registry.npmjs.org/@typescript-eslint/visitor-keys/-/visitor-keys-8.26.0.tgz attempt 1 failed with EACCES
+321 http fetch GET https://registry.npmjs.org/@typescript-eslint/utils/-/utils-8.26.0.tgz attempt 1 failed with EACCES
+322 http fetch GET https://registry.npmjs.org/@typescript-eslint/typescript-estree/-/typescript-estree-8.26.0.tgz attempt 1 failed with EACCES
+323 http fetch GET https://registry.npmjs.org/@typescript-eslint/scope-manager/-/scope-manager-8.26.0.tgz attempt 1 failed with EACCES
+324 http fetch GET https://registry.npmjs.org/@typescript-eslint/types/-/types-8.26.0.tgz attempt 1 failed with EACCES
+325 http fetch GET https://registry.npmjs.org/@typescript-eslint/parser/-/parser-8.26.0.tgz attempt 1 failed with EACCES
+326 http fetch GET https://registry.npmjs.org/@types/react/-/react-18.3.18.tgz attempt 1 failed with EACCES
+327 http fetch GET https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.26.0.tgz attempt 1 failed with EACCES
+328 http fetch GET https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-8.26.0.tgz attempt 1 failed with EACCES
+329 verbose audit error FetchError: request to https://registry.npmjs.org/-/npm/v1/security/audits/quick failed, reason: 
+329 verbose audit error     at ClientRequest.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\minipass-fetch\lib\index.js:130:14)
+329 verbose audit error     at ClientRequest.emit (node:events:524:28)
+329 verbose audit error     at emitErrorEvent (node:_http_client:101:11)
+329 verbose audit error     at _destroy (node:_http_client:884:9)
+329 verbose audit error     at onSocketNT (node:_http_client:904:5)
+329 verbose audit error     at process.processTicksAndRejections (node:internal/process/task_queues:83:21) {
+329 verbose audit error   code: 'EACCES',
+329 verbose audit error   errno: 'EACCES',
+329 verbose audit error   type: 'system'
+329 verbose audit error }
+330 silly audit error undefined
+331 silly audit report null
+332 http fetch GET https://registry.npmjs.org/npm attempt 2 failed with EACCES
+333 http fetch GET https://registry.npmjs.org/sucrase/-/sucrase-3.35.0.tgz attempt 2 failed with EACCES
+334 http fetch GET https://registry.npmjs.org/which/-/which-2.0.2.tgz attempt 2 failed with EACCES
+335 http fetch GET https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz attempt 2 failed with EACCES
+336 http fetch GET https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz attempt 2 failed with EACCES
+337 http fetch GET https://registry.npmjs.org/json5/-/json5-1.0.2.tgz attempt 2 failed with EACCES
+338 http fetch GET https://registry.npmjs.org/@typescript-eslint/visitor-keys/-/visitor-keys-8.26.0.tgz attempt 2 failed with EACCES
+339 http fetch GET https://registry.npmjs.org/@typescript-eslint/utils/-/utils-8.26.0.tgz attempt 2 failed with EACCES
+340 http fetch GET https://registry.npmjs.org/@typescript-eslint/typescript-estree/-/typescript-estree-8.26.0.tgz attempt 2 failed with EACCES
+341 http fetch GET https://registry.npmjs.org/@typescript-eslint/scope-manager/-/scope-manager-8.26.0.tgz attempt 2 failed with EACCES
+342 http fetch GET https://registry.npmjs.org/@typescript-eslint/types/-/types-8.26.0.tgz attempt 2 failed with EACCES
+343 http fetch GET https://registry.npmjs.org/@typescript-eslint/parser/-/parser-8.26.0.tgz attempt 2 failed with EACCES
+344 http fetch GET https://registry.npmjs.org/@types/react/-/react-18.3.18.tgz attempt 2 failed with EACCES
+345 http fetch GET https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.26.0.tgz attempt 2 failed with EACCES
+346 http fetch GET https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-8.26.0.tgz attempt 2 failed with EACCES
+347 http fetch GET https://registry.npmjs.org/npm attempt 3 failed with EACCES
+348 http fetch GET https://registry.npmjs.org/sucrase/-/sucrase-3.35.0.tgz attempt 3 failed with EACCES
+349 http fetch GET https://registry.npmjs.org/which/-/which-2.0.2.tgz attempt 3 failed with EACCES
+350 http fetch GET https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz attempt 3 failed with EACCES
+351 http fetch GET https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz attempt 3 failed with EACCES
+352 http fetch GET https://registry.npmjs.org/json5/-/json5-1.0.2.tgz attempt 3 failed with EACCES
+353 http fetch GET https://registry.npmjs.org/@typescript-eslint/visitor-keys/-/visitor-keys-8.26.0.tgz attempt 3 failed with EACCES
+354 http fetch GET https://registry.npmjs.org/@typescript-eslint/utils/-/utils-8.26.0.tgz attempt 3 failed with EACCES
+355 http fetch GET https://registry.npmjs.org/@typescript-eslint/typescript-estree/-/typescript-estree-8.26.0.tgz attempt 3 failed with EACCES
+356 http fetch GET https://registry.npmjs.org/@typescript-eslint/scope-manager/-/scope-manager-8.26.0.tgz attempt 3 failed with EACCES
+357 http fetch GET https://registry.npmjs.org/@typescript-eslint/types/-/types-8.26.0.tgz attempt 3 failed with EACCES
+358 http fetch GET https://registry.npmjs.org/@typescript-eslint/parser/-/parser-8.26.0.tgz attempt 3 failed with EACCES
+359 http fetch GET https://registry.npmjs.org/@types/react/-/react-18.3.18.tgz attempt 3 failed with EACCES
+360 http fetch GET https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.26.0.tgz attempt 3 failed with EACCES
+361 http fetch GET https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-8.26.0.tgz attempt 3 failed with EACCES
+362 verbose cwd C:\Users\Caleb\Documents\dev\cayceedevelopers
+363 verbose os Windows_NT 10.0.22621
+364 verbose node v20.20.1
+365 verbose npm  v10.8.2
+366 error Exit handler never called!
+367 error This is an error with npm itself. Please report this error at:
+368 error   <https://github.com/npm/cli/issues>
+369 verbose exit 0
+370 info ok
+371 error A complete log of this run can be found in: C:\Users\Caleb\Documents\dev\cayceedevelopers\.npm-cache-local\_logs\2026-04-09T13_32_59_940Z-debug-0.log
