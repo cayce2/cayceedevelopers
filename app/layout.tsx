@@ -22,6 +22,17 @@ export default function RootLayout({
         <LanguageProvider>
           {children}
         </LanguageProvider>
+        <!-- SupportHub Chat Widget -->
+<script>
+  window.SupportHubConfig = {
+    apiUrl: 'https://vm-8g8rjch3uaiuvdg0ew5gkhx0.vusercontent.net',
+    widgetId: 'default',
+    position: 'bottom-right',
+    primaryColor: '#3b82f6',
+    theme: 'dark'
+  };
+</script>
+<script src="https://vm-8g8rjch3uaiuvdg0ew5gkhx0.vusercontent.net/supporthub-widget.js"></script>
       </body>
     </html>
   )
