@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowRight,  Sparkles } from "lucide-react"
+import { ArrowRight, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useTranslation } from "@/lib/use-translation"
@@ -35,11 +35,6 @@ export function HeroSection() {
             <Link href="#projects">
               <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-8 py-6 h-auto shadow-lg shadow-sky-500/20 transition-all hover:shadow-sky-500/40 hover:scale-105">
                 {t('View Our Work')} <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="#contacts">
-              <Button size="lg" variant="outline" className="border-2 border-sky-500/30 hover:border-sky-400 hover:bg-sky-500/10 text-sky-400 px-8 py-6 h-auto backdrop-blur-sm transition-all hover:scale-105">
-                {t('Contact Us')}
               </Button>
             </Link>
           </div>

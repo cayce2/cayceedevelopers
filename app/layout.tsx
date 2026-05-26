@@ -1,7 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import Script from "next/script"
 import { LanguageProvider } from "../lib/language-context"
 import "./globals.css"
 
@@ -23,11 +22,6 @@ export default function RootLayout({
         <LanguageProvider>
           {children}
         </LanguageProvider>
-        <Script
-          async
-          src="https://linkssupport.vercel.app/supporthub-widget.js"
-          data-widget-id="website-main"
-        />
       </body>
     </html>
   )

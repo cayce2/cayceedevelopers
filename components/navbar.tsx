@@ -52,29 +52,25 @@ export function Navbar() {
             </button>
             <div className="absolute left-1/2 -translate-x-1/2 top-full w-64 pt-2 hidden group-hover:block animate-slide-up">
               <div className="bg-[#0a0f1e] border border-sky-500/20 p-2 shadow-xl shadow-sky-500/10 backdrop-blur-md">
-                <Link href="#web-dev" className="block px-4 py-2 text-sm text-gray-300 hover:text-sky-400 hover:bg-sky-500/10 transition-all">
+                <Link href="/#web-dev" className="block px-4 py-2 text-sm text-gray-300 hover:text-sky-400 hover:bg-sky-500/10 transition-all">
                   {t('Web Development')}
                 </Link>
-                <Link href="#mobile-apps" className="block px-4 py-2 text-sm text-gray-300 hover:text-sky-400 hover:bg-sky-500/10 transition-all">
+                <Link href="/#mobile-apps" className="block px-4 py-2 text-sm text-gray-300 hover:text-sky-400 hover:bg-sky-500/10 transition-all">
                   {t('Mobile Apps')}
                 </Link>
-                <Link href="#design" className="block px-4 py-2 text-sm text-gray-300 hover:text-sky-400 hover:bg-sky-500/10 transition-all">
+                <Link href="/#design" className="block px-4 py-2 text-sm text-gray-300 hover:text-sky-400 hover:bg-sky-500/10 transition-all">
                   {t('UI/UX Design')}
                 </Link>
               </div>
             </div>
           </div>
           
-          <Link href="#projects" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-sky-400 transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-sky-400 after:transition-all hover:after:w-full">
+          <Link href="/#projects" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-sky-400 transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-sky-400 after:transition-all hover:after:w-full">
             {t('Projects')}
           </Link>
           
-          <Link href="#about" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-sky-400 transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-sky-400 after:transition-all hover:after:w-full">
+          <Link href="/#about" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-sky-400 transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-sky-400 after:transition-all hover:after:w-full">
             {t('About')}
-          </Link>
-          
-          <Link href="#contacts" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-sky-400 transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-sky-400 after:transition-all hover:after:w-full">
-            {t('Contact')}
           </Link>
           
           <div className="flex items-center space-x-3 ml-6">
@@ -83,8 +79,8 @@ export function Navbar() {
               <span className="sr-only">{t('Search')}</span>
             </Button>
             
-            <Button size="sm" className="bg-sky-500 hover:bg-sky-600 text-white font-semibold shadow-lg shadow-sky-500/20 transition-all hover:shadow-sky-500/40 hover:scale-105">
-              {t('Get Started')}
+            <Button asChild size="sm" className="bg-sky-500 hover:bg-sky-600 text-white font-semibold shadow-lg shadow-sky-500/20 transition-all hover:shadow-sky-500/40 hover:scale-105">
+              <Link href="/contact">{t('Contact Us')}</Link>
             </Button>
           </div>
         </nav>
@@ -115,33 +111,31 @@ export function Navbar() {
                   <div className="mb-4">
                     <div className="font-medium text-lg mb-2 text-white">{t('Services')}</div>
                     <div className="grid gap-1">
-                      <Link href="#web-dev" className="py-2 text-gray-400 hover:text-sky-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                      <Link href="/#web-dev" className="py-2 text-gray-400 hover:text-sky-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
                         {t('Web Development')}
                       </Link>
-                      <Link href="#mobile-apps" className="py-2 text-gray-400 hover:text-sky-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                      <Link href="/#mobile-apps" className="py-2 text-gray-400 hover:text-sky-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
                         {t('Mobile Apps')}
                       </Link>
-                      <Link href="#design" className="py-2 text-gray-400 hover:text-sky-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                      <Link href="/#design" className="py-2 text-gray-400 hover:text-sky-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
                         {t('UI/UX Design')}
                       </Link>
                     </div>
                   </div>
                   
-                  <Link href="#projects" className="py-3 text-lg font-medium text-white hover:text-sky-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                  <Link href="/#projects" className="py-3 text-lg font-medium text-white hover:text-sky-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
                     {t('Projects')}
                   </Link>
                   
-                  <Link href="#about" className="py-3 text-lg font-medium text-white hover:text-sky-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                  <Link href="/#about" className="py-3 text-lg font-medium text-white hover:text-sky-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
                     {t('About')}
                   </Link>
                   
-                  <Link href="#contacts" className="py-3 text-lg font-medium text-white hover:text-sky-400 transition-colors" onClick={() => setIsMenuOpen(false)}>
-                    {t('Contact')}
-                  </Link>
-                  
                   <div className="mt-6">
-                    <Button className="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold shadow-lg shadow-sky-500/20">
-                      {t('Get Started')}
+                    <Button asChild className="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold shadow-lg shadow-sky-500/20">
+                      <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+                        {t('Contact Us')}
+                      </Link>
                     </Button>
                   </div>
                 </div>
