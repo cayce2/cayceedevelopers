@@ -2,67 +2,95 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Lock, Eye, EyeOff, AlertCircle } from "lucide-react"
 
 export default function AdminLogin() {
   const [code, setCode] = useState("")
   const [error, setError] = useState("")
+  const [show, setShow] = useState(false)
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
+    setLoading(true)
+    setError("")
+    await new Promise(r => setTimeout(r, 400))
     if (code === "33868960") {
       localStorage.setItem("adminAuth", "true")
       await fetch('/api/admin/activity-logs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'login', userEmail: 'admin', status: 'success', timestamp: new Date() })
-      })
+      }).catch(() => {})
       router.push("/admin/dashboard")
     } else {
       setError("Invalid access code")
+      setLoading(false)
       await fetch('/api/admin/activity-logs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'login', userEmail: 'admin', status: 'failed', timestamp: new Date() })
-      })
+      }).catch(() => {})
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background tech-grid relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10"></div>
-      <div className="relative max-w-md w-full mx-4">
-        <div className="bg-card/95 backdrop-blur-xl rounded-3xl shadow-2xl p-10 space-y-8 border border-border">
-          <div className="text-center space-y-2">
-            <div className="w-16 h-16 bg-primary rounded-2xl mx-auto flex items-center justify-center mb-4 animate-glow">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <h2 className="text-3xl font-bold text-primary">Admin Portal</h2>
-            <p className="text-muted-foreground text-sm">Enter your access code to continue</p>
+    <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center p-4">
+      <div className="w-full max-w-sm">
+        {/* Logo */}
+        <div className="text-center mb-8">
+          <div className="w-12 h-12 bg-sky-500 rounded-xl mx-auto flex items-center justify-center mb-4">
+            <Lock className="w-5 h-5 text-white" />
           </div>
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div className="space-y-2">
-              <Input
-                type="password"
-                placeholder="Access Code"
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-                className="w-full h-12 px-4 rounded-xl bg-background border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-foreground"
-              />
-              {error && <p className="text-destructive text-sm flex items-center gap-2">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                </svg>
-                {error}
-              </p>}
+          <h1 className="text-xl font-bold text-white">Admin Portal</h1>
+          <p className="text-sm text-white/40 mt-1">Caycee Developers</p>
+        </div>
+
+        {/* Card */}
+        <div className="bg-[#0d0d14] border border-white/[0.08] rounded-2xl p-6">
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-xs font-medium text-white/50 mb-2 uppercase tracking-wider">Access Code</label>
+              <div className="relative">
+                <input
+                  type={show ? "text" : "password"}
+                  value={code}
+                  onChange={e => setCode(e.target.value)}
+                  placeholder="Enter your access code"
+                  className="w-full h-11 bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 pr-11 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-sky-500/50 focus:bg-white/[0.06] transition-all"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShow(!show)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors"
+                >
+                  {show ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
             </div>
-            <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200">Access Dashboard</Button>
+
+            {error && (
+              <div className="flex items-center gap-2 text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                {error}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full h-11 bg-sky-500 hover:bg-sky-400 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-xl text-sm transition-colors"
+            >
+              {loading ? "Authenticating..." : "Access Dashboard"}
+            </button>
           </form>
         </div>
+
+        <p className="text-center text-xs text-white/20 mt-6">
+          Caycee Developers © {new Date().getFullYear()}
+        </p>
       </div>
     </div>
   )

@@ -4,154 +4,117 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Plus, Edit, Trash2, Eye } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Drawer, Field, AdminInput, AdminSelect, Btn, Badge, PageHeader, Table, Th, Td } from "../components"
 
 type Client = {
-  id: string
-  name: string
-  email: string
-  phone: string
-  company: string
-  country: string
-  currency: string
-  createdAt: string
+  id: string; name: string; email: string; phone: string
+  company: string; country: string; currency: string; createdAt: string
 }
+
+const empty = { name: "", email: "", phone: "", company: "", country: "", currency: "USD" }
 
 export default function ClientsPage() {
   const [clients, setClients] = useState<Client[]>([])
-  const [showForm, setShowForm] = useState(false)
+  const [open, setOpen] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", country: "", currency: "USD" })
+  const [form, setForm] = useState(empty)
   const router = useRouter()
 
   useEffect(() => {
-    fetch('/api/clients')
-      .then(res => res.json())
-      .then(data => setClients(data.map((c: any) => ({ ...c, id: c._id }))))
+    fetch('/api/clients').then(r => r.json()).then(d => setClients(d.map((c: any) => ({ ...c, id: c._id }))))
   }, [])
+
+  const set = (k: string, v: string) => setForm(f => ({ ...f, [k]: v }))
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (editingId) {
-      await fetch('/api/clients', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: editingId, ...formData })
-      })
-      const updated = clients.map(c => c.id === editingId ? { ...c, ...formData } : c)
-      setClients(updated)
-      setEditingId(null)
+      await fetch('/api/clients', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: editingId, ...form }) })
+      setClients(clients.map(c => c.id === editingId ? { ...c, ...form } : c))
     } else {
-      const res = await fetch('/api/clients', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
-      const newClient = await res.json()
-      setClients([...clients, { ...newClient, id: newClient._id }])
+      const res = await fetch('/api/clients', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
+      const n = await res.json()
+      setClients([...clients, { ...n, id: n._id }])
     }
-    setFormData({ name: "", email: "", phone: "", company: "", country: "", currency: "USD" })
-    setShowForm(false)
+    setOpen(false); setEditingId(null); setForm(empty)
   }
 
-  const handleEdit = (client: Client) => {
-    setFormData({ name: client.name, email: client.email, phone: client.phone, company: client.company, country: client.country, currency: client.currency })
-    setEditingId(client.id)
-    setShowForm(true)
+  const handleEdit = (c: Client) => {
+    setForm({ name: c.name, email: c.email, phone: c.phone, company: c.company, country: c.country, currency: c.currency })
+    setEditingId(c.id); setOpen(true)
   }
 
   const handleDelete = async (id: string) => {
-    if (confirm("Delete this client?")) {
-      await fetch(`/api/clients?id=${id}`, { method: 'DELETE' })
-      setClients(clients.filter(c => c.id !== id))
-    }
+    if (!confirm("Delete this client?")) return
+    await fetch(`/api/clients?id=${id}`, { method: 'DELETE' })
+    setClients(clients.filter(c => c.id !== id))
   }
 
   return (
-    <div className="px-4 py-6">
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
-        <div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">Clients</h1>
-          <p className="text-muted-foreground">Manage your client relationships</p>
-        </div>
-        <Button onClick={() => { setShowForm(!showForm); setEditingId(null); setFormData({ name: "", email: "", phone: "", company: "", country: "", currency: "USD" }) }} className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
-          <Plus className="w-4 h-4 mr-2" />
-          Add Client
-        </Button>
-      </div>
+    <div className="max-w-6xl space-y-6">
+      <PageHeader
+        title="Clients"
+        subtitle={`${clients.length} total clients`}
+        action={
+          <Btn onClick={() => { setForm(empty); setEditingId(null); setOpen(true) }}>
+            <Plus className="w-4 h-4" /> Add Client
+          </Btn>
+        }
+      />
 
-      {showForm && (
-        <div className="bg-card/80 backdrop-blur-xl p-8 rounded-2xl shadow-xl mb-6 border border-border">
-          <h2 className="text-2xl font-bold mb-6 text-foreground">{editingId ? "Edit Client" : "New Client"}</h2>
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Input placeholder="Name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
-            <Input placeholder="Email" type="email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
-            <Input placeholder="Phone" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
-            <Input placeholder="Company" value={formData.company} onChange={e => setFormData({ ...formData, company: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
-            <select className="h-12 border border-border rounded-xl px-4 bg-background text-foreground" value={formData.country} onChange={e => {
+      <Table>
+        <thead>
+          <tr>
+            <Th>Name</Th><Th>Email</Th><Th>Phone</Th><Th>Company</Th><Th>Country</Th><Th>Currency</Th><Th>Actions</Th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-white/[0.04]">
+          {clients.map(c => (
+            <tr key={c.id} className="hover:bg-white/[0.02] transition-colors">
+              <Td><span className="font-medium text-white">{c.name}</span></Td>
+              <Td>{c.email}</Td>
+              <Td>{c.phone}</Td>
+              <Td>{c.company}</Td>
+              <Td>{c.country}</Td>
+              <Td><Badge status={c.currency} /></Td>
+              <Td>
+                <div className="flex gap-1">
+                  <Btn size="sm" variant="ghost" onClick={() => router.push(`/admin/projects?client=${c.id}`)}><Eye className="w-3.5 h-3.5" /></Btn>
+                  <Btn size="sm" variant="ghost" onClick={() => handleEdit(c)}><Edit className="w-3.5 h-3.5" /></Btn>
+                  <Btn size="sm" variant="danger" onClick={() => handleDelete(c.id)}><Trash2 className="w-3.5 h-3.5" /></Btn>
+                </div>
+              </Td>
+            </tr>
+          ))}
+          {clients.length === 0 && (
+            <tr><td colSpan={7} className="px-4 py-12 text-center text-sm text-white/30">No clients yet. Add your first client.</td></tr>
+          )}
+        </tbody>
+      </Table>
+
+      <Drawer open={open} onClose={() => { setOpen(false); setEditingId(null) }} title={editingId ? "Edit Client" : "New Client"}>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Field label="Full Name"><AdminInput placeholder="John Doe" value={form.name} onChange={e => set("name", e.target.value)} required /></Field>
+          <Field label="Email"><AdminInput type="email" placeholder="john@example.com" value={form.email} onChange={e => set("email", e.target.value)} required /></Field>
+          <Field label="Phone"><AdminInput placeholder="+1 234 567 8900" value={form.phone} onChange={e => set("phone", e.target.value)} required /></Field>
+          <Field label="Company"><AdminInput placeholder="Acme Corp" value={form.company} onChange={e => set("company", e.target.value)} required /></Field>
+          <Field label="Country">
+            <AdminSelect value={form.country} onChange={e => {
               const country = e.target.value
               const currency = country === "Kenya" ? "KES" : country === "USA" ? "USD" : country === "UK" ? "GBP" : country === "EU" ? "EUR" : "USD"
-              setFormData({ ...formData, country, currency })
+              setForm(f => ({ ...f, country, currency }))
             }} required>
-              <option value="">Select Country</option>
-              <option value="Kenya">Kenya</option>
-              <option value="USA">USA</option>
-              <option value="UK">UK</option>
-              <option value="EU">EU</option>
-              <option value="Other">Other</option>
-            </select>
-            <Input placeholder="Currency" value={formData.currency} onChange={e => setFormData({ ...formData, currency: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
-            <div className="md:col-span-2 flex flex-col sm:flex-row gap-3 mt-2">
-              <Button type="submit" className="bg-primary hover:bg-primary/90">Save Client</Button>
-              <Button type="button" variant="outline" onClick={() => { setShowForm(false); setEditingId(null) }} className="rounded-xl">Cancel</Button>
-            </div>
-          </form>
-        </div>
-      )}
-
-      <div className="bg-card/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-x-auto border border-border">
-        <table className="min-w-[980px] w-full divide-y divide-border">
-          <thead className="bg-muted/50">
-            <tr>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Name</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Email</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Phone</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Company</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Country</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Currency</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="bg-card/50 divide-y divide-border">
-            {clients.map(client => (
-              <tr key={client.id} className="hover:bg-primary/5 transition-colors">
-                <td className="px-6 py-4 whitespace-nowrap font-medium text-foreground">{client.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">{client.email}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">{client.phone}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">{client.company}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">{client.country}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span className="px-2 py-1 text-xs font-semibold rounded-full bg-primary/20 text-primary">{client.currency}</span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex gap-2">
-                    <Button size="sm" variant="ghost" onClick={() => router.push(`/admin/projects?client=${client.id}`)} className="hover:bg-primary/10 hover:text-primary rounded-lg">
-                      <Eye className="w-4 h-4" />
-                    </Button>
-                    <Button size="sm" variant="ghost" onClick={() => handleEdit(client)} className="hover:bg-primary/10 hover:text-primary rounded-lg">
-                      <Edit className="w-4 h-4" />
-                    </Button>
-                    <Button size="sm" variant="ghost" onClick={() => handleDelete(client.id)} className="hover:bg-destructive/10 hover:text-destructive rounded-lg">
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+              <option value="">Select country</option>
+              <option>Kenya</option><option>USA</option><option>UK</option><option>EU</option><option>Other</option>
+            </AdminSelect>
+          </Field>
+          <Field label="Currency"><AdminInput placeholder="USD" value={form.currency} onChange={e => set("currency", e.target.value)} required /></Field>
+          <div className="flex gap-3 pt-2">
+            <Btn type="submit">Save Client</Btn>
+            <Btn type="button" variant="outline" onClick={() => { setOpen(false); setEditingId(null) }}>Cancel</Btn>
+          </div>
+        </form>
+      </Drawer>
     </div>
   )
 }

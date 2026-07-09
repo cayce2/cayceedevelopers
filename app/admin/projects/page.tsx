@@ -4,191 +4,147 @@
 import { useEffect, useState, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Plus, Edit, Trash2, FileText } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Drawer, Field, AdminInput, AdminSelect, AdminTextarea, Btn, Badge, PageHeader, Table, Th, Td } from "../components"
 
 type Project = {
-  id: string
-  clientId: string
-  name: string
-  description: string
-  status: string
-  budget: number
-  startDate: string
-  endDate: string
-  createdAt: string
+  id: string; clientId: string; name: string; description: string
+  status: string; budget: number; startDate: string; endDate: string
 }
+
+const empty = { clientId: "", name: "", description: "", status: "pending", budget: 0, startDate: "", endDate: "" }
 
 function ProjectsContent() {
   const searchParams = useSearchParams()
   const clientFilter = searchParams.get("client")
-  
+
   const [projects, setProjects] = useState<Project[]>([])
   const [clients, setClients] = useState<any[]>([])
-  const [selectedClient, setSelectedClient] = useState<any>(null)
-  const [showForm, setShowForm] = useState(false)
+  const [open, setOpen] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
-  const [formData, setFormData] = useState({
-    clientId: clientFilter || "",
-    name: "",
-    description: "",
-    status: "pending",
-    budget: 0,
-    startDate: "",
-    endDate: ""
-  })
+  const [form, setForm] = useState({ ...empty, clientId: clientFilter || "" })
 
   useEffect(() => {
-    fetch('/api/projects').then(res => res.json()).then(data => setProjects(data.map((p: any) => ({ ...p, id: p._id }))))
-    fetch('/api/clients').then(res => res.json()).then(data => setClients(data.map((c: any) => ({ ...c, id: c._id }))))
+    fetch('/api/projects').then(r => r.json()).then(d => setProjects(d.map((p: any) => ({ ...p, id: p._id }))))
+    fetch('/api/clients').then(r => r.json()).then(d => setClients(d.map((c: any) => ({ ...c, id: c._id }))))
   }, [])
+
+  const set = (k: string, v: any) => setForm(f => ({ ...f, [k]: v }))
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (editingId) {
-      await fetch('/api/projects', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: editingId, ...formData })
-      })
-      const updated = projects.map(p => p.id === editingId ? { ...p, ...formData } : p)
-      setProjects(updated)
-      setEditingId(null)
+      await fetch('/api/projects', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: editingId, ...form }) })
+      setProjects(projects.map(p => p.id === editingId ? { ...p, ...form } : p))
     } else {
-      const res = await fetch('/api/projects', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
-      const newProject = await res.json()
-      setProjects([...projects, { ...newProject, id: newProject._id }])
+      const res = await fetch('/api/projects', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
+      const n = await res.json()
+      setProjects([...projects, { ...n, id: n._id }])
     }
-    setFormData({ clientId: clientFilter || "", name: "", description: "", status: "pending", budget: 0, startDate: "", endDate: "" })
-    setShowForm(false)
+    setOpen(false); setEditingId(null); setForm({ ...empty, clientId: clientFilter || "" })
   }
 
-  const handleEdit = (project: Project) => {
-    setFormData(project)
-    setEditingId(project.id)
-    setShowForm(true)
+  const handleEdit = (p: Project) => {
+    setForm({ clientId: p.clientId, name: p.name, description: p.description, status: p.status, budget: p.budget, startDate: p.startDate, endDate: p.endDate })
+    setEditingId(p.id); setOpen(true)
   }
 
   const handleDelete = async (id: string) => {
-    if (confirm("Delete this project?")) {
-      await fetch(`/api/projects?id=${id}`, { method: 'DELETE' })
-      setProjects(projects.filter(p => p.id !== id))
-    }
+    if (!confirm("Delete this project?")) return
+    await fetch(`/api/projects?id=${id}`, { method: 'DELETE' })
+    setProjects(projects.filter(p => p.id !== id))
   }
 
-  const filteredProjects = clientFilter ? projects.filter(p => p.clientId === clientFilter) : projects
+  const filtered = clientFilter ? projects.filter(p => p.clientId === clientFilter) : projects
+  const selectedClient = clients.find(c => c.id === form.clientId)
 
   return (
-    <div className="px-4 py-6">
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
-        <div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">Projects</h1>
-          <p className="text-muted-foreground">Track and manage all your projects</p>
-        </div>
-        <Button onClick={() => { setShowForm(!showForm); setEditingId(null); setFormData({ clientId: clientFilter || "", name: "", description: "", status: "pending", budget: 0, startDate: "", endDate: "" }) }} className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
-          <Plus className="w-4 h-4 mr-2" />
-          Add Project
-        </Button>
-      </div>
+    <div className="max-w-6xl space-y-6">
+      <PageHeader
+        title="Projects"
+        subtitle={`${filtered.length} project${filtered.length !== 1 ? "s" : ""}${clientFilter ? " for this client" : ""}`}
+        action={
+          <Btn onClick={() => { setForm({ ...empty, clientId: clientFilter || "" }); setEditingId(null); setOpen(true) }}>
+            <Plus className="w-4 h-4" /> Add Project
+          </Btn>
+        }
+      />
 
-      {showForm && (
-        <div className="bg-card/80 backdrop-blur-xl p-8 rounded-2xl shadow-xl mb-6 border border-border">
-          <h2 className="text-2xl font-bold mb-6 text-foreground">{editingId ? "Edit Project" : "New Project"}</h2>
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <select className="md:col-span-2 border border-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary bg-background text-foreground" value={formData.clientId} onChange={e => {
-              setFormData({ ...formData, clientId: e.target.value })
-              setSelectedClient(clients.find(c => c.id === e.target.value))
-            }} required>
-              <option value="">Select Client</option>
-              {clients.map(c => <option key={c.id} value={c.id}>{c.name} - {c.company}</option>)}
-            </select>
-            <Input placeholder="Project Name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
+      <Table>
+        <thead>
+          <tr><Th>Project</Th><Th>Client</Th><Th>Budget</Th><Th>Status</Th><Th>Dates</Th><Th>Actions</Th></tr>
+        </thead>
+        <tbody className="divide-y divide-white/[0.04]">
+          {filtered.map(p => {
+            const client = clients.find(c => c.id === p.clientId)
+            return (
+              <tr key={p.id} className="hover:bg-white/[0.02] transition-colors">
+                <Td>
+                  <div className="font-medium text-white">{p.name}</div>
+                  <div className="text-xs text-white/30 mt-0.5 max-w-xs truncate">{p.description}</div>
+                </Td>
+                <Td>{client?.name || "—"}</Td>
+                <Td><span className="font-semibold text-white">{client?.currency || "USD"} {p.budget.toLocaleString()}</span></Td>
+                <Td><Badge status={p.status} /></Td>
+                <Td>
+                  <div className="text-xs space-y-0.5">
+                    <div className="text-white/50">{p.startDate || "—"}</div>
+                    <div className="text-white/30">{p.endDate || "—"}</div>
+                  </div>
+                </Td>
+                <Td>
+                  <div className="flex gap-1">
+                    <Btn size="sm" variant="ghost" onClick={() => window.location.href = `/admin/invoices?project=${p.id}`}><FileText className="w-3.5 h-3.5" /></Btn>
+                    <Btn size="sm" variant="ghost" onClick={() => handleEdit(p)}><Edit className="w-3.5 h-3.5" /></Btn>
+                    <Btn size="sm" variant="danger" onClick={() => handleDelete(p.id)}><Trash2 className="w-3.5 h-3.5" /></Btn>
+                  </div>
+                </Td>
+              </tr>
+            )
+          })}
+          {filtered.length === 0 && (
+            <tr><td colSpan={6} className="px-4 py-12 text-center text-sm text-white/30">No projects yet.</td></tr>
+          )}
+        </tbody>
+      </Table>
+
+      <Drawer open={open} onClose={() => { setOpen(false); setEditingId(null) }} title={editingId ? "Edit Project" : "New Project"}>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Field label="Client">
+            <AdminSelect value={form.clientId} onChange={e => set("clientId", e.target.value)} required>
+              <option value="">Select client</option>
+              {clients.map(c => <option key={c.id} value={c.id}>{c.name} — {c.company}</option>)}
+            </AdminSelect>
+          </Field>
+          <Field label="Project Name"><AdminInput placeholder="Website Redesign" value={form.name} onChange={e => set("name", e.target.value)} required /></Field>
+          <Field label="Budget">
             <div className="relative">
-              <Input type="number" placeholder="Budget" value={formData.budget} onChange={e => setFormData({ ...formData, budget: Number(e.target.value) })} required className="h-12 rounded-xl bg-background border-border pl-12" />
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-semibold">{selectedClient?.currency || "USD"}</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-white/30 font-semibold">{selectedClient?.currency || "USD"}</span>
+              <AdminInput type="number" placeholder="0" value={form.budget} onChange={e => set("budget", Number(e.target.value))} className="pl-12" required />
             </div>
-            <Textarea className="md:col-span-2 rounded-xl bg-background border-border" placeholder="Description" value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })} required />
-            <select className="border border-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary bg-background text-foreground" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value })}>
+          </Field>
+          <Field label="Description"><AdminTextarea rows={3} placeholder="Project description..." value={form.description} onChange={e => set("description", e.target.value)} required /></Field>
+          <Field label="Status">
+            <AdminSelect value={form.status} onChange={e => set("status", e.target.value)}>
               <option value="pending">Pending</option>
               <option value="in-progress">In Progress</option>
               <option value="completed">Completed</option>
               <option value="on-hold">On Hold</option>
-            </select>
-            <div className="hidden md:block"></div>
-            <Input type="date" placeholder="Start Date" value={formData.startDate} onChange={e => setFormData({ ...formData, startDate: e.target.value })} required className="h-12 rounded-xl bg-background border-border" />
-            <Input type="date" placeholder="End Date" value={formData.endDate} onChange={e => setFormData({ ...formData, endDate: e.target.value })} className="h-12 rounded-xl bg-background border-border" />
-            <div className="md:col-span-2 flex flex-col sm:flex-row gap-3 mt-2">
-              <Button type="submit" className="bg-primary hover:bg-primary/90">Save Project</Button>
-              <Button type="button" variant="outline" onClick={() => { setShowForm(false); setEditingId(null) }} className="rounded-xl">Cancel</Button>
-            </div>
-          </form>
-        </div>
-      )}
-
-      <div className="bg-card/80 backdrop-blur-xl rounded-2xl shadow-xl overflow-x-auto border border-border">
-        <table className="min-w-[900px] w-full divide-y divide-border">
-          <thead className="bg-muted/50">
-            <tr>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Project</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Client</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Budget</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Status</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="bg-card/50 divide-y divide-border">
-            {filteredProjects.map(project => {
-              const client = clients.find(c => c.id === project.clientId)
-              return (
-                <tr key={project.id} className="hover:bg-primary/5 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="font-semibold text-foreground">{project.name}</div>
-                    <div className="text-sm text-muted-foreground mt-1">{project.description.substring(0, 50)}...</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-muted-foreground">{client?.name || "N/A"}</td>
-                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-foreground">{client?.currency || "USD"} {project.budget.toLocaleString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-3 py-1.5 text-xs font-semibold rounded-full ${
-                      project.status === "completed" ? "bg-green-500/20 text-green-400" :
-                      project.status === "in-progress" ? "bg-primary/20 text-primary" :
-                      project.status === "on-hold" ? "bg-yellow-500/20 text-yellow-400" :
-                      "bg-muted text-muted-foreground"
-                    }`}>
-                      {project.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex gap-2">
-                      <Button size="sm" variant="ghost" onClick={() => window.location.href = `/admin/invoices?project=${project.id}`} className="hover:bg-primary/10 hover:text-primary rounded-lg">
-                        <FileText className="w-4 h-4" />
-                      </Button>
-                      <Button size="sm" variant="ghost" onClick={() => handleEdit(project)} className="hover:bg-primary/10 hover:text-primary rounded-lg">
-                        <Edit className="w-4 h-4" />
-                      </Button>
-                      <Button size="sm" variant="ghost" onClick={() => handleDelete(project.id)} className="hover:bg-destructive/10 hover:text-destructive rounded-lg">
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </div>
+            </AdminSelect>
+          </Field>
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Start Date"><AdminInput type="date" value={form.startDate} onChange={e => set("startDate", e.target.value)} required /></Field>
+            <Field label="End Date"><AdminInput type="date" value={form.endDate} onChange={e => set("endDate", e.target.value)} /></Field>
+          </div>
+          <div className="flex gap-3 pt-2">
+            <Btn type="submit">Save Project</Btn>
+            <Btn type="button" variant="outline" onClick={() => { setOpen(false); setEditingId(null) }}>Cancel</Btn>
+          </div>
+        </form>
+      </Drawer>
     </div>
   )
 }
 
 export default function ProjectsPage() {
-  return (
-    <Suspense fallback={<div className="px-4 py-6">Loading...</div>}>
-      <ProjectsContent />
-    </Suspense>
-  )
+  return <Suspense fallback={<div className="text-white/40 text-sm p-6">Loading...</div>}><ProjectsContent /></Suspense>
 }
