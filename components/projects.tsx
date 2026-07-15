@@ -13,7 +13,7 @@ export function ProjectsSection() {
       title: "E-commerce Platform",
       category: "Full-stack web application",
       description: "A modern e-commerce solution with integrated payment processing and inventory management.",
-      image: "/ecommerce.png?height=300&width=600",
+      image: "/ecommerce.png",
       tags: ["React", "Node.js", "MongoDB", "Stripe"],
       featured: true
     },
@@ -21,7 +21,7 @@ export function ProjectsSection() {
       title: "Expense Tracker",
       category: "Full-stack web application",
       description: "A modern platform to monitor your income and expenses with intelligent insights.",
-      image: "/expense.png?height=300&width=600",
+      image: "/expense.png",
       tags: ["React", "Firebase", "ChartJS", "Tailwind"],
       featured: false
     },
@@ -29,7 +29,7 @@ export function ProjectsSection() {
       title: "Empowerher App",
       category: "Mobile application",
       description: "Personalized workout plans and nutrition tracking to help users reach their goals.",
-      image: "/empower.png?height=300&width=600",
+      image: "/empower.png",
       tags: ["React Native", "GraphQL", "AWS", "Firebase"],
       featured: false
     },
@@ -37,7 +37,7 @@ export function ProjectsSection() {
       title: "AB-SITE Technologies",
       category: "Ecommerce Website",
       description: "Networking and security solutions provider with a comprehensive online store.",
-      image: "/absite.png?height=300&width=600",
+      image: "/absite.png",
       tags: ["React Native"],
       featured: false
       
@@ -46,7 +46,7 @@ export function ProjectsSection() {
       title: "Stocks Management System",
       category: "Website",
       description: "Stock management system for tracking inventory levels, orders, sales, and deliveries.",
-      image: "/absite.png?height=300&width=600",
+      image: "/absite.png",
       tags: ["React Native"],
       featured: false
     }

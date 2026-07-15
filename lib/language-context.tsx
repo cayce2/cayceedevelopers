@@ -20,9 +20,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('en')
   const [suggestedLanguages, setSuggestedLanguages] = useState<string[]>(['en'])
   const [isAutoDetected, setIsAutoDetected] = useState(false)
-  const aiService = AILanguageService.getInstance()
 
   useEffect(() => {
+    const aiService = AILanguageService.getInstance()
     const initializeLanguage = async () => {
       const saved = localStorage.getItem('language') as Language
       const languageData = localStorage.getItem('languageData')
@@ -68,12 +68,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const setLanguage = async (lang: Language) => {
     setLanguageState(lang)
     setIsAutoDetected(false)
-    await aiService.smartLanguageSwitch(lang)
+    await AILanguageService.getInstance().smartLanguageSwitch(lang)
   }
 
   const translateText = async (text: string, targetLang: Language = language): Promise<string> => {
     try {
-      return await aiService.translateText({
+      return await AILanguageService.getInstance().translateText({
         text,
         from: 'en',
         to: targetLang

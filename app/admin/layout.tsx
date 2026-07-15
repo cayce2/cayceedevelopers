@@ -6,7 +6,7 @@ import Link from "next/link"
 import {
   LayoutDashboard, Users, FolderKanban, FileText,
   Activity, Shield, BarChart3, Monitor, LogOut,
-  ChevronLeft, ChevronRight, Menu, X
+  ChevronLeft, ChevronRight, Menu, FileSignature
 } from "lucide-react"
 
 const navItems = [
@@ -14,6 +14,7 @@ const navItems = [
   { href: "/admin/clients", label: "Clients", icon: Users },
   { href: "/admin/projects", label: "Projects", icon: FolderKanban },
   { href: "/admin/invoices", label: "Invoices", icon: FileText },
+  { href: "/admin/contracts", label: "Contracts", icon: FileSignature },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/admin/activity-logs", label: "Activity", icon: Activity },
   { href: "/admin/audit-logs", label: "Audit", icon: Shield },
