@@ -71,6 +71,309 @@ const resolveInvoiceStatus = (invoice: {
   return "sent"
 }
 
+const formatDocumentMoney = (currency: string, value: number) =>
+  `${currency || "USD"} ${normalizeMoney(value).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+
+const formatDocumentDate = (value?: string) => {
+  if (!value) return "N/A"
+
+  const date = new Date(`${value}T00:00:00`)
+  if (Number.isNaN(date.getTime())) return value
+
+  return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" }).format(date)
+}
+
+const sanitizeFileName = (value: string) =>
+  (value || "document")
+    .replace(/[^a-z0-9._-]+/gi, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80) || "document"
+
+const normalizePdfText = (value: unknown) =>
+  String(value ?? "")
+    .normalize("NFKD")
+    .replace(/[^\x20-\x7E]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+
+const escapePdfText = (value: unknown) =>
+  normalizePdfText(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/\(/g, "\\(")
+    .replace(/\)/g, "\\)")
+
+const wrapPdfText = (value: unknown, maxChars: number) => {
+  const text = normalizePdfText(value)
+  if (!text) return [""]
+
+  const lines: string[] = []
+  let current = ""
+
+  text.split(" ").forEach(word => {
+    if (word.length > maxChars) {
+      if (current) {
+        lines.push(current)
+        current = ""
+      }
+      for (let i = 0; i < word.length; i += maxChars) {
+        lines.push(word.slice(i, i + maxChars))
+      }
+      return
+    }
+
+    const next = current ? `${current} ${word}` : word
+    if (next.length > maxChars) {
+      lines.push(current)
+      current = word
+    } else {
+      current = next
+    }
+  })
+
+  if (current) lines.push(current)
+  return lines.length ? lines : [""]
+}
+
+const estimatePdfTextWidth = (text: string, size: number) => normalizePdfText(text).length * size * 0.52
+
+const pdfNumber = (value: number) => Number(value.toFixed(2))
+
+const pushPdfText = (
+  commands: string[],
+  text: unknown,
+  x: number,
+  y: number,
+  options: { size?: number; font?: "F1" | "F2"; color?: [number, number, number]; align?: "left" | "right" | "center" } = {}
+) => {
+  const cleanText = normalizePdfText(text)
+  if (!cleanText) return
+
+  const size = options.size ?? 10
+  const font = options.font ?? "F1"
+  const color = options.color ?? [0.08, 0.09, 0.11]
+  const width = estimatePdfTextWidth(cleanText, size)
+  const textX = options.align === "right" ? x - width : options.align === "center" ? x - width / 2 : x
+
+  commands.push(`${color.join(" ")} rg BT /${font} ${size} Tf ${pdfNumber(textX)} ${pdfNumber(y)} Td (${escapePdfText(cleanText)}) Tj ET`)
+}
+
+const pushPdfLine = (
+  commands: string[],
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  color: [number, number, number] = [0.82, 0.85, 0.9],
+  width = 1
+) => {
+  commands.push(`${color.join(" ")} RG ${width} w ${pdfNumber(x1)} ${pdfNumber(y1)} m ${pdfNumber(x2)} ${pdfNumber(y2)} l S`)
+}
+
+const pushPdfRect = (
+  commands: string[],
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  color: [number, number, number]
+) => {
+  commands.push(`${color.join(" ")} rg ${pdfNumber(x)} ${pdfNumber(y)} ${pdfNumber(width)} ${pdfNumber(height)} re f`)
+}
+
+const createPdfBlob = (pageStreams: string[]) => {
+  const encoder = new TextEncoder()
+  const pageObjectIds = pageStreams.map((_, index) => 5 + index * 2)
+  const objects: string[] = [
+    "<< /Type /Catalog /Pages 2 0 R >>",
+    `<< /Type /Pages /Kids [${pageObjectIds.map(id => `${id} 0 R`).join(" ")}] /Count ${pageStreams.length} >>`,
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>"
+  ]
+
+  pageStreams.forEach((stream, index) => {
+    const pageObjectId = pageObjectIds[index]
+    const contentObjectId = pageObjectId + 1
+    objects.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents ${contentObjectId} 0 R >>`)
+    objects.push(`<< /Length ${encoder.encode(stream).length} >>\nstream\n${stream}\nendstream`)
+  })
+
+  let pdf = "%PDF-1.4\n"
+  const offsets: number[] = []
+
+  objects.forEach((object, index) => {
+    offsets.push(encoder.encode(pdf).length)
+    pdf += `${index + 1} 0 obj\n${object}\nendobj\n`
+  })
+
+  const xrefOffset = encoder.encode(pdf).length
+  pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`
+  offsets.forEach(offset => {
+    pdf += `${String(offset).padStart(10, "0")} 00000 n \n`
+  })
+  pdf += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`
+
+  return new Blob([pdf], { type: "application/pdf" })
+}
+
+const createInvoicePdfBlob = (invoice: Invoice, project?: any, client?: any) => {
+  const pageWidth = 612
+  const pageHeight = 792
+  const margin = 48
+  const bottomMargin = 58
+  const contentWidth = pageWidth - margin * 2
+  const documentType = invoice.type === "quotation" ? "QUOTATION" : "INVOICE"
+  const currency = invoice.currency || client?.currency || "USD"
+  const subtotal = (invoice.items || []).reduce((sum, item) => sum + normalizeMoney(Number(item.quantity || 0) * Number(item.rate || 0)), 0)
+  const taxAmount = (subtotal * normalizeMoney(Number(invoice.tax || 0))) / 100
+  const discountAmount = (subtotal * normalizeMoney(Number(invoice.discount || 0))) / 100
+  const total = normalizeMoney(Number(invoice.total || subtotal + taxAmount - discountAmount))
+  const amountPaid = Math.min(normalizeMoney(Number(invoice.amountPaid || 0)), total)
+  const balanceDue = getBalanceAmount(total, amountPaid)
+  const pages: string[][] = []
+  let commands: string[] = []
+  let y = pageHeight - margin
+
+  const addPage = (continuation = false) => {
+    commands = []
+    pages.push(commands)
+    y = pageHeight - margin
+
+    if (continuation) {
+      pushPdfText(commands, "Caycee Developers", margin, y, { font: "F2", size: 14, color: [0.05, 0.13, 0.22] })
+      pushPdfText(commands, `${documentType} ${invoice.number}`, pageWidth - margin, y, { size: 10, color: [0.38, 0.43, 0.5], align: "right" })
+      y -= 26
+      pushPdfLine(commands, margin, y, pageWidth - margin, y)
+      y -= 26
+    }
+  }
+
+  const ensureSpace = (height: number, continueTable = false) => {
+    if (y - height >= bottomMargin) return
+    addPage(true)
+    if (continueTable) drawTableHeader()
+  }
+
+  const drawTableHeader = () => {
+    pushPdfRect(commands, margin, y - 18, contentWidth, 26, [0.93, 0.96, 1])
+    pushPdfText(commands, "Description", margin + 10, y - 2, { font: "F2", size: 9, color: [0.1, 0.28, 0.48] })
+    pushPdfText(commands, "Qty", 382, y - 2, { font: "F2", size: 9, color: [0.1, 0.28, 0.48], align: "right" })
+    pushPdfText(commands, "Rate", 462, y - 2, { font: "F2", size: 9, color: [0.1, 0.28, 0.48], align: "right" })
+    pushPdfText(commands, "Amount", pageWidth - margin - 10, y - 2, { font: "F2", size: 9, color: [0.1, 0.28, 0.48], align: "right" })
+    y -= 30
+  }
+
+  addPage()
+
+  pushPdfText(commands, "Caycee Developers", margin, y, { font: "F2", size: 20, color: [0.05, 0.13, 0.22] })
+  pushPdfText(commands, "Digital design and development services", margin, y - 18, { size: 9, color: [0.38, 0.43, 0.5] })
+  pushPdfText(commands, "cayceedevelopers@gmail.com", margin, y - 32, { size: 9, color: [0.38, 0.43, 0.5] })
+  pushPdfText(commands, documentType, pageWidth - margin, y - 2, { font: "F2", size: 28, color: [0.02, 0.36, 0.58], align: "right" })
+  pushPdfText(commands, invoice.number || "Draft", pageWidth - margin, y - 28, { size: 11, color: [0.38, 0.43, 0.5], align: "right" })
+  y -= 72
+  pushPdfLine(commands, margin, y, pageWidth - margin, y)
+  y -= 30
+
+  pushPdfText(commands, "BILL TO", margin, y, { font: "F2", size: 9, color: [0.02, 0.36, 0.58] })
+  pushPdfText(commands, client?.company || client?.name || "Unknown Client", margin, y - 18, { font: "F2", size: 12 })
+  pushPdfText(commands, client?.name || "", margin, y - 34, { size: 10, color: [0.25, 0.29, 0.35] })
+  pushPdfText(commands, client?.email || "", margin, y - 49, { size: 9, color: [0.38, 0.43, 0.5] })
+  pushPdfText(commands, client?.phone || "", margin, y - 63, { size: 9, color: [0.38, 0.43, 0.5] })
+  pushPdfText(commands, client?.country || "", margin, y - 77, { size: 9, color: [0.38, 0.43, 0.5] })
+
+  const metaX = 360
+  pushPdfText(commands, "Issue Date", metaX, y, { font: "F2", size: 9, color: [0.38, 0.43, 0.5] })
+  pushPdfText(commands, formatDocumentDate(invoice.date), pageWidth - margin, y, { size: 10, align: "right" })
+  pushPdfText(commands, invoice.type === "quotation" ? "Valid Until" : "Due Date", metaX, y - 18, { font: "F2", size: 9, color: [0.38, 0.43, 0.5] })
+  pushPdfText(commands, formatDocumentDate(invoice.dueDate), pageWidth - margin, y - 18, { size: 10, align: "right" })
+  pushPdfText(commands, "Status", metaX, y - 36, { font: "F2", size: 9, color: [0.38, 0.43, 0.5] })
+  pushPdfText(commands, resolveInvoiceStatus(invoice).toUpperCase(), pageWidth - margin, y - 36, { size: 10, align: "right" })
+  y -= 106
+
+  pushPdfText(commands, "PROJECT", margin, y, { font: "F2", size: 9, color: [0.02, 0.36, 0.58] })
+  pushPdfText(commands, project?.name || "Unknown Project", margin, y - 18, { font: "F2", size: 12 })
+  const projectLines = wrapPdfText(project?.description || "", 95)
+  projectLines.slice(0, 3).forEach((line, index) => {
+    pushPdfText(commands, line, margin, y - 34 - index * 13, { size: 9, color: [0.38, 0.43, 0.5] })
+  })
+  y -= 82
+
+  drawTableHeader()
+  ;(invoice.items || []).forEach((item, index) => {
+    const descriptionLines = wrapPdfText(item.description || `Item ${index + 1}`, 56)
+    const rowHeight = Math.max(30, descriptionLines.length * 12 + 14)
+    const amount = normalizeMoney(Number(item.quantity || 0) * Number(item.rate || 0))
+
+    ensureSpace(rowHeight, true)
+    descriptionLines.forEach((line, lineIndex) => {
+      pushPdfText(commands, line, margin + 10, y - 14 - lineIndex * 12, { size: 9 })
+    })
+    pushPdfText(commands, String(item.quantity || 0), 382, y - 14, { size: 9, align: "right" })
+    pushPdfText(commands, formatDocumentMoney(currency, Number(item.rate || 0)), 462, y - 14, { size: 9, align: "right" })
+    pushPdfText(commands, formatDocumentMoney(currency, amount), pageWidth - margin - 10, y - 14, { size: 9, align: "right" })
+    pushPdfLine(commands, margin, y - rowHeight, pageWidth - margin, y - rowHeight, [0.9, 0.92, 0.95], 0.6)
+    y -= rowHeight
+  })
+
+  ensureSpace(invoice.type === "invoice" ? 150 : 98)
+  y -= 16
+  const totalsLabelX = 345
+  const totalsValueX = pageWidth - margin
+  pushPdfLine(commands, totalsLabelX, y, totalsValueX, y)
+  y -= 20
+  pushPdfText(commands, "Subtotal", totalsLabelX, y, { size: 10, color: [0.38, 0.43, 0.5] })
+  pushPdfText(commands, formatDocumentMoney(currency, subtotal), totalsValueX, y, { size: 10, align: "right" })
+  y -= 18
+
+  if (invoice.tax > 0) {
+    pushPdfText(commands, `Tax (${invoice.tax}%)`, totalsLabelX, y, { size: 10, color: [0.38, 0.43, 0.5] })
+    pushPdfText(commands, formatDocumentMoney(currency, taxAmount), totalsValueX, y, { size: 10, align: "right" })
+    y -= 18
+  }
+
+  if (invoice.discount > 0) {
+    pushPdfText(commands, `Discount (${invoice.discount}%)`, totalsLabelX, y, { size: 10, color: [0.38, 0.43, 0.5] })
+    pushPdfText(commands, `-${formatDocumentMoney(currency, discountAmount)}`, totalsValueX, y, { size: 10, align: "right" })
+    y -= 18
+  }
+
+  pushPdfText(commands, "Total", totalsLabelX, y, { font: "F2", size: 12 })
+  pushPdfText(commands, formatDocumentMoney(currency, total), totalsValueX, y, { font: "F2", size: 12, align: "right", color: [0.02, 0.36, 0.58] })
+  y -= 20
+
+  if (invoice.type === "invoice") {
+    pushPdfText(commands, "Amount Paid", totalsLabelX, y, { size: 10, color: [0.38, 0.43, 0.5] })
+    pushPdfText(commands, `-${formatDocumentMoney(currency, amountPaid)}`, totalsValueX, y, { size: 10, align: "right" })
+    y -= 18
+
+    if (invoice.includeBalance !== false) {
+      pushPdfRect(commands, totalsLabelX - 8, y - 10, totalsValueX - totalsLabelX + 8, 28, [0.93, 0.98, 1])
+      pushPdfText(commands, "Balance Due", totalsLabelX, y, { font: "F2", size: 11, color: [0.02, 0.36, 0.58] })
+      pushPdfText(commands, formatDocumentMoney(currency, balanceDue), totalsValueX, y, { font: "F2", size: 11, align: "right", color: [0.02, 0.36, 0.58] })
+      y -= 28
+    }
+  }
+
+  if (invoice.notes) {
+    ensureSpace(90)
+    y -= 16
+    pushPdfText(commands, "NOTES", margin, y, { font: "F2", size: 9, color: [0.02, 0.36, 0.58] })
+    y -= 18
+    wrapPdfText(invoice.notes, 95).forEach(line => {
+      ensureSpace(14)
+      pushPdfText(commands, line, margin, y, { size: 9, color: [0.38, 0.43, 0.5] })
+      y -= 13
+    })
+  }
+
+  pages.forEach((pageCommands, index) => {
+    pushPdfLine(pageCommands, margin, 40, pageWidth - margin, 40, [0.88, 0.9, 0.93], 0.6)
+    pushPdfText(pageCommands, "Thank you for your business.", margin, 24, { size: 8, color: [0.5, 0.55, 0.62] })
+    pushPdfText(pageCommands, `Page ${index + 1} of ${pages.length}`, pageWidth - margin, 24, { size: 8, color: [0.5, 0.55, 0.62], align: "right" })
+  })
+
+  return createPdfBlob(pages.map(page => page.join("\n")))
+}
+
 // --- Wizard Step Components ---
 
 const Step1Details = ({ formData, setFormData, projects, clients }: any) => (
@@ -477,6 +780,26 @@ function InvoicesContent() {
     }
   }
 
+  const handleDownload = (invoice: Invoice) => {
+    try {
+      const project = projects.find(p => p.id === invoice.projectId)
+      const client = clients.find(c => c.id === project?.clientId)
+      const blob = createInvoicePdfBlob(invoice, project, client)
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement("a")
+
+      link.href = url
+      link.download = `${sanitizeFileName(invoice.number || invoice.type)}.pdf`
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000)
+    } catch (error) {
+      console.error("Failed to generate invoice PDF", error)
+      alert("Sorry, the PDF could not be generated. Please try again.")
+    }
+  }
+
   const filteredInvoices = invoices.filter(inv => {
     const matchesTab = inv.type === activeTab
     const matchesProject = projectFilter ? inv.projectId === projectFilter : true
@@ -636,7 +959,7 @@ function InvoicesContent() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right">
                       <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Button size="icon" variant="ghost" onClick={() => { /* generatePDF logic preserved */ }} className="h-8 w-8 hover:bg-green-500/10 hover:text-green-600" title="Download PDF">
+                        <Button size="icon" variant="ghost" onClick={() => handleDownload(invoice)} className="h-8 w-8 hover:bg-green-500/10 hover:text-green-600" title="Download PDF">
                           <Download className="w-4 h-4" />
                         </Button>
                         <Button size="icon" variant="ghost" onClick={() => handleEdit(invoice)} className="h-8 w-8 hover:bg-blue-500/10 hover:text-blue-600" title="Edit">
