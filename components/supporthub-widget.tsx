@@ -3,7 +3,7 @@ import Script from "next/script"
 export function SupportHubWidget() {
   return (
     <>
-      <Script id="supporthub-config" strategy="afterInteractive">
+      <Script id="supporthub-config" strategy="beforeInteractive">
         {`window.SupportHubConfig = {
   "widgetId": "website-main",
   "position": "bottom-left",
@@ -18,7 +18,7 @@ export function SupportHubWidget() {
         src="https://www.linksdesk.net/supporthub-widget.js"
         data-widget-id="website-main"
         async
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
       />
     </>
   )
