@@ -15,7 +15,7 @@ export function SupportHubWidget() {
 };`}
       </Script>
       <Script
-        src="https://linksdesk.net/supporthub-widget.js"
+        src="https:/linksdesk.net/supporthub-widget.js"
         data-widget-id="website-main"
         strategy="afterInteractive"
       />
