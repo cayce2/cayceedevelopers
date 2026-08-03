@@ -4,6 +4,7 @@ import Script from "next/script"
 import { Inter } from "next/font/google"
 import { LanguageProvider } from "../lib/language-context"
 import "./globals.css"
+import { SupportHubWidget } from "@/components/supporthub-widget"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -24,11 +25,7 @@ export default function RootLayout({
           {children}
         </LanguageProvider>
 
-        <Script
-          async
-          src="https://linkssupport.vercel.app/supporthub-widget.js"
-          data-widget-id="website-main"
-        />
+        <SupportHubWidget />
 
         <Script
           src="https://vm-localization-widget-5.vusercontent.net/api/widget/script"
