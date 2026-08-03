@@ -23,13 +23,20 @@ export default function RootLayout({
         <LanguageProvider>
           {children}
         </LanguageProvider>
+
         <Script
           async
           src="https://linkssupport.vercel.app/supporthub-widget.js"
           data-widget-id="website-main"
         />
+
+        <Script
+          src="https://vm-localization-widget-5.vusercontent.net/api/widget/script"
+          strategy="afterInteractive"
+          data-api-key="key_d7af14393b33dfde7526fe23e64dad10cc00354010d570f5b26a20051c8a4e4d"
+          data-api-url="https://vm-localization-widget-5.vusercontent.net"
+        />
       </body>
     </html>
   )
 }
-
