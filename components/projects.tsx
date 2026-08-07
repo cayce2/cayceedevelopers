@@ -10,12 +10,22 @@ export function ProjectsSection() {
   const { t } = useTranslation()
   const projects = [
     {
+      title: "LinksDesk",
+      category: "SaaS Platform",
+      description: "The ultimate customer  management platform. CRM integration, real-time chat, and analytics to streamline your business operations.",
+      image: "/linksdesk.png",
+      tags: ["real-time chat", "CRM integration", "Analytics", "Automations", "AI Powered"],
+      featured: true,
+      link: "https://linksdesk.net",
+      cta: "Register Now"
+    },
+    {
       title: "E-commerce Platform",
       category: "Full-stack web application",
       description: "A modern e-commerce solution with integrated payment processing and inventory management.",
       image: "/ecommerce.png",
       tags: ["React", "Node.js", "MongoDB", "Stripe"],
-      featured: true
+      featured: false
     },
     {
       title: "Expense Tracker",
@@ -78,7 +88,11 @@ export function ProjectsSection() {
         {/* Featured Project - Centered */}
         <div className="mb-12">
           {projects.filter(p => p.featured).map((project, index) => (
-            <div key={index} className="group relative bg-[#050a14]/80 backdrop-blur-sm shadow-lg border border-sky-500/20 overflow-hidden transition-all hover:shadow-xl hover:shadow-sky-500/30 hover:border-sky-400 hover:-translate-y-1 mx-auto">
+            <div key={index} className="group relative bg-[#050a14]/80 backdrop-blur-sm shadow-lg border border-sky-400 overflow-hidden transition-all hover:shadow-xl hover:shadow-sky-500/40 hover:-translate-y-1 mx-auto ring-1 ring-sky-400/30">
+              {/* Highlight badge */}
+              <div className="absolute top-4 right-4 z-10 px-3 py-1 text-xs font-bold bg-sky-500 text-white rounded-full shadow-lg shadow-sky-500/40 animate-pulse">
+                🚀 New Launch
+              </div>
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="order-2 md:order-1 p-8 md:p-10 flex flex-col justify-center">
                   <div className="space-y-4">
@@ -96,11 +110,16 @@ export function ProjectsSection() {
                       ))}
                     </div>
                     
-                    <div className="pt-4">
-                      <Link href="https://www.drunkbycaycee.co.ke/" target="_blank" rel="noopener noreferrer">
-                        <Button className="group bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-sky-500/20 transition-all hover:shadow-sky-500/40 hover:scale-105">
-                          {t('View Case Study')}
-                           <ArrowUpRight className="ml-2 h-4 w-4 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <div className="pt-4 flex gap-3">
+                      <Link href={project.link ?? '#'} target="_blank" rel="noopener noreferrer">
+                        <Button className="group bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-sky-500/20 transition-all hover:shadow-sky-500/40 hover:scale-105 font-semibold">
+                          {project.cta ?? t('View Case Study')}
+                          <ArrowUpRight className="ml-2 h-4 w-4 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </Button>
+                      </Link>
+                      <Link href={project.link ?? '#'} target="_blank" rel="noopener noreferrer">
+                        <Button variant="ghost" className="text-sky-400 hover:text-sky-300 hover:bg-sky-500/10 border border-sky-500/30">
+                          Visit Site
                         </Button>
                       </Link>
                     </div>
